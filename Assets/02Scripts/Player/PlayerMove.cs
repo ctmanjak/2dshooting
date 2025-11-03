@@ -25,19 +25,20 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
         
         Debug.Log($"h: {h}, v: {v}");
 
-        Vector2 direction = new Vector2(h, v) * (speed * Time.deltaTime);
+        Vector2 direction = new Vector2(h, v).normalized;
+        float speedDelta = speed * Time.deltaTime;
         Debug.Log($"direction: ({direction.x}, {direction.y})");
 
         Vector2 position = transform.position;
 
         Vector2 newPosition = new Vector2(
-            Mathf.Clamp(position.x + direction.x, _movableBottomLeft.x, _movableTopRight.x),
-            Mathf.Clamp(position.y + direction.y, _movableBottomLeft.y, _movableTopRight.y)
+            Mathf.Clamp(position.x + direction.x * speedDelta, _movableBottomLeft.x, _movableTopRight.x),
+            Mathf.Clamp(position.y + direction.y * speedDelta, _movableBottomLeft.y, _movableTopRight.y)
         );
 
         if (newPosition.x <= _movableBottomLeft.x)
