@@ -3,9 +3,11 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public Camera mainCamera;
-    private Vector2 _movableTopLeft;
-    private Vector2 _movableBottomRight;
     
+    private Vector2 _movableTopRight;
+    private Vector2 _movableBottomLeft;
+    
+    [Header("능력치")]
     public float speed = 5f;
     public float maxSpeed = 10f;
     public float minSpeed = 3f;
@@ -16,8 +18,8 @@ public class PlayerMove : MonoBehaviour
 
         if (mainCamera != null)
         {
-            _movableTopLeft = mainCamera.ViewportToWorldPoint(new Vector3(0, 0.5f, mainCamera.nearClipPlane));
-            _movableBottomRight = mainCamera.ViewportToWorldPoint(new Vector3(1, 0, mainCamera.nearClipPlane));
+            _movableTopRight = mainCamera.ViewportToWorldPoint(new Vector3(1, 0.5f, mainCamera.nearClipPlane));
+            _movableBottomLeft = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane));
         }
     }
 
@@ -34,9 +36,17 @@ public class PlayerMove : MonoBehaviour
         Vector2 position = transform.position;
 
         Vector2 newPosition = new Vector2(
-            Mathf.Clamp(position.x + direction.x, _movableTopLeft.x, _movableBottomRight.x),
-            Mathf.Clamp(position.y + direction.y, _movableBottomRight.y, _movableTopLeft.y)
+            Mathf.Clamp(position.x + direction.x, _movableBottomLeft.x, _movableTopRight.x),
+            Mathf.Clamp(position.y + direction.y, _movableBottomLeft.y, _movableTopRight.y)
         );
+
+        if (newPosition.x <= _movableBottomLeft.x)
+        {
+            newPosition.x = _movableTopRight.x - 0.1f;
+        } else if (newPosition.x >= _movableTopRight.x)
+        {
+            newPosition.x = _movableBottomLeft.x + 0.1f;
+        }
         
         Debug.Log($"newPosition: ({newPosition.x}, {newPosition.y})");
 
