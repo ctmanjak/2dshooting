@@ -1,10 +1,17 @@
+using _02Scripts.Player;
 using UnityEngine;
 
 public class PlayerFire : MonoBehaviour
 {
+    private StatComponent _statComponent;
     public BaseGun[] Guns;
 
     private EFireType _fireType;
+
+    private void Start()
+    {
+        _statComponent = GetComponent<StatComponent>();
+    }
 
     void Update()
     {
@@ -20,7 +27,7 @@ public class PlayerFire : MonoBehaviour
         {
             foreach (var gun in Guns)
             {
-                if (gun && gun.gameObject.activeSelf) gun.Fire();
+                if (gun && gun.gameObject.activeSelf) gun.Fire(_statComponent.Damage);
             }
         }
     }
@@ -29,10 +36,4 @@ public class PlayerFire : MonoBehaviour
     {
         _fireType = fireType;
     }
-}
-
-public enum EFireType
-{
-    Auto,
-    Manual
 }

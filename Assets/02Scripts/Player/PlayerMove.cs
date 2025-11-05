@@ -50,8 +50,6 @@ namespace _02Scripts.Player
                 return;
             }
         
-            Debug.Log($"direction: ({direction.x}, {direction.y})");
-        
             Move(direction, speedDelta);
         }
 
@@ -102,7 +100,6 @@ namespace _02Scripts.Player
             {
                 newPosition.x = _movableBottomLeft.x + Mathf.Epsilon;
             }
-            Debug.Log($"newPosition: ({newPosition.x}, {newPosition.y})");
 
             transform.position = newPosition;
         }

@@ -4,9 +4,9 @@ public class SpiralGun : BaseGun
 {
     public float RotateSpeed = 10.0f;
 
-    protected override void InstantiateBullet(Vector3 position, Quaternion rotation)
+    protected override void InstantiateBullet(int damage, Vector3 position, Quaternion rotation)
     {
-        base.InstantiateBullet(position, rotation);
+        base.InstantiateBullet(damage, position, rotation);
         
         transform.rotation *= Quaternion.AngleAxis(RotateSpeed, Vector3.forward);
     }
