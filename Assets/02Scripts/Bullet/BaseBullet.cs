@@ -47,14 +47,17 @@ namespace _02Scripts.Bullet
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!other.CompareTag("Enemy")) return;
-            
-            Destroy(gameObject);
-            
-            HealthComponent otherHealth = other.gameObject.GetComponent<HealthComponent>();
+            HealthComponent otherHealth = other.GetComponentInParent<HealthComponent>();
             if (!otherHealth) return;
             
-            otherHealth.TakeDamage(BaseDamage + _extraDamage);
+            if (!otherHealth.CompareTag("Enemy")) return;
+            
+            Destroy(gameObject);
+
+            HitboxComponent otherHitbox = other.GetComponent<HitboxComponent>();
+            float damageMultiplier = otherHitbox?.DamageMultiplier ?? 1.0f; 
+            
+            otherHealth.TakeDamage((int)((BaseDamage + _extraDamage) * damageMultiplier));
         }
     }
 }

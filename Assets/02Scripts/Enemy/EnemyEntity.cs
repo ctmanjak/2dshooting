@@ -14,14 +14,17 @@ namespace _02Scripts.Enemy
             _statComponent = GetComponent<StatComponent>();
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerStay2D(Collider2D other)
         {
-            if (!other.CompareTag("Player")) return;
-            
-            HealthComponent otherHealth = other.gameObject.GetComponent<HealthComponent>();
+            HealthComponent otherHealth = other.GetComponentInParent<HealthComponent>();
             if (otherHealth == null) return;
+            
+            if (!otherHealth.CompareTag("Player")) return;
 
-            otherHealth.TakeDamage(_statComponent.Damage);
+            HitboxComponent otherHitbox = other.GetComponent<HitboxComponent>();
+            float damageMultiplier = otherHitbox?.DamageMultiplier ?? 1.0f; 
+
+            otherHealth.TakeDamage((int)(_statComponent.Damage * damageMultiplier));
         }
     }
 }
