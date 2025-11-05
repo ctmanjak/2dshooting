@@ -1,5 +1,4 @@
 using _02Scripts.Common;
-using _02Scripts.Enemy;
 using UnityEngine;
 
 namespace _02Scripts.Bullet
@@ -48,17 +47,11 @@ namespace _02Scripts.Bullet
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            HealthComponent otherHealth = other.GetComponentInParent<HealthComponent>();
-            if (!otherHealth) return;
-            
-            if (!otherHealth.CompareTag("Enemy")) return;
-            
-            Destroy(gameObject);
-
             HitboxComponent otherHitbox = other.GetComponent<HitboxComponent>();
-            float damageMultiplier = otherHitbox?.DamageMultiplier ?? 1.0f; 
+            if (otherHitbox == null) return;
             
-            otherHealth.TakeDamage((int)((BaseDamage + _extraDamage) * damageMultiplier));
+            bool result = otherHitbox.Hit(transform.position, BaseDamage + _extraDamage, new[] { "Enemy" });
+            if (result) Destroy(gameObject);
         }
     }
 }

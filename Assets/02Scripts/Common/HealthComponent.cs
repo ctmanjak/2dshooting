@@ -4,7 +4,7 @@ namespace _02Scripts.Common
 {
     public class HealthComponent : MonoBehaviour
     {
-        private StatComponent _statComponent;
+        public StatComponent StatComponent;
     
         private int _health;
         private float _invincibleSeconds;
@@ -12,9 +12,9 @@ namespace _02Scripts.Common
     
         private void Start()
         {
-            _statComponent = GetComponent<StatComponent>();
-            _health = _statComponent.MaxHealth;
-            _invincibleSeconds = _statComponent.InvincibleSeconds;
+            if (!StatComponent) StatComponent = GetComponent<StatComponent>();
+            _health = StatComponent.MaxHealth;
+            _invincibleSeconds = StatComponent.InvincibleSeconds;
         }
 
         public void TakeDamage(int damage)

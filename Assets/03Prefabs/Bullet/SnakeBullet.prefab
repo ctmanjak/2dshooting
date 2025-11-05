@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3806391403653227195, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       propertyPath: m_Name
-      value: SnakeBullet 1
+      value: SnakeBullet
       objectReference: {fileID: 0}
     - target: {fileID: 8299747270721461993, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,8 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cef79b8b124434a961d3e083a1a954b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BaseDamage: 0
   MinMoveSpeed: 20
   MaxMoveSpeed: 20
   MinToMaxSeconds: 1.2
-  RotateSpeed: 300
+  Frequency: 2
   TurnAngle: 80

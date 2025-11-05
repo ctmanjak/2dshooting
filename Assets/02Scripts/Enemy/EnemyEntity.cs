@@ -8,24 +8,21 @@ namespace _02Scripts.Enemy
     {
         private StatComponent _statComponent;
         private HealthComponent _healthComponent;
+        private Collider2D _collider2D;
 
         public void Start()
         {
             _healthComponent = GetComponent<HealthComponent>();
             _statComponent = GetComponent<StatComponent>();
+            _collider2D = GetComponent<Collider2D>();
         }
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            HealthComponent otherHealth = other.GetComponentInParent<HealthComponent>();
-            if (otherHealth == null) return;
-            
-            if (!otherHealth.CompareTag("Player")) return;
-
             HitboxComponent otherHitbox = other.GetComponent<HitboxComponent>();
-            float damageMultiplier = otherHitbox?.DamageMultiplier ?? 1.0f; 
+            if (otherHitbox == null) return;
 
-            otherHealth.TakeDamage((int)(_statComponent.Damage * damageMultiplier));
+            otherHitbox.Hit(transform.position, _statComponent.Damage, new[] { "Player" });
         }
     }
 }
