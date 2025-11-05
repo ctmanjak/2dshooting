@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _02Scripts.Enemy
+namespace _02Scripts.Common
 {
     public class HitboxComponent : MonoBehaviour
     {

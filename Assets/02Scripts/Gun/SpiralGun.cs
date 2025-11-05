@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class SpiralGun : BaseGun
+namespace _02Scripts.Gun
 {
-    public float RotateSpeed = 10.0f;
-
-    protected override void InstantiateBullet(int damage, Vector3 position, Quaternion rotation)
+    public class SpiralGun : BaseGun
     {
-        base.InstantiateBullet(damage, position, rotation);
+        public float RotateSpeed = 10.0f;
+
+        protected override void InstantiateBullet(int damage, Vector3 position, Quaternion rotation)
+        {
+            base.InstantiateBullet(damage, position, rotation);
         
-        transform.rotation *= Quaternion.AngleAxis(RotateSpeed, Vector3.forward);
+            transform.rotation *= Quaternion.AngleAxis(RotateSpeed, Vector3.forward);
+        }
     }
 }

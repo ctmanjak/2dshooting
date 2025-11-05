@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class StatComponent : MonoBehaviour
+namespace _02Scripts.Common
 {
-    public int MaxHealth;
-    public int Damage;
+    public class StatComponent : MonoBehaviour
+    {
+        public int MaxHealth;
+        public int Damage;
 
-    public float InvincibleSeconds;
+        public float InvincibleSeconds;
+    }
 }

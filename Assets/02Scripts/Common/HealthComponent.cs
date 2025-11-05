@@ -1,35 +1,38 @@
 using UnityEngine;
 
-public class HealthComponent : MonoBehaviour
+namespace _02Scripts.Common
 {
-    private StatComponent _statComponent;
-    
-    private int _health;
-    private float _invincibleSeconds;
-    private float _lastInvincibleTime;
-    
-    private void Start()
+    public class HealthComponent : MonoBehaviour
     {
-        _statComponent = GetComponent<StatComponent>();
-        _health = _statComponent.MaxHealth;
-        _invincibleSeconds = _statComponent.InvincibleSeconds;
-    }
-
-    public void TakeDamage(int damage)
-    {
-        float currentTime = Time.time;
-        if (currentTime - _lastInvincibleTime > _invincibleSeconds)
+        private StatComponent _statComponent;
+    
+        private int _health;
+        private float _invincibleSeconds;
+        private float _lastInvincibleTime;
+    
+        private void Start()
         {
-            _health -= damage;
-
-            _lastInvincibleTime = currentTime;
+            _statComponent = GetComponent<StatComponent>();
+            _health = _statComponent.MaxHealth;
+            _invincibleSeconds = _statComponent.InvincibleSeconds;
         }
 
-        if (_health <= 0) Die();
-    }
+        public void TakeDamage(int damage)
+        {
+            float currentTime = Time.time;
+            if (currentTime - _lastInvincibleTime > _invincibleSeconds)
+            {
+                _health -= damage;
 
-    private void Die()
-    {
-        Destroy(gameObject);
+                _lastInvincibleTime = currentTime;
+            }
+
+            if (_health <= 0) Die();
+        }
+
+        private void Die()
+        {
+            Destroy(gameObject);
+        }
     }
 }

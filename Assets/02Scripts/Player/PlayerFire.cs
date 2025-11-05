@@ -1,39 +1,43 @@
-using _02Scripts.Player;
+using _02Scripts.Common;
+using _02Scripts.Gun;
 using UnityEngine;
 
-public class PlayerFire : MonoBehaviour
+namespace _02Scripts.Player
 {
-    private StatComponent _statComponent;
-    public BaseGun[] Guns;
-
-    private EFireType _fireType;
-
-    private void Start()
+    public class PlayerFire : MonoBehaviour
     {
-        _statComponent = GetComponent<StatComponent>();
-    }
+        private StatComponent _statComponent;
+        public BaseGun[] Guns;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        private EFireType _fireType;
+
+        private void Start()
         {
-            SetFireType(EFireType.Auto);
-        } else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SetFireType(EFireType.Manual);
+            _statComponent = GetComponent<StatComponent>();
         }
-        
-        if (_fireType == EFireType.Auto || Input.GetKey(KeyCode.Space))
+
+        void Update()
         {
-            foreach (var gun in Guns)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (gun && gun.gameObject.activeSelf) gun.Fire(_statComponent.Damage);
+                SetFireType(EFireType.Auto);
+            } else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                SetFireType(EFireType.Manual);
+            }
+        
+            if (_fireType == EFireType.Auto || Input.GetKey(KeyCode.Space))
+            {
+                foreach (var gun in Guns)
+                {
+                    if (gun && gun.gameObject.activeSelf) gun.Fire(_statComponent.Damage);
+                }
             }
         }
-    }
 
-    private void SetFireType(EFireType fireType)
-    {
-        _fireType = fireType;
+        private void SetFireType(EFireType fireType)
+        {
+            _fireType = fireType;
+        }
     }
 }

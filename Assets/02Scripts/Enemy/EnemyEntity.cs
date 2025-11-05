@@ -1,3 +1,4 @@
+using _02Scripts.Common;
 using UnityEngine;
 
 namespace _02Scripts.Enemy
