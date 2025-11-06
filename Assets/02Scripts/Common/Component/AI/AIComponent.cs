@@ -20,6 +20,7 @@ namespace _02Scripts.Common.Component.AI
             if (newMoveDirection != _previousMoveDirection)
             {
                 _moveComponent.SetMoveDirection(newMoveDirection);
+                _previousMoveDirection = newMoveDirection;
             }
         }
 
