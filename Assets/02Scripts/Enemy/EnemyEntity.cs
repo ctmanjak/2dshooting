@@ -7,14 +7,10 @@ namespace _02Scripts.Enemy
     public class EnemyEntity : MonoBehaviour
     {
         private StatComponent _statComponent;
-        private HealthComponent _healthComponent;
-        private MoveComponent _moveComponent;
 
         public void Start()
         {
-            _healthComponent = GetComponent<HealthComponent>();
             _statComponent = GetComponent<StatComponent>();
-            _moveComponent = GetComponent<MoveComponent>();
         }
 
         private void OnTriggerStay2D(Collider2D other)
