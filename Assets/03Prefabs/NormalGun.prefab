@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8013501234700055812}
-  - component: {fileID: 2630733809233686579}
+  - component: {fileID: 6107500946643398180}
   m_Layer: 0
   m_Name: NormalGun
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2630733809233686579
+--- !u!114 &6107500946643398180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1491747882519526152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78ff3e195c004e6996dc61b760dbbe15, type: 3}
+  m_Script: {fileID: 11500000, guid: 2630ce569e8d42e8a974bf2b226ca330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: -8168273412067753919, guid: 58420e9f07aa741e8a1349f0edc33b59, type: 3}
+  BulletPrefab: {fileID: 6030181107323122894, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
   BaseDamage: 0
-  FireCooldown: 0.1
+  FireCooldown: 1

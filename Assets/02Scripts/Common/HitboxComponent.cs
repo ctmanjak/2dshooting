@@ -4,25 +4,27 @@ using UnityEngine;
 
 namespace _02Scripts.Common
 {
+    [RequireComponent(typeof(HealthComponent))]
     public class HitboxComponent : MonoBehaviour
     {
         public Transform Transform;
-        public HealthComponent HealthComponent;
+        
+        private HealthComponent _healthComponent;
         
         public float DamageMultiplier = 1.0f;
         public float KnockbackPower = 5.0f;
 
         private void Start()
         {
-            if (!HealthComponent) HealthComponent = GetComponent<HealthComponent>() ?? GetComponentInParent<HealthComponent>();
+            _healthComponent ??= GetComponent<HealthComponent>() ?? GetComponentInParent<HealthComponent>();
             if (!Transform) throw new MissingComponentException();
         }
 
         public bool Hit(Vector3 hitterPosition, int damage, string[] compareTags)
         {
-            if (compareTags.Any(compareTag => !HealthComponent.CompareTag(compareTag))) return false;
+            if (compareTags.Any(compareTag => !_healthComponent.CompareTag(compareTag))) return false;
             
-            HealthComponent.TakeDamage((int)(damage * DamageMultiplier));
+            _healthComponent.TakeDamage((int)(damage * DamageMultiplier));
 
             if (DamageMultiplier > 1.0f)
             {

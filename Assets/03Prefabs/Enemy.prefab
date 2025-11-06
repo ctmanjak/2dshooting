@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 5920327420737469015}
   - component: {fileID: 5664401033383925667}
-  - component: {fileID: 2293993657788148668}
   - component: {fileID: 8109143473156177915}
   - component: {fileID: 7420568049373203451}
   - component: {fileID: 975798335068701767}
   - component: {fileID: 5858751479076200876}
   - component: {fileID: 4154578461669998167}
   - component: {fileID: 3406695603375463187}
+  - component: {fileID: 4572867796981967575}
+  - component: {fileID: 4716997953802464849}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -94,19 +95,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2293993657788148668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5003803826555043087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 296d3a15d565d47a9bec86c15d1c8728, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 5
 --- !u!50 &8109143473156177915
 Rigidbody2D:
   serializedVersion: 5
@@ -196,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   Damage: 40
+  Speed: 5
   InvincibleSeconds: 0
 --- !u!114 &4154578461669998167
 MonoBehaviour:
@@ -209,7 +198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ca1d151b245feb5099386bae54bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatComponent: {fileID: 5858751479076200876}
 --- !u!114 &3406695603375463187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,6 +211,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Transform: {fileID: 5920327420737469015}
-  HealthComponent: {fileID: 4154578461669998167}
   DamageMultiplier: 1
   KnockbackPower: 5
+--- !u!114 &4572867796981967575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003803826555043087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2297cca49ccc47d2b2976521417998d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4716997953802464849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003803826555043087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f58c775dde4404b4fc0f4a8f3e5b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

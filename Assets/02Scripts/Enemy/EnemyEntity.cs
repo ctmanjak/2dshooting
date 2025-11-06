@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace _02Scripts.Enemy
 {
-    [RequireComponent(typeof(HealthComponent), typeof(StatComponent))]
+    [RequireComponent(typeof(HealthComponent), typeof(StatComponent), typeof(MoveComponent))]
     public class EnemyEntity : MonoBehaviour
     {
         private StatComponent _statComponent;
         private HealthComponent _healthComponent;
-        private Collider2D _collider2D;
+        private MoveComponent _moveComponent;
 
         public void Start()
         {
             _healthComponent = GetComponent<HealthComponent>();
             _statComponent = GetComponent<StatComponent>();
-            _collider2D = GetComponent<Collider2D>();
+            _moveComponent = GetComponent<MoveComponent>();
         }
 
         private void OnTriggerStay2D(Collider2D other)

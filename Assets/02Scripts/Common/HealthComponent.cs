@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace _02Scripts.Common
 {
+    [RequireComponent(typeof(StatComponent))]
     public class HealthComponent : MonoBehaviour
     {
-        public StatComponent StatComponent;
+        private StatComponent _statComponent;
     
         private int _health;
         private float _invincibleSeconds;
@@ -12,9 +13,9 @@ namespace _02Scripts.Common
     
         private void Start()
         {
-            if (!StatComponent) StatComponent = GetComponent<StatComponent>();
-            _health = StatComponent.MaxHealth;
-            _invincibleSeconds = StatComponent.InvincibleSeconds;
+            _statComponent ??= GetComponent<StatComponent>();
+            _health = _statComponent.MaxHealth;
+            _invincibleSeconds = _statComponent.InvincibleSeconds;
         }
 
         public void TakeDamage(int damage)

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1491747882519526152, guid: 50f7dda25d5844afeaa3bd97eebd38a1, type: 3}
       propertyPath: m_Name
-      value: KaisaGun Variant
+      value: KaisaGun
       objectReference: {fileID: 0}
     - target: {fileID: 2630733809233686579, guid: 50f7dda25d5844afeaa3bd97eebd38a1, type: 3}
       propertyPath: MidpointX
@@ -64,8 +64,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6107500946643398180, guid: 50f7dda25d5844afeaa3bd97eebd38a1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1491747882519526152, guid: 50f7dda25d5844afeaa3bd97eebd38a1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3793770903328210174}
   m_SourcePrefab: {fileID: 100100000, guid: 50f7dda25d5844afeaa3bd97eebd38a1, type: 3}
+--- !u!1 &6277832229362837066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1491747882519526152, guid: 50f7dda25d5844afeaa3bd97eebd38a1, type: 3}
+  m_PrefabInstance: {fileID: 4876439541213289794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3793770903328210174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6277832229362837066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ff3e195c004e6996dc61b760dbbe15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletPrefab: {fileID: -8168273412067753919, guid: 58420e9f07aa741e8a1349f0edc33b59, type: 3}
+  BaseDamage: 0
+  FireCooldown: 0.1
+  SpawnPointX: 0.5
+  MidpointX: 10
+  MidpointY: 10
+  MidpointRadius: 5
+  EndpointY: 10
