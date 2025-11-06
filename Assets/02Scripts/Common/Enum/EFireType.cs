@@ -1,4 +1,4 @@
-namespace _02Scripts.Player.Enum
+namespace _02Scripts.Common.Enum
 {
     public enum EFireType
     {

@@ -13,7 +13,7 @@ namespace _02Scripts.Common.Component
     
         private void Start()
         {
-            _statComponent ??= GetComponent<StatComponent>();
+            _statComponent = GetComponent<StatComponent>();
             _health = _statComponent.MaxHealth;
             _invincibleSeconds = _statComponent.InvincibleSeconds;
         }

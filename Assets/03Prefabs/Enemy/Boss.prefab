@@ -296,6 +296,7 @@ GameObject:
   - component: {fileID: 2515781685056109561}
   - component: {fileID: 719442524441556588}
   - component: {fileID: 6287251781063584193}
+  - component: {fileID: 7160280907489532947}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -400,9 +401,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789f7416dc464bc28585bb795c94cd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 1000
+  MaxHealth: 100000
   Damage: 40
-  Speed: 5
+  Speed: 0.5
+  SpeedMultiplier: 1
   InvincibleSeconds: 0
 --- !u!114 &7429757780534411295
 MonoBehaviour:
@@ -468,3 +470,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Options: []
+--- !u!114 &7160280907489532947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6929617041674128680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ddd84c89f4423bab4e0c66a15fcb4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KnockbackTime: 0.2

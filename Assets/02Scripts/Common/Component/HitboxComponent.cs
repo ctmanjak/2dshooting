@@ -8,34 +8,39 @@ namespace _02Scripts.Common.Component
         public Transform Transform;
         
         private HealthComponent _healthComponent;
-        private MoveComponent _moveComponent;
+        private KnockbackComponent _knockbackComponent;
         
         public float DamageMultiplier = 1f;
-        public float KnockbackPower = 0f;
-
+        public float KnockbackPower;
+        
         private void Start()
         {
             _healthComponent = GetComponent<HealthComponent>() ?? GetComponentInParent<HealthComponent>();
-            _moveComponent = _healthComponent.gameObject.GetComponent<MoveComponent>();
+            _knockbackComponent = _healthComponent.gameObject.GetComponent<KnockbackComponent>();
             if (!Transform) throw new MissingComponentException();
         }
 
-        public bool Hit(Vector3 hitDirection, int damage, string[] compareTags)
+        public bool Hit(Vector2 hitDirection, int damage, string[] compareTags)
         {
             if (compareTags.Any(compareTag => !_healthComponent.CompareTag(compareTag))) return false;
-            
+
             _healthComponent.TakeDamage((int)(damage * DamageMultiplier));
 
-            Knockback(hitDirection);
+            if (_knockbackComponent) Knockback(hitDirection);
 
             return true;
+        }
+
+        public bool Hit(Transform hitter, int damage, string[] compareTags)
+        {
+            return Hit((transform.position - hitter.position).normalized, damage, compareTags);
         }
 
         private void Knockback(Vector2 direction)
         {
             if (KnockbackPower <= 0f) return;
             
-            _moveComponent.Knockback(direction, KnockbackPower);
+            _knockbackComponent.Knockback(direction, KnockbackPower);
         }
     }
 }

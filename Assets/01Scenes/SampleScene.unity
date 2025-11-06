@@ -1729,7 +1729,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2196642687405917253, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
+    - target: {fileID: 2102710008060878084, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
       propertyPath: MainCamera
       value: 
       objectReference: {fileID: 519420031}
@@ -1771,14 +1771,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2707173927293406340, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3687068521638526501, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
-      propertyPath: Options.Array.data[1].Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3687068521638526501, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
-      propertyPath: Options.Array.data[2].Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -7,6 +7,7 @@ namespace _02Scripts.Common.Component
         public int MaxHealth = 100;
         public int Damage = 10;
         public float Speed = 5.0f;
+        public float SpeedMultiplier = 1.0f;
 
         public float InvincibleSeconds;
     }

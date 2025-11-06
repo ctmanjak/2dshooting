@@ -8,10 +8,12 @@ namespace _02Scripts.Enemy
     public class EnemyEntity : MonoBehaviour
     {
         private StatComponent _statComponent;
+        private MoveComponent _moveComponent;
 
         private void Start()
         {
             _statComponent = GetComponent<StatComponent>();
+            _moveComponent = GetComponent<MoveComponent>();
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -19,7 +21,9 @@ namespace _02Scripts.Enemy
             HitboxComponent otherHitbox = other.GetComponent<HitboxComponent>();
             if (otherHitbox == null) return;
 
-            otherHitbox.Hit(transform.position, _statComponent.Damage, new[] { "Player" });
+            Vector2 hitDirection = _moveComponent.LastMoveDirection;
+            if (hitDirection == Vector2.zero) otherHitbox.Hit(transform, _statComponent.Damage, new[] { "Player" });
+            else otherHitbox.Hit(hitDirection, _statComponent.Damage, new[] { "Player" });
         }
     }
 }

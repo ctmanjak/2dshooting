@@ -1,4 +1,4 @@
-using _02Scripts.Player.Enum;
+using _02Scripts.Common.Enum;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component
@@ -9,36 +9,18 @@ namespace _02Scripts.Common.Component
         private StatComponent _statComponent;
         private EquipmentComponent _equipmentComponent;
 
-        private EFireType _fireType;
-        private Vector2 _attackDirection;
-
         private void Start()
         {
             _statComponent = GetComponent<StatComponent>();
             _equipmentComponent = GetComponent<EquipmentComponent>();
         }
 
-        private void Update()
-        {
-            if (_fireType == EFireType.Auto) Fire();
-        }
-
-        public void Fire()
+        public void Fire(Vector2 direction)
         {
             foreach (var gun in _equipmentComponent.Guns)
             {
-                gun.Fire(_statComponent.Damage, _attackDirection);
+                gun.Fire(_statComponent.Damage, direction);
             }
-        }
-
-        public void SetFireType(EFireType fireType)
-        {
-            _fireType = fireType;
-        }
-
-        public void SetAttackDirection(Vector2 direction)
-        {
-            _attackDirection = direction;
         }
     }
 }

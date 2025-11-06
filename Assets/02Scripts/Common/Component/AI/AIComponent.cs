@@ -2,14 +2,12 @@ using UnityEngine;
 
 namespace _02Scripts.Common.Component.AI
 {
-    [RequireComponent(typeof(MoveComponent), typeof(AttackComponent))]
+    [RequireComponent(typeof(MoveComponent), typeof(AttackComponent), typeof(StatComponent))]
     public abstract class AIComponent : MonoBehaviour
     {
         private MoveComponent _moveComponent;
         private AttackComponent _attackComponent;
-
-        private Vector2 _previousMoveDirection;
-        private Vector2 _previousAttackDirection;
+        private StatComponent _statComponent;
 
         private void Start()
         {
@@ -24,30 +22,21 @@ namespace _02Scripts.Common.Component.AI
 
         private void Move()
         {
-            Vector2 newMoveDirection = GetMoveDirection();
-            if (newMoveDirection == _previousMoveDirection) return;
-            
-            _moveComponent.SetMoveDirection(newMoveDirection);
-            _previousMoveDirection = newMoveDirection;
+            _moveComponent.Move(GetMoveDirection(), _statComponent.Speed * _statComponent.SpeedMultiplier * Time.deltaTime);
         }
 
         private void Attack()
         {
             if (!CanAttack()) return;
 
-            Vector2 newAttackDirection = GetAttackDirection();
-            if (newAttackDirection == _previousAttackDirection) return;
-            
-            _attackComponent.SetAttackDirection(newAttackDirection);
-            _previousAttackDirection = newAttackDirection;
-            
-            _attackComponent.Fire();
+            _attackComponent.Fire(GetAttackDirection());
         }
 
         protected virtual void Init()
         {
             _moveComponent = GetComponent<MoveComponent>();
             _attackComponent = GetComponent<AttackComponent>();
+            _statComponent = GetComponent<StatComponent>();
         }
 
         protected virtual bool CanAttack()
