@@ -36,5 +36,11 @@ namespace _02Scripts.Util
 
             return length;
         }
+
+        public static Quaternion DirectionToQuaternion(Vector2 direction, float angleOffset)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + angleOffset;
+            return Quaternion.Euler(0f, 0f, angle);
+        }
     }
 }

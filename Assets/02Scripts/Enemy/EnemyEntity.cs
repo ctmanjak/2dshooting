@@ -1,15 +1,15 @@
-using _02Scripts.Common;
 using _02Scripts.Common.Component;
 using UnityEngine;
 
 namespace _02Scripts.Enemy
 {
     [RequireComponent(typeof(HealthComponent), typeof(StatComponent), typeof(MoveComponent))]
+    [RequireComponent(typeof(EquipmentComponent))]
     public class EnemyEntity : MonoBehaviour
     {
         private StatComponent _statComponent;
 
-        public void Start()
+        private void Start()
         {
             _statComponent = GetComponent<StatComponent>();
         }

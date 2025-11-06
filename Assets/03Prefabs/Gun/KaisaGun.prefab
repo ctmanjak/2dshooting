@@ -94,7 +94,7 @@ MonoBehaviour:
   BaseDamage: 0
   FireCooldown: 0.1
   SpawnPointX: 0.5
-  MidpointX: 10
-  MidpointY: 10
-  MidpointRadius: 5
+  MidpointX: 7
+  MidpointY: 7
+  MidpointRadius: 4
   EndpointY: 10

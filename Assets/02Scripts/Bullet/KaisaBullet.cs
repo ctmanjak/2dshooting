@@ -30,8 +30,7 @@ namespace _02Scripts.Bullet
 
             Vector2 destination = MathUtil.QuadraticLerp(FirstPoint, Midpoint, LastPoint, _elapsedTime);
             Vector3 direction = destination - (Vector2)transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            transform.rotation = MathUtil.DirectionToQuaternion(direction, -90f);
             
             base.Move();
 

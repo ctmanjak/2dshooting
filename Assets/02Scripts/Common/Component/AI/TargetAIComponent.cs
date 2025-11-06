@@ -11,5 +11,13 @@ namespace _02Scripts.Common.Component.AI
             base.Init();
             Target = GameObject.FindWithTag("Player");
         }
+
+        protected virtual Vector2 GetTargetDirection()
+        {
+            Vector2 direction = Target ?
+                (Target.transform.position - transform.position).normalized : Vector2.down;
+
+            return direction;
+        }
     }
 }

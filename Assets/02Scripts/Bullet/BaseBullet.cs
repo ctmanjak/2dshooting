@@ -1,4 +1,3 @@
-using _02Scripts.Common;
 using _02Scripts.Common.Component;
 using UnityEngine;
 
@@ -9,6 +8,8 @@ namespace _02Scripts.Bullet
         protected float MoveSpeed = 1.0f;
 
         private int _extraDamage;
+
+        protected string[] EnemyTags = { "Enemy" };
     
         [Header("스탯")]
         public int BaseDamage;
@@ -22,7 +23,7 @@ namespace _02Scripts.Bullet
             Move();
         }
 
-        public void Init(int damage = 0, Vector3? position = null, Quaternion? rotation = null)
+        public virtual void Init(int damage = 0, Vector3? position = null, Quaternion? rotation = null)
         {
             MoveSpeed = MinMoveSpeed;
 
@@ -53,7 +54,7 @@ namespace _02Scripts.Bullet
             HitboxComponent otherHitbox = other.GetComponent<HitboxComponent>();
             if (otherHitbox == null) return;
             
-            bool result = otherHitbox.Hit(transform.position, BaseDamage + _extraDamage, new[] { "Enemy" });
+            bool result = otherHitbox.Hit(transform.position, BaseDamage + _extraDamage, EnemyTags);
             if (result) Destroy(gameObject);
         }
     }
