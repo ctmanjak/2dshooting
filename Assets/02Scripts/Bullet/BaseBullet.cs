@@ -53,7 +53,7 @@ namespace _02Scripts.Bullet
             HitboxComponent otherHitbox = other.GetComponent<HitboxComponent>();
             if (otherHitbox == null) return;
             
-            bool result = otherHitbox.Hit(transform.position, BaseDamage + _extraDamage, EnemyTags);
+            bool result = otherHitbox.Hit(transform.up, BaseDamage + _extraDamage, EnemyTags);
             if (result) Destroy(gameObject);
         }
     }

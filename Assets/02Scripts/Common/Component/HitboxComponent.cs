@@ -20,14 +20,13 @@ namespace _02Scripts.Common.Component
             if (!Transform) throw new MissingComponentException();
         }
 
-        public bool Hit(Vector3 hitterPosition, int damage, string[] compareTags)
+        public bool Hit(Vector3 hitDirection, int damage, string[] compareTags)
         {
             if (compareTags.Any(compareTag => !_healthComponent.CompareTag(compareTag))) return false;
             
             _healthComponent.TakeDamage((int)(damage * DamageMultiplier));
 
-            Vector2 knockbackDirection = (Transform.position - hitterPosition).normalized;
-            Knockback(knockbackDirection);
+            Knockback(hitDirection);
 
             return true;
         }
