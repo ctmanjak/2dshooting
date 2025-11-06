@@ -37,7 +37,7 @@ namespace _02Scripts.Enemy
             for (int i = 0, accumulateWeight = 0; i < SpawnerOptions.Length; i++)
             {
                 accumulateWeight += SpawnerOptions[i].Weight;
-                if (chance <= accumulateWeight)
+                if (chance < accumulateWeight)
                 {
                     return SpawnerOptions[i].Prefab;
                 }
