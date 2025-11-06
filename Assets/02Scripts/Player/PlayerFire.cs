@@ -30,7 +30,7 @@ namespace _02Scripts.Player
             {
                 foreach (var gun in Guns)
                 {
-                    if (gun && gun.gameObject.activeSelf) gun.Fire(_statComponent.Damage);
+                    if (gun is { Enabled: true }) gun.Fire(_statComponent.Damage);
                 }
             }
         }

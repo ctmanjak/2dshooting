@@ -5,7 +5,7 @@ namespace _02Scripts.Bullet
 {
     public abstract class BaseBullet : MonoBehaviour
     {
-        private float _moveSpeed = 1.0f;
+        protected float MoveSpeed = 1.0f;
 
         private int _extraDamage;
     
@@ -23,7 +23,7 @@ namespace _02Scripts.Bullet
 
         public void Init(int damage = 0, Vector3? position = null, Quaternion? rotation = null)
         {
-            _moveSpeed = MinMoveSpeed;
+            MoveSpeed = MinMoveSpeed;
 
             _extraDamage = damage;
 
@@ -35,14 +35,16 @@ namespace _02Scripts.Bullet
         {
             Vector2 position = transform.position;
             Vector2 direction = transform.up;
-            Vector2 newPosition = position + direction * (_moveSpeed * Time.deltaTime);
+            Vector2 newPosition = position + direction * (MoveSpeed * Time.deltaTime);
 
             transform.position = newPosition;
         }
 
         private void Accelerate()
         {
-            _moveSpeed = Mathf.Min(MaxMoveSpeed, _moveSpeed + (MaxMoveSpeed - MinMoveSpeed) / MinToMaxSeconds * Time.deltaTime);
+            if (MoveSpeed >= MaxMoveSpeed) return;
+            
+            MoveSpeed = Mathf.Min(MaxMoveSpeed, MoveSpeed + (MaxMoveSpeed - MinMoveSpeed) / MinToMaxSeconds * Time.deltaTime);
         }
         
         private void OnTriggerEnter2D(Collider2D other)
