@@ -3,19 +3,20 @@ using UnityEngine;
 
 namespace _02Scripts.Common.Component
 {
-    [RequireComponent(typeof(HealthComponent))]
     public class HitboxComponent : MonoBehaviour
     {
         public Transform Transform;
         
         private HealthComponent _healthComponent;
+        private MoveComponent _moveComponent;
         
-        public float DamageMultiplier = 1.0f;
-        public float KnockbackPower = 5.0f;
+        public float DamageMultiplier = 1f;
+        public float KnockbackPower = 0f;
 
         private void Start()
         {
-            _healthComponent ??= GetComponent<HealthComponent>() ?? GetComponentInParent<HealthComponent>();
+            _healthComponent = GetComponent<HealthComponent>() ?? GetComponentInParent<HealthComponent>();
+            _moveComponent = _healthComponent.gameObject.GetComponent<MoveComponent>();
             if (!Transform) throw new MissingComponentException();
         }
 
@@ -25,14 +26,17 @@ namespace _02Scripts.Common.Component
             
             _healthComponent.TakeDamage((int)(damage * DamageMultiplier));
 
-            if (DamageMultiplier > 1.0f)
-            {
-                Vector2 knockbackDirection = (Transform.position - hitterPosition).normalized;
-                Vector2 newPosition = (Vector2)Transform.position + knockbackDirection * KnockbackPower;
-                Transform.position = newPosition;
-            }
+            Vector2 knockbackDirection = (Transform.position - hitterPosition).normalized;
+            Knockback(knockbackDirection);
 
             return true;
+        }
+
+        private void Knockback(Vector2 direction)
+        {
+            if (KnockbackPower <= 0f) return;
+            
+            _moveComponent.Knockback(direction, KnockbackPower);
         }
     }
 }

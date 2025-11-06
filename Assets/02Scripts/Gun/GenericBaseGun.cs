@@ -1,6 +1,5 @@
 using _02Scripts.Bullet;
 using _02Scripts.Util;
-using Unity.Mathematics.Geometry;
 using UnityEngine;
 
 namespace _02Scripts.Gun
@@ -23,16 +22,17 @@ namespace _02Scripts.Gun
         {
             if (Time.time - _lastFireTime >= FireCooldown)
             {
-                InstantiateBullet(BaseDamage + extraDamage, transform.position, MathUtil.DirectionToQuaternion(direction, -90f));
+                Quaternion rotation = MathUtil.DirectionToQuaternion(direction, -90f);
+                InstantiateBullet(BaseDamage + extraDamage, rotation);
 
                 _lastFireTime = Time.time;
             }
         }
 
-        public override void InstantiateBullet(int damage, Vector3 position, Quaternion rotation)
+        protected virtual void InstantiateBullet(int damage, Quaternion rotation)
         {
-            T bullet = Instantiate(BulletPrefab);
-            bullet.Init(damage, position, rotation);
+            T bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
+            bullet.Init(damage, rotation);
         }
 
         public override void SetBulletPrefab(BaseBullet bulletPrefab)

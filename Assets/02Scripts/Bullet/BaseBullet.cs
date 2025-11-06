@@ -23,14 +23,13 @@ namespace _02Scripts.Bullet
             Move();
         }
 
-        public virtual void Init(int damage = 0, Vector3? position = null, Quaternion? rotation = null)
+        public virtual void Init(int damage = 0, Quaternion? rotation = null)
         {
             MoveSpeed = MinMoveSpeed;
-
             _extraDamage = damage;
 
-            transform.position = position ?? transform.position;
             transform.rotation = rotation ?? transform.rotation;
+            transform.position = transform.position;
         }
 
         protected virtual void Move()

@@ -10,8 +10,8 @@ namespace _02Scripts.Gun
         public float MidpointY = 10f;
         public float MidpointRadius = 5f;
         public float EndpointY = 10f;
-        
-        public override void InstantiateBullet(int damage, Vector3 position, Quaternion rotation)
+
+        protected override void InstantiateBullet(int damage, Quaternion rotation)
         {
             InstantiateKaisaBullet(damage, SpawnPointX, MidpointX);
             InstantiateKaisaBullet(damage, -SpawnPointX, -MidpointX);
@@ -22,8 +22,8 @@ namespace _02Scripts.Gun
             Vector2 position = transform.position;
             position.x += spawnPointX;
             
-            KaisaBullet bullet = Instantiate(BulletPrefab);
-            bullet.Init(damage, position);
+            KaisaBullet bullet = Instantiate(BulletPrefab, position, transform.rotation);
+            bullet.Init(damage);
             
             Vector2 firstPoint = position;
             firstPoint.x += spawnPointX;

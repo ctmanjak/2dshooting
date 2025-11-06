@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3406695603375463187, guid: fa9760ea6b8434065ab4e3e2b517d98c, type: 3}
+      propertyPath: KnockbackPower
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5003803826555043087, guid: fa9760ea6b8434065ab4e3e2b517d98c, type: 3}
       propertyPath: m_Name
       value: CarefulEnemy

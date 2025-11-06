@@ -9,6 +9,7 @@ namespace _02Scripts.Common.Component.AI
         private AttackComponent _attackComponent;
 
         private Vector2 _previousMoveDirection;
+        private Vector2 _previousAttackDirection;
 
         private void Start()
         {
@@ -17,18 +18,30 @@ namespace _02Scripts.Common.Component.AI
         
         private void Update()
         {
-            Vector2 newMoveDirection = GetMoveDirection();
-            if (newMoveDirection != _previousMoveDirection)
-            {
-                _moveComponent.SetMoveDirection(newMoveDirection);
-                _previousMoveDirection = newMoveDirection;
-            }
+            Move();
+            Attack();
+        }
 
-            if (CanAttack())
-            {
-                _attackComponent.SetAttackDirection(GetAttackDirection());
-                _attackComponent.Fire();
-            }
+        private void Move()
+        {
+            Vector2 newMoveDirection = GetMoveDirection();
+            if (newMoveDirection == _previousMoveDirection) return;
+            
+            _moveComponent.SetMoveDirection(newMoveDirection);
+            _previousMoveDirection = newMoveDirection;
+        }
+
+        private void Attack()
+        {
+            if (!CanAttack()) return;
+
+            Vector2 newAttackDirection = GetAttackDirection();
+            if (newAttackDirection == _previousAttackDirection) return;
+            
+            _attackComponent.SetAttackDirection(newAttackDirection);
+            _previousAttackDirection = newAttackDirection;
+            
+            _attackComponent.Fire();
         }
 
         protected virtual void Init()
@@ -42,11 +55,8 @@ namespace _02Scripts.Common.Component.AI
             return false;
         }
 
-        protected virtual Vector2 GetAttackDirection()
-        {
-            return Vector2.down;
-        }
-        
+        protected abstract Vector2 GetAttackDirection();
+
         protected abstract Vector2 GetMoveDirection();
     }
 }

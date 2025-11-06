@@ -13,9 +13,8 @@ namespace _02Scripts.Common.Component.AI
         {
             _distance = Vector2.Distance(Target.transform.position, transform.position);
             if (_distance < MinDistance) return -GetTargetDirection();
-            if (MinDistance <= _distance && _distance <= MaxDistance) return Vector2.zero;
             
-            return GetTargetDirection();
+            return IsSafe() ? Vector2.zero : GetTargetDirection();
         }
 
         protected override bool CanAttack()
@@ -25,8 +24,7 @@ namespace _02Scripts.Common.Component.AI
 
         private bool IsSafe()
         {
-            if (MinDistance <= _distance && _distance <= MaxDistance) return true;
-            return false;
+            return MinDistance <= _distance && _distance <= MaxDistance;
         }
 
         protected override Vector2 GetAttackDirection()

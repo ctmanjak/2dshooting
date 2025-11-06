@@ -92,9 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Transform: {fileID: 9035518890293794205}
-  HealthComponent: {fileID: 7429757780534411295}
   DamageMultiplier: 1
-  KnockbackPower: 5
+  KnockbackPower: 0
 --- !u!1 &4279365682301793703
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Transform: {fileID: 9035518890293794205}
-  HealthComponent: {fileID: 7429757780534411295}
   DamageMultiplier: 1.5
   KnockbackPower: 1
 --- !u!1 &4610550309127989964
@@ -280,7 +278,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Transform: {fileID: 9035518890293794205}
-  HealthComponent: {fileID: 7429757780534411295}
   DamageMultiplier: 1.5
   KnockbackPower: 1
 --- !u!1 &6929617041674128680
@@ -297,6 +294,8 @@ GameObject:
   - component: {fileID: 8484086684925942770}
   - component: {fileID: 7429757780534411295}
   - component: {fileID: 2515781685056109561}
+  - component: {fileID: 719442524441556588}
+  - component: {fileID: 6287251781063584193}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -403,6 +402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 1000
   Damage: 40
+  Speed: 5
   InvincibleSeconds: 0
 --- !u!114 &7429757780534411295
 MonoBehaviour:
@@ -416,7 +416,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ca1d151b245feb5099386bae54bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatComponent: {fileID: 8484086684925942770}
 --- !u!50 &2515781685056109561
 Rigidbody2D:
   serializedVersion: 5
@@ -444,3 +443,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &719442524441556588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6929617041674128680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2297cca49ccc47d2b2976521417998d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6287251781063584193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6929617041674128680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1f8d44aef94800b91044241d908cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Options: []

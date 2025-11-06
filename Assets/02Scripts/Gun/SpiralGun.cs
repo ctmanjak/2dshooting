@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace _02Scripts.Gun
 {
-    public class SpiralGun : GenericBaseGun<NormalBullet>
+    public class SpiralGun : GenericBaseGun<BaseBullet>
     {
         public float RotateSpeed = 10.0f;
 
-        public override void InstantiateBullet(int damage, Vector3 position, Quaternion rotation)
+        protected override void InstantiateBullet(int damage, Quaternion rotation)
         {
-            base.InstantiateBullet(damage, position, rotation);
+            base.InstantiateBullet(damage, rotation);
         
             transform.rotation *= Quaternion.AngleAxis(RotateSpeed, Vector3.forward);
         }

@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class DestroyZone : MonoBehaviour
+namespace _02Scripts.Environment
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public class DestroyZone : MonoBehaviour
     {
-        Destroy(other.gameObject);
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

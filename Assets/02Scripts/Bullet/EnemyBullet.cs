@@ -4,9 +4,9 @@ namespace _02Scripts.Bullet
 {
     public class EnemyBullet : BaseBullet
     {
-        public override void Init(int damage = 0, Vector3? position = null, Quaternion? rotation = null)
+        public override void Init(int damage = 0, Quaternion? rotation = null)
         {
-            base.Init(damage, position, rotation);
+            base.Init(damage, rotation);
             EnemyTags = new[] { "Player" };
         }
     }

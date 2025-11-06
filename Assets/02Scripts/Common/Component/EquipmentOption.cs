@@ -1,6 +1,7 @@
 using System;
 using _02Scripts.Bullet;
 using _02Scripts.Gun;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component
@@ -11,6 +12,6 @@ namespace _02Scripts.Common.Component
         public bool Enabled = true;
         public Vector2 Position;
         public BaseGun GunPrefab;
-        public BaseBullet BulletPrefab;
+        [CanBeNull] public BaseBullet BulletPrefab;
     }
 }
