@@ -14,6 +14,7 @@ namespace _02Scripts.Bullet
         private Vector2 LastPoint { get; set; }
 
         private float _elapsedTime;
+        private const float AngleOffset = -90f;
 
         public void InitPoint(Vector2 firstPoint, Vector2 midpoint, Vector2? lastPoint = null, int segments = 20)
         {
@@ -30,7 +31,7 @@ namespace _02Scripts.Bullet
 
             Vector2 destination = MathUtil.QuadraticLerp(FirstPoint, Midpoint, LastPoint, _elapsedTime);
             Vector3 direction = destination - (Vector2)transform.position;
-            transform.rotation = MathUtil.DirectionToQuaternion(direction, -90f);
+            transform.rotation = MathUtil.DirectionToQuaternion(direction, AngleOffset);
             
             base.Move();
 

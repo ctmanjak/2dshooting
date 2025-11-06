@@ -9,7 +9,7 @@ namespace _02Scripts.Player.Component
         
         public float MaxSpeed = 10f;
         public float MinSpeed = 3f;
-        public float SpeedChangeAmount = 5f;
+        public float SpeedChangeAmount = 1f;
 
         private void Start()
         {
@@ -18,12 +18,12 @@ namespace _02Scripts.Player.Component
         
         public void IncreaseSpeed()
         {
-            SetSpeed(Speed + SpeedChangeAmount * Time.deltaTime);
+            SetSpeed(Speed + SpeedChangeAmount);
         }
 
         public void DecreaseSpeed()
         {
-            SetSpeed(Speed - SpeedChangeAmount * Time.deltaTime);
+            SetSpeed(Speed - SpeedChangeAmount);
         }
 
         private void SetSpeed(float speed)

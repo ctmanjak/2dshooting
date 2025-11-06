@@ -33,8 +33,8 @@ namespace _02Scripts.Player
             }
             if (Input.GetKey(KeyCode.Space) || _fireType == EFireType.Auto) _attackComponent.Fire(_attackDirection);
             
-            if (Input.GetKey(KeyCode.Q)) _playerStatComponent.IncreaseSpeed();
-            if (Input.GetKey(KeyCode.E)) _playerStatComponent.DecreaseSpeed();
+            if (Input.GetKeyDown(KeyCode.Q)) _playerStatComponent.IncreaseSpeed();
+            if (Input.GetKeyDown(KeyCode.E)) _playerStatComponent.DecreaseSpeed();
             
             float speed = _playerStatComponent.Speed * Time.deltaTime;
             if (Input.GetKey(KeyCode.LeftShift)) speed *= _playerStatComponent.SpeedMultiplier;

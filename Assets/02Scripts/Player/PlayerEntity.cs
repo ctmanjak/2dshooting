@@ -3,8 +3,7 @@ using UnityEngine;
 
 namespace _02Scripts.Player
 {
-    [RequireComponent(typeof(HealthComponent), typeof(StatComponent), typeof(PlayerInputController))]
-    [RequireComponent(typeof(AttackComponent))]
+    [RequireComponent(typeof(HealthComponent), typeof(StatComponent), typeof(AttackComponent))]
     public class PlayerEntity : MonoBehaviour
     {
     }

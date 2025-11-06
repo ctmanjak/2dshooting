@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class SpawnerOption
+namespace _02Scripts.Enemy
 {
-    public GameObject Prefab;
-    public int Weight;
+    [Serializable]
+    public class SpawnerOption
+    {
+        public GameObject Prefab;
+        public int Weight;
+    }
 }

@@ -13,6 +13,8 @@ namespace _02Scripts.Gun
         public float FireCooldown = 1.0f;
         private float _lastFireTime;
 
+        private const float AngleOffset = -90f;
+
         private void Start()
         {
             _lastFireTime = Time.time - FireCooldown;
@@ -20,13 +22,12 @@ namespace _02Scripts.Gun
 
         public override void Fire(int extraDamage, Vector2 direction)
         {
-            if (Time.time - _lastFireTime >= FireCooldown)
-            {
-                Quaternion rotation = MathUtil.DirectionToQuaternion(direction, -90f);
-                InstantiateBullet(BaseDamage + extraDamage, rotation);
+            if (!(Time.time - _lastFireTime >= FireCooldown)) return;
+            
+            Quaternion rotation = MathUtil.DirectionToQuaternion(direction, AngleOffset);
+            InstantiateBullet(BaseDamage + extraDamage, rotation);
 
-                _lastFireTime = Time.time;
-            }
+            _lastFireTime = Time.time;
         }
 
         protected virtual void InstantiateBullet(int damage, Quaternion rotation)
