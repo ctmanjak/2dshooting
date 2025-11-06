@@ -1,4 +1,5 @@
-using _02Scripts.Common;
+using System.Linq;
+using _02Scripts.Common.Component.AI;
 using UnityEngine;
 
 namespace _02Scripts.Enemy
@@ -7,19 +8,15 @@ namespace _02Scripts.Enemy
     {
         private float _timer;
         private float _coolTime;
-        private GameObject _player;
 
         public float MinInclusive = 1f;
         public float MaxInclusive = 3f;
 
-        public float FollowEnemySpawnChance = 0.3f; 
-
-        public GameObject EnemyPrefab;
+        public SpawnerOption[] SpawnerOptions;
         
         private void Start()
         {
             SetRandomCoolTime(MinInclusive, MaxInclusive);
-            _player = GameObject.FindWithTag("Player");
         }
         
         private void Update()
@@ -32,15 +29,31 @@ namespace _02Scripts.Enemy
             }
         }
 
+        private GameObject GetRandomPrefab()
+        {
+            int totalWeight = SpawnerOptions.Sum(option => option.Weight);
+            int chance = Random.Range(0, totalWeight);
+
+            for (int i = 0, accumulateWeight = 0; i < SpawnerOptions.Length; i++)
+            {
+                accumulateWeight += SpawnerOptions[i].Weight;
+                if (chance <= accumulateWeight)
+                {
+                    return SpawnerOptions[i].Prefab;
+                }
+            }
+
+            return null;
+        }
+
         private void Spawn()
         {
             _timer = 0f;
-            GameObject enemyObject = Instantiate(EnemyPrefab);
-            if (Random.value <= FollowEnemySpawnChance)
-            {
-                EnemyAIComponent enemyAIComponent = enemyObject.GetComponent<EnemyAIComponent>();
-                enemyAIComponent.SetTarget(_player);
-            }
+
+            GameObject selectedPrefab = GetRandomPrefab();
+            if (!selectedPrefab) return;
+            
+            GameObject enemyObject = Instantiate(selectedPrefab);
             enemyObject.transform.position = transform.position;
 
             SetRandomCoolTime(MinInclusive, MaxInclusive);

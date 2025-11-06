@@ -1,8 +1,7 @@
-using System;
 using System.Linq;
 using UnityEngine;
 
-namespace _02Scripts.Common
+namespace _02Scripts.Common.Component
 {
     [RequireComponent(typeof(HealthComponent))]
     public class HitboxComponent : MonoBehaviour

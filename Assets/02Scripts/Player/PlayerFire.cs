@@ -1,4 +1,5 @@
 using _02Scripts.Common;
+using _02Scripts.Common.Component;
 using _02Scripts.Gun;
 using UnityEngine;
 

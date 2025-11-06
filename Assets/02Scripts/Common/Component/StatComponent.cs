@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _02Scripts.Common
+namespace _02Scripts.Common.Component
 {
     public class StatComponent : MonoBehaviour
     {
