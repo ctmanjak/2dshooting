@@ -1,43 +1,40 @@
-using _02Scripts.Util;
+using _02Scripts.Common.Component.AI.Move;
 using UnityEngine;
 
 namespace _02Scripts.Bullet
 {
+    [RequireComponent(typeof(BezierMoveAIComponent))]
     public class KaisaBullet : BaseBullet
     {
-        private float _totalLength;
         public float CurveSpeedMultiplier = 2f;
         public float DestroyRadius = 0.5f;
+        public int CurveSegments = 20;
 
-        private Vector2 FirstPoint { get; set; }
-        private Vector2 Midpoint { get; set; }
-        private Vector2 LastPoint { get; set; }
+        private BezierMoveAIComponent _bezierMoveAI;
 
-        private float _elapsedTime;
-        private const float AngleOffset = -90f;
-
-        public void InitPoint(Vector2 firstPoint, Vector2 midpoint, Vector2? lastPoint = null, int segments = 20)
+        public void InitPoint(Vector2 firstPoint, Vector2 midpoint, Vector2? lastPoint = null, int? segments = null)
         {
-            FirstPoint = firstPoint;
-            Midpoint = midpoint;
-            LastPoint = lastPoint ?? new Vector2(0, 10);
-            
-            _totalLength = MathUtil.GetQuadraticBezierLength(FirstPoint, Midpoint, LastPoint, segments);
+            Vector2 destination = lastPoint ?? new Vector2(0, 10);
+            _bezierMoveAI.CurveSpeedMultiplier = CurveSpeedMultiplier;
+            _bezierMoveAI.Segments = segments ?? CurveSegments;
+            _bezierMoveAI.ConfigureCurve(firstPoint, midpoint, destination, _bezierMoveAI.Segments);
         }
-        
-        protected override Quaternion GetRotation()
-        {
-            _elapsedTime += Time.deltaTime * (MoveStatComponent.GetSpeed() * CurveSpeedMultiplier) / _totalLength;
 
-            Vector2 destination = MathUtil.QuadraticLerp(FirstPoint, Midpoint, LastPoint, _elapsedTime);
-            Vector3 direction = destination - (Vector2)transform.position;
-            
-            return MathUtil.DirectionToQuaternion(direction, AngleOffset);
+        protected override void Awake()
+        {
+            _bezierMoveAI = GetComponent<BezierMoveAIComponent>();
+            if (_bezierMoveAI != null)
+            {
+                _bezierMoveAI.UseTarget = false;
+                _bezierMoveAI.AngleOffset = -90f;
+            }
+
+            base.Awake();
         }
 
         protected override void AfterMove()
         {
-            if (Vector2.Distance(transform.position, LastPoint) <= DestroyRadius)
+            if (_bezierMoveAI && _bezierMoveAI.HasReachedDestination(DestroyRadius))
             {
                 Destroy(gameObject);
             }

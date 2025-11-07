@@ -10,13 +10,13 @@ namespace _02Scripts.Bullet
     {
         private MoveComponent _moveComponent;
         private BulletStatComponent _bulletStatComponent;
-        protected MoveStatComponent MoveStatComponent;
+        private MoveStatComponent _moveStatComponent;
 
         private int _extraDamage;
 
         protected string[] EnemyTags = { "Enemy" };
 
-        private void Awake()
+        protected virtual void Awake()
         {
             Init();
         }
@@ -26,19 +26,17 @@ namespace _02Scripts.Bullet
             _moveComponent = GetComponent<MoveComponent>();
             _moveComponent.SetAfterMove(AfterMove);
 
-            MoveStatComponent = GetComponent<MoveStatComponent>();
+            _moveStatComponent = GetComponent<MoveStatComponent>();
             _bulletStatComponent = GetComponent<BulletStatComponent>();
         }
         private void FixedUpdate()
         {
             Accelerate();
-            _moveComponent.Rotate(GetRotation());
-            _moveComponent.Move(transform.up, MoveStatComponent.GetSpeed() * Time.deltaTime);
         }
 
-        public virtual void Init(int damage = 0, Quaternion? rotation = null)
+        public virtual void Init(int damage, Quaternion? rotation = null)
         {
-            MoveStatComponent.SetSpeed(MoveStatComponent.MinSpeed);
+            _moveStatComponent.SetSpeed(_moveStatComponent.MinSpeed);
             _extraDamage = damage;
 
             transform.rotation = rotation ?? transform.rotation;
@@ -56,13 +54,13 @@ namespace _02Scripts.Bullet
 
         private void Accelerate()
         {
-            float moveSpeed = MoveStatComponent.GetSpeed();
-            float maxMoveSpeed = MoveStatComponent.MaxSpeed;
-            float minMoveSpeed = MoveStatComponent.MinSpeed;
+            float moveSpeed = _moveStatComponent.GetSpeed();
+            float maxMoveSpeed = _moveStatComponent.MaxSpeed;
             float minToMaxSeconds = _bulletStatComponent.MinToMaxSpeedSeconds;
             if (moveSpeed >= maxMoveSpeed || minToMaxSeconds <= 0f) return;
             
-            MoveStatComponent.IncreaseSpeed((maxMoveSpeed - minMoveSpeed) / minToMaxSeconds * Time.deltaTime);
+            float minMoveSpeed = _moveStatComponent.MinSpeed;
+            _moveStatComponent.IncreaseSpeed((maxMoveSpeed - minMoveSpeed) / minToMaxSeconds * Time.deltaTime);
         }
         
         private void OnTriggerEnter2D(Collider2D other)

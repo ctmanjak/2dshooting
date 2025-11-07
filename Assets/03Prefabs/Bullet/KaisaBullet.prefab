@@ -78,6 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6030181107323122894, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+    - {fileID: -4056239750066219027, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -87,6 +88,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3806391403653227195, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       insertIndex: -1
       addedObject: {fileID: -481290842103711194}
+    - targetCorrespondingSourceObject: {fileID: 3806391403653227195, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8476787628471603008}
   m_SourcePrefab: {fileID: 100100000, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
 --- !u!1 &3114703799189013382 stripped
 GameObject:
@@ -107,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurveSpeedMultiplier: 3
   DestroyRadius: 0.5
+  CurveSegments: 20
 --- !u!114 &-481290842103711194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,3 +128,22 @@ MonoBehaviour:
   MaxSpeed: 10
   MinSpeed: 3
   SpeedMultiplier: 1
+--- !u!114 &8476787628471603008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3114703799189013382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2d464a9eedb47448300416a8f5df74e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveCondition: {fileID: 0}
+  CurveSpeedMultiplier: 2
+  MidpointPosition: 5
+  LastPointOverDistance: 0
+  AngleOffset: -90
+  UseTarget: 1
+  Segments: 20

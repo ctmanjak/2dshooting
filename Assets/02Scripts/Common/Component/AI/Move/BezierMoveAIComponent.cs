@@ -5,43 +5,53 @@ namespace _02Scripts.Common.Component.AI.Move
 {
     public class BezierMoveAIComponent : TargetMoveAIComponent
     {
-        private float _totalLength;
         public float CurveSpeedMultiplier = 2f;
         public float MidpointPosition = 5f;
         public float LastPointOverDistance = 5f;
+        public float AngleOffset = -90f;
+        public bool UseTarget = true;
+        public int Segments = 20;
 
-        private Vector2 FirstPoint { get; set; }
-        private Vector2 Midpoint { get; set; }
-        private Vector2 LastPoint { get; set; }
+        private readonly BezierCurveTracker _curveTracker = new();
+        private bool _curveInitialized;
 
-        private float _elapsedTime;
-        
-        public void InitPoint(Vector2 firstPoint, Vector2? lastPoint = null, int segments = 20)
+        public void ConfigureCurve(Vector2 firstPoint, Vector2 midpoint, Vector2 lastPoint, int? segments = null, bool resetProgress = true)
         {
-            FirstPoint = firstPoint;
-            Midpoint = GetMidpoint(FirstPoint, LastPoint, MidpointPosition, MidpointPosition);
-            LastPoint = lastPoint ?? new Vector2(0, 10);
-            
-            _totalLength = MathUtil.GetQuadraticBezierLength(FirstPoint, Midpoint, LastPoint, segments);
+            int segmentCount = segments ?? Segments;
+            _curveTracker.Configure(firstPoint, midpoint, lastPoint, segmentCount, resetProgress);
+            _curveInitialized = true;
         }
-        
+
+        public void InitPoint(Vector2 firstPoint, Vector2? lastPoint = null, int? segments = null)
+        {
+            Vector2 destination = lastPoint ?? new Vector2(0, 10);
+            Vector2 midpoint = GetMidpoint(firstPoint, destination, MidpointPosition, MidpointPosition);
+
+            ConfigureCurve(firstPoint, midpoint, destination, segments);
+        }
+
         protected override void Init()
         {
             base.Init();
-
+            if (!UseTarget) return;
             if (!IsTargetExist()) return;
             InitPoint(
                 transform.position,
-                GetTargetPosition() + GetTargetDirection() * LastPointOverDistance
+                GetTargetPosition() + GetTargetDirection() * LastPointOverDistance,
+                Segments
             );
         }
 
         protected override void BeforeMove()
         {
-            if (!IsTargetExist()) return;
-            LastPoint = GetTargetPosition() + GetTargetDirection() * LastPointOverDistance;
+            if (!UseTarget) return;
+            if (!IsTargetExist() || !_curveInitialized) return;
+            Vector2 destination = GetTargetPosition() + GetTargetDirection() * LastPointOverDistance;
+            Vector2 midpoint = GetMidpoint(transform.position, destination, MidpointPosition, MidpointPosition);
+
+            ConfigureCurve(transform.position, midpoint, destination, Segments, resetProgress: false);
         }
-        
+
         private Vector2 GetMidpoint(Vector2 firstPoint, Vector2 lastPoint, float back, float side)
         {
             Vector2 direction = (lastPoint - firstPoint).normalized;
@@ -57,12 +67,28 @@ namespace _02Scripts.Common.Component.AI.Move
 
         protected override Vector2 GetMoveDirection()
         {
-            _elapsedTime += Time.deltaTime * (MoveStatComponent.GetSpeed() * CurveSpeedMultiplier) / _totalLength;
+            if (!_curveInitialized) return Vector2.zero;
 
-            Vector2 destination = MathUtil.QuadraticLerp(FirstPoint, Midpoint, LastPoint, _elapsedTime);
-            Vector3 direction = destination - (Vector2)transform.position;
-            
+            float progress = _curveTracker.Advance(Time.deltaTime, MoveStatComponent.GetSpeed(), CurveSpeedMultiplier);
+            Vector2 destination = _curveTracker.Evaluate(progress);
+            Vector2 direction = destination - (Vector2)transform.position;
+
+            if (direction != Vector2.zero)
+            {
+                transform.rotation = MathUtil.DirectionToQuaternion(direction, AngleOffset);
+            }
+
+            if (direction == Vector2.zero)
+            {
+                return UseTarget ? GetTargetDirection() : Vector2.zero;
+            }
+
             return direction;
+        }
+
+        public bool HasReachedDestination(float radius)
+        {
+            return _curveInitialized && _curveTracker.IsArrived(transform.position, radius);
         }
     }
 }

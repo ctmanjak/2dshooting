@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -1291108691870467298}
   - component: {fileID: 499692548163879911}
   - component: {fileID: 7760232297394328289}
+  - component: {fileID: 1555924735015611852}
+  - component: {fileID: -4056239750066219027}
   m_Layer: 0
   m_Name: NormalBullet
   m_TagString: Untagged
@@ -178,6 +180,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 10
-  MaxSpeed: 7
   MinSpeed: 1
+  MaxSpeed: 7
   MinToMaxSpeedSeconds: 1.2
+--- !u!114 &1555924735015611852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3806391403653227195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a15a0c78b54ac2814ded1b80133840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  MaxSpeed: 10
+  MinSpeed: 3
+  SpeedMultiplier: 1
+--- !u!114 &-4056239750066219027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3806391403653227195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06a5da7410349febde731ef7e85515c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveCondition: {fileID: 0}

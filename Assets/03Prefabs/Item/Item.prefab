@@ -198,8 +198,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveCondition: {fileID: -16865958988906070}
   CurveSpeedMultiplier: 2
-  MidpointPosition: 5
+  MidpointPosition: 2
   LastPointOverDistance: 5
+  AngleOffset: -90
+  UseTarget: 1
+  Segments: 20
 --- !u!114 &-16865958988906070
 MonoBehaviour:
   m_ObjectHideFlags: 0
