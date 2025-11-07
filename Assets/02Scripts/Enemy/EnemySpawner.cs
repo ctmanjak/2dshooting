@@ -1,4 +1,5 @@
 using System.Linq;
+using _02Scripts.Util;
 using UnityEngine;
 
 namespace _02Scripts.Enemy
@@ -28,28 +29,11 @@ namespace _02Scripts.Enemy
             }
         }
 
-        private GameObject GetRandomPrefab()
-        {
-            int totalWeight = SpawnerOptions.Sum(option => option.Weight);
-            int chance = Random.Range(0, totalWeight);
-
-            for (int i = 0, accumulateWeight = 0; i < SpawnerOptions.Length; i++)
-            {
-                accumulateWeight += SpawnerOptions[i].Weight;
-                if (chance < accumulateWeight)
-                {
-                    return SpawnerOptions[i].Prefab;
-                }
-            }
-
-            return null;
-        }
-
         private void Spawn()
         {
             _timer = 0f;
 
-            GameObject selectedPrefab = GetRandomPrefab();
+            GameObject selectedPrefab = RandomUtil.PickWeightedRandomIndex(SpawnerOptions)?.Prefab;
             if (!selectedPrefab) return;
             
             GameObject enemyObject = Instantiate(selectedPrefab);

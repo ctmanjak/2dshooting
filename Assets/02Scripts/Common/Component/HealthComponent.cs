@@ -1,12 +1,13 @@
-using Unity.Mathematics.Geometry;
+using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component
 {
-    [RequireComponent(typeof(StatComponent))]
+    [RequireComponent(typeof(StatComponent), typeof(DeathComponent))]
     public class HealthComponent : MonoBehaviour
     {
         private StatComponent _statComponent;
+        private DeathComponent _deathComponent;
     
         private int _health;
         private float _invincibleSeconds;
@@ -15,6 +16,7 @@ namespace _02Scripts.Common.Component
         private void Start()
         {
             _statComponent = GetComponent<StatComponent>();
+            _deathComponent = GetComponent<DeathComponent>();
             _health = _statComponent.MaxHealth;
             _invincibleSeconds = _statComponent.InvincibleSeconds;
         }
@@ -34,12 +36,7 @@ namespace _02Scripts.Common.Component
                 _lastInvincibleTime = currentTime;
             }
 
-            if (_health <= 0) Die();
-        }
-
-        private void Die()
-        {
-            Destroy(gameObject);
+            if (_health <= 0) _deathComponent.Die();
         }
     }
 }

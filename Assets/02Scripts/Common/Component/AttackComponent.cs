@@ -1,17 +1,18 @@
+using _02Scripts.Common.Component.Stat;
 using _02Scripts.Common.Enum;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component
 {
-    [RequireComponent(typeof(StatComponent), typeof(EquipmentComponent))]
+    [RequireComponent(typeof(AttackStatComponent), typeof(EquipmentComponent))]
     public class AttackComponent : MonoBehaviour
     {
-        private StatComponent _statComponent;
+        private AttackStatComponent _attackStatComponent;
         private EquipmentComponent _equipmentComponent;
 
         private void Start()
         {
-            _statComponent = GetComponent<StatComponent>();
+            _attackStatComponent = GetComponent<AttackStatComponent>();
             _equipmentComponent = GetComponent<EquipmentComponent>();
         }
 
@@ -19,7 +20,7 @@ namespace _02Scripts.Common.Component
         {
             foreach (var gun in _equipmentComponent.Guns)
             {
-                gun.Fire(_statComponent.Damage, direction, _statComponent.GetAttackSpeed());
+                gun.Fire(_attackStatComponent.Damage, direction, _attackStatComponent.GetAttackSpeed());
             }
         }
     }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 583440178132318069}
   - component: {fileID: 8070032616730909310}
   - component: {fileID: 3621356901294757110}
-  - component: {fileID: 3940465408108059001}
   - component: {fileID: 8982221756131809950}
   - component: {fileID: 2352562802673441563}
   - component: {fileID: 4301196274329950391}
@@ -21,6 +20,7 @@ GameObject:
   - component: {fileID: 2102710008060878084}
   - component: {fileID: 1238872756081693425}
   - component: {fileID: 9209461645795560410}
+  - component: {fileID: 4561514722041431653}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -137,18 +137,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1ca1d151b245feb5099386bae54bcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3940465408108059001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354585131968531562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65fd414f0e7a41bd8746c97817880e06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &8982221756131809950
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -263,8 +251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458a55398c8742c5bb056f628e2f70fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100000
+  MaxHealth: 100
   Damage: 10
+  AttackSpeed: 1
+  Speed: 5
   MaxSpeed: 10
   MinSpeed: 3
   SpeedMultiplier: 2
@@ -308,3 +298,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KnockbackTime: 0.2
+--- !u!114 &4561514722041431653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354585131968531562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a57582347c46afb5c25844bc5f10d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

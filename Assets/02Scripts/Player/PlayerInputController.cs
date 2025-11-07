@@ -1,4 +1,5 @@
 using _02Scripts.Common.Component;
+using _02Scripts.Common.Component.Stat;
 using _02Scripts.Common.Enum;
 using _02Scripts.Player.Component;
 using UnityEngine;
@@ -6,10 +7,12 @@ using UnityEngine;
 namespace _02Scripts.Player
 {
     [RequireComponent(typeof(AttackComponent), typeof(PlayerStatComponent), typeof(PlayerMoveComponent))]
+    [RequireComponent(typeof(MoveStatComponent))]
     public class PlayerInputController : MonoBehaviour
     {
         private AttackComponent _attackComponent;
         private PlayerStatComponent _playerStatComponent;
+        private MoveStatComponent _moveStatComponent;
         private PlayerMoveComponent _playerMoveComponent;
 
         private EFireType _fireType;
@@ -19,6 +22,7 @@ namespace _02Scripts.Player
         {
             _attackComponent = GetComponent<AttackComponent>();
             _playerStatComponent = GetComponent<PlayerStatComponent>();
+            _moveStatComponent = GetComponent<MoveStatComponent>();
             _playerMoveComponent = GetComponent<PlayerMoveComponent>();
         }
 
@@ -33,11 +37,11 @@ namespace _02Scripts.Player
             }
             if (Input.GetKey(KeyCode.Space) || _fireType == EFireType.Auto) _attackComponent.Fire(_attackDirection);
             
-            if (Input.GetKeyDown(KeyCode.Q)) _playerStatComponent.IncreaseSpeed(_playerStatComponent.SpeedChangeAmount);
-            if (Input.GetKeyDown(KeyCode.E)) _playerStatComponent.DecreaseSpeed(_playerStatComponent.SpeedChangeAmount);
+            if (Input.GetKeyDown(KeyCode.Q)) _moveStatComponent.IncreaseSpeed(_playerStatComponent.SpeedChangeAmount);
+            if (Input.GetKeyDown(KeyCode.E)) _moveStatComponent.DecreaseSpeed(_playerStatComponent.SpeedChangeAmount);
             
-            float speed = _playerStatComponent.GetSpeed() * Time.deltaTime;
-            if (Input.GetKey(KeyCode.LeftShift)) speed *= _playerStatComponent.SpeedMultiplier;
+            float speed = _moveStatComponent.GetSpeed() * Time.deltaTime;
+            if (Input.GetKey(KeyCode.LeftShift)) speed *= _moveStatComponent.SpeedMultiplier;
 
             if (Input.GetKey(KeyCode.R))
             {

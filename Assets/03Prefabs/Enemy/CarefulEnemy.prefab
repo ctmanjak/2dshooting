@@ -16,6 +16,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: CarefulEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5664401033383925667, guid: fa9760ea6b8434065ab4e3e2b517d98c, type: 3}
+      propertyPath: m_Color.b
+      value: 0.1490196
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664401033383925667, guid: fa9760ea6b8434065ab4e3e2b517d98c, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7370142
+      objectReference: {fileID: 0}
+    - target: {fileID: 5664401033383925667, guid: fa9760ea6b8434065ab4e3e2b517d98c, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7372549
+      objectReference: {fileID: 0}
     - target: {fileID: 5858751479076200876, guid: fa9760ea6b8434065ab4e3e2b517d98c, type: 3}
       propertyPath: Speed
       value: 3

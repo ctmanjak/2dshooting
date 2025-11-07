@@ -1,5 +1,3 @@
-using _02Scripts.Common.Component;
-using _02Scripts.Player.Component;
 using UnityEngine;
 
 namespace _02Scripts.Item.Component

@@ -20,6 +20,16 @@ namespace _02Scripts.Common.Component.AI.Move
             return direction;
         }
 
+        protected Vector2 GetTargetPosition()
+        {
+            return Target.transform.position;
+        }
+
+        protected bool IsTargetExist()
+        {
+            return Target != null;
+        }
+
         protected override Vector2 GetMoveDirection()
         {
             return GetTargetDirection();

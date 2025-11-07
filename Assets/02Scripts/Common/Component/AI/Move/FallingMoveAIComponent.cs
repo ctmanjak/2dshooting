@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace _02Scripts.Common.Component.AI.Move
 {
-    public class StraightMoveAIComponent : MoveAIComponent
+    public class FallingMoveAIComponent : MoveAIComponent
     {
         protected override Vector2 GetMoveDirection()
         {
-            return transform.up;
+            return Vector2.down;
         }
     }
 }

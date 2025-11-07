@@ -20,6 +20,9 @@ GameObject:
   - component: {fileID: 7941362626978720968}
   - component: {fileID: 6535855910710303804}
   - component: {fileID: 6663019805577995958}
+  - component: {fileID: -5901584307122157704}
+  - component: {fileID: 3375947221122701578}
+  - component: {fileID: 1903898484850431348}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -186,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100
   Damage: 40
-  Speed: 5
+  AttackSpeed: 1
   InvincibleSeconds: 0
 --- !u!114 &4154578461669998167
 MonoBehaviour:
@@ -264,3 +267,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ca7e50576e04a80a2288bdd4da48924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5901584307122157704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003803826555043087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108108aa0ae9439995d37b9ea6fba6e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Options:
+  - Weight: 1
+    Prefab: {fileID: 7776877024295691091, guid: 3bb81fbff624c40d5a1968ff9e05cc16, type: 3}
+  - Weight: 1
+    Prefab: {fileID: 8586399392925763715, guid: c18d825a35862428992c3bc056cae454, type: 3}
+  - Weight: 1
+    Prefab: {fileID: 8044380107519705831, guid: 4caa598ad580f433c8520ba43e489b5a, type: 3}
+  - Weight: 3
+    Prefab: {fileID: 0}
+--- !u!114 &3375947221122701578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003803826555043087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f121c7c07dea489eb6a5de63c376dfd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1903898484850431348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003803826555043087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a15a0c78b54ac2814ded1b80133840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  MaxSpeed: 10
+  MinSpeed: 3
+  SpeedMultiplier: 1

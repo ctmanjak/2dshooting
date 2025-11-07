@@ -1,3 +1,4 @@
+using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component.AI.Attack

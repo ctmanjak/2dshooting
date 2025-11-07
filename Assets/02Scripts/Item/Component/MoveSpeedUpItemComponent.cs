@@ -1,4 +1,4 @@
-using _02Scripts.Player.Component;
+using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 
 namespace _02Scripts.Item.Component
@@ -9,7 +9,7 @@ namespace _02Scripts.Item.Component
 
         protected override void Activate(Collider2D other)
         {
-            PlayerStatComponent stat = other.GetComponent<PlayerStatComponent>();
+            MoveStatComponent stat = other.GetComponent<MoveStatComponent>();
             if (stat == null) return;
 
             stat.IncreaseSpeed(IncreaseValue);

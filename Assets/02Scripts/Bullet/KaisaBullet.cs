@@ -27,7 +27,7 @@ namespace _02Scripts.Bullet
         
         protected override Quaternion GetRotation()
         {
-            _elapsedTime += Time.deltaTime * (BulletStatComponent.Speed * CurveSpeedMultiplier) / _totalLength;
+            _elapsedTime += Time.deltaTime * (MoveStatComponent.GetSpeed() * CurveSpeedMultiplier) / _totalLength;
 
             Vector2 destination = MathUtil.QuadraticLerp(FirstPoint, Midpoint, LastPoint, _elapsedTime);
             Vector3 direction = destination - (Vector2)transform.position;

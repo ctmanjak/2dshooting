@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7760232297394328289, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       propertyPath: MaxSpeed
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7760232297394328289, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       propertyPath: MinSpeed
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8299747270721461993, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       propertyPath: m_LocalScale.x
@@ -84,6 +84,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3806391403653227195, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8168273412067753919}
+    - targetCorrespondingSourceObject: {fileID: 3806391403653227195, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -481290842103711194}
   m_SourcePrefab: {fileID: 100100000, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
 --- !u!1 &3114703799189013382 stripped
 GameObject:
@@ -104,3 +107,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurveSpeedMultiplier: 3
   DestroyRadius: 0.5
+--- !u!114 &-481290842103711194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3114703799189013382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a15a0c78b54ac2814ded1b80133840, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  MaxSpeed: 10
+  MinSpeed: 3
+  SpeedMultiplier: 1
