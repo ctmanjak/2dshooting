@@ -36,7 +36,7 @@ namespace _02Scripts.Player
             if (Input.GetKeyDown(KeyCode.Q)) _playerStatComponent.IncreaseSpeed(_playerStatComponent.SpeedChangeAmount);
             if (Input.GetKeyDown(KeyCode.E)) _playerStatComponent.DecreaseSpeed(_playerStatComponent.SpeedChangeAmount);
             
-            float speed = _playerStatComponent.Speed * Time.deltaTime;
+            float speed = _playerStatComponent.GetSpeed() * Time.deltaTime;
             if (Input.GetKey(KeyCode.LeftShift)) speed *= _playerStatComponent.SpeedMultiplier;
 
             if (Input.GetKey(KeyCode.R))

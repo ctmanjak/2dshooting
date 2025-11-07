@@ -5,8 +5,11 @@ namespace _02Scripts.Common.Component
     public class StatComponent : MonoBehaviour
     {
         public int MaxHealth = 100;
+        
         public int Damage = 10;
-        public float Speed { get; private set; } = 5.0f;
+        [SerializeField] private float AttackSpeed = 1f;
+        
+        [SerializeField] private float Speed = 5.0f;
         public float MaxSpeed = 10f;
         public float MinSpeed = 3f;
         public float SpeedMultiplier = 1.0f;
@@ -23,9 +26,24 @@ namespace _02Scripts.Common.Component
             SetSpeed(Speed - value);
         }
 
-        public void SetSpeed(float speed)
+        public float GetSpeed()
+        {
+            return Speed;
+        }
+
+        private void SetSpeed(float speed)
         {
             Speed = Mathf.Clamp(speed, MinSpeed, MaxSpeed);
+        }
+
+        public float GetAttackSpeed()
+        {
+            return AttackSpeed;
+        }
+
+        public void IncreaseAttackSpeed(float amount)
+        {
+            AttackSpeed += amount;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace _02Scripts.Common.Component.AI.Move
 
         private void Move()
         {
-            _moveComponent.Move(GetMoveDirection(), _statComponent.Speed * _statComponent.SpeedMultiplier * Time.deltaTime);
+            _moveComponent.Move(GetMoveDirection(), _statComponent.GetSpeed() * _statComponent.SpeedMultiplier * Time.deltaTime);
         }
 
         protected virtual void Init()

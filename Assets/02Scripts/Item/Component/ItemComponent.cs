@@ -4,17 +4,15 @@ using UnityEngine;
 
 namespace _02Scripts.Item.Component
 {
-    public class SpeedUpItemComponent : MonoBehaviour
+    public abstract class ItemComponent : MonoBehaviour
     {
-        public int IncreaseValue = 1;
+        protected abstract void Activate(Collider2D other);
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!other.CompareTag("Player")) return;
-        
-            PlayerStatComponent otherStat = other.GetComponent<PlayerStatComponent>();
-            if (otherStat == null) return;
-
-            otherStat.IncreaseSpeed(IncreaseValue);
+            
+            Activate(other);
         
             Destroy(gameObject);
         }

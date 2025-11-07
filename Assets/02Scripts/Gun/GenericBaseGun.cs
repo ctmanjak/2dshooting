@@ -20,9 +20,9 @@ namespace _02Scripts.Gun
             _lastFireTime = Time.time - FireCooldown;
         }
 
-        public override void Fire(int extraDamage, Vector2 direction)
+        public override void Fire(int extraDamage, Vector2 direction, float attackSpeed)
         {
-            if (!(Time.time - _lastFireTime >= FireCooldown)) return;
+            if (!(Time.time - _lastFireTime >= FireCooldown / attackSpeed)) return;
             
             Quaternion rotation = MathUtil.DirectionToQuaternion(direction, AngleOffset);
             InstantiateBullet(BaseDamage + extraDamage, rotation);

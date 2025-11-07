@@ -1,3 +1,4 @@
+using Unity.Mathematics.Geometry;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component
@@ -16,6 +17,11 @@ namespace _02Scripts.Common.Component
             _statComponent = GetComponent<StatComponent>();
             _health = _statComponent.MaxHealth;
             _invincibleSeconds = _statComponent.InvincibleSeconds;
+        }
+
+        public void Heal(int amount)
+        {
+            _health = Mathf.Min(_statComponent.MaxHealth, _health + amount);
         }
 
         public void TakeDamage(int damage)

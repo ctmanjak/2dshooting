@@ -19,7 +19,7 @@ namespace _02Scripts.Common.Component
         {
             foreach (var gun in _equipmentComponent.Guns)
             {
-                gun.Fire(_statComponent.Damage, direction);
+                gun.Fire(_statComponent.Damage, direction, _statComponent.GetAttackSpeed());
             }
         }
     }
