@@ -239,14 +239,18 @@ MonoBehaviour:
     Position: {x: 0, y: 0}
     GunPrefab: {fileID: 3793770903328210174, guid: d7702804f182b47de8d65793fa4f86ed, type: 3}
     BulletPrefab: {fileID: -8168273412067753919, guid: 58420e9f07aa741e8a1349f0edc33b59, type: 3}
-  - Enabled: 0
+  - Enabled: 1
     Position: {x: -0.5, y: 0.77}
     GunPrefab: {fileID: 6107500946643398180, guid: 50f7dda25d5844afeaa3bd97eebd38a1, type: 3}
     BulletPrefab: {fileID: 6030181107323122894, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
-  - Enabled: 0
+  - Enabled: 1
     Position: {x: 0.5, y: 0.77}
     GunPrefab: {fileID: 6107500946643398180, guid: 50f7dda25d5844afeaa3bd97eebd38a1, type: 3}
-    BulletPrefab: {fileID: 6030181107323122894, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+    BulletPrefab: {fileID: -5280655942313653060, guid: 34f444749d9644fbea7802b68cb5cedd, type: 3}
+  - Enabled: 1
+    Position: {x: 0, y: 0}
+    GunPrefab: {fileID: 3511420152899827677, guid: eb9058b717f324d759de53e7339f2963, type: 3}
+    BulletPrefab: {fileID: 7192246663461828099, guid: a4b25dc0acf8b4f8f81819959638c5ff, type: 3}
 --- !u!114 &1391170492508022332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,11 +265,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100000
   Damage: 10
-  Speed: 5
-  SpeedMultiplier: 2
-  InvincibleSeconds: 0
   MaxSpeed: 10
   MinSpeed: 3
+  SpeedMultiplier: 2
+  InvincibleSeconds: 0
   SpeedChangeAmount: 5
 --- !u!114 &2102710008060878084
 MonoBehaviour:

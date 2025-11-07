@@ -32,7 +32,7 @@ namespace _02Scripts.Gun
 
         protected virtual void InstantiateBullet(int damage, Quaternion rotation)
         {
-            T bullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
+            T bullet = Instantiate(BulletPrefab, transform.position, rotation);
             bullet.Init(damage, rotation);
         }
 

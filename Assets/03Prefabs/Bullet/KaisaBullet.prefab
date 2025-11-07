@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: KaisaBullet
       objectReference: {fileID: 0}
+    - target: {fileID: 7760232297394328289, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      propertyPath: MaxSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760232297394328289, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      propertyPath: MinSpeed
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8299747270721461993, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3
@@ -94,9 +102,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb035872b24741e9a11e52d091c964fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseDamage: 0
-  MinMoveSpeed: 5
-  MaxMoveSpeed: 20
-  MinToMaxSeconds: 1
   CurveSpeedMultiplier: 3
   DestroyRadius: 0.5

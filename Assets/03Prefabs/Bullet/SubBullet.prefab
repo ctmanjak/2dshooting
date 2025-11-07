@@ -36,6 +36,18 @@ PrefabInstance:
       propertyPath: MaxMoveSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7760232297394328289, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      propertyPath: MaxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760232297394328289, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      propertyPath: MinSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760232297394328289, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      propertyPath: MinToMaxSpeedSeconds
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8299747270721461993, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5

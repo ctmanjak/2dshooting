@@ -8,15 +8,14 @@ namespace _02Scripts.Bullet
         public float TurnAngle = 40.0f;
 
         private float _time;
-        
-        protected override void Move()
+
+        protected override Quaternion GetRotation()
         {
             _time += Time.deltaTime;
 
             float angle = TurnAngle * Mathf.Sin(_time * Mathf.PI * 2f * Frequency);
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
             
-            base.Move();
+            return Quaternion.AngleAxis(angle, Vector3.back);
         }
     }
 }

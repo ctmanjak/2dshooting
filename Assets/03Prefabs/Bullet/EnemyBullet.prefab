@@ -12,6 +12,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyBullet
       objectReference: {fileID: 0}
+    - target: {fileID: 7760232297394328289, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      propertyPath: MaxSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760232297394328289, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      propertyPath: MinSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7760232297394328289, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      propertyPath: MinToMaxSpeedSeconds
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8299747270721461993, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3
@@ -94,7 +106,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebddc0df0d194be0a124d285294bba5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseDamage: 0
-  MinMoveSpeed: 4
-  MaxMoveSpeed: 4
-  MinToMaxSeconds: 1

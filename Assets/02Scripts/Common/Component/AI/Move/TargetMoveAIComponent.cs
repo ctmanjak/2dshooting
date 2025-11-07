@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace _02Scripts.Common.Component.AI
+namespace _02Scripts.Common.Component.AI.Move
 {
-    public abstract class TargetAIComponent : AIComponent
+    public abstract class TargetMoveAIComponent : MoveAIComponent
     {
         protected GameObject Target;
 
@@ -18,11 +18,6 @@ namespace _02Scripts.Common.Component.AI
                 (Target.transform.position - transform.position).normalized : Vector2.down;
 
             return direction;
-        }
-
-        protected override Vector2 GetAttackDirection()
-        {
-            return GetTargetDirection();
         }
 
         protected override Vector2 GetMoveDirection()

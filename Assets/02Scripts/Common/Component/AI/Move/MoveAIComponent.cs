@@ -1,12 +1,11 @@
 using UnityEngine;
 
-namespace _02Scripts.Common.Component.AI
+namespace _02Scripts.Common.Component.AI.Move
 {
-    [RequireComponent(typeof(MoveComponent), typeof(AttackComponent), typeof(StatComponent))]
-    public abstract class AIComponent : MonoBehaviour
+    [RequireComponent(typeof(MoveComponent), typeof(StatComponent))]
+    public abstract class MoveAIComponent : MonoBehaviour
     {
         private MoveComponent _moveComponent;
-        private AttackComponent _attackComponent;
         private StatComponent _statComponent;
 
         private void Start()
@@ -14,10 +13,9 @@ namespace _02Scripts.Common.Component.AI
             Init();
         }
         
-        private void Update()
+        private void FixedUpdate()
         {
             Move();
-            Attack();
         }
 
         private void Move()
@@ -25,26 +23,11 @@ namespace _02Scripts.Common.Component.AI
             _moveComponent.Move(GetMoveDirection(), _statComponent.Speed * _statComponent.SpeedMultiplier * Time.deltaTime);
         }
 
-        private void Attack()
-        {
-            if (!CanAttack()) return;
-
-            _attackComponent.Fire(GetAttackDirection());
-        }
-
         protected virtual void Init()
         {
             _moveComponent = GetComponent<MoveComponent>();
-            _attackComponent = GetComponent<AttackComponent>();
             _statComponent = GetComponent<StatComponent>();
         }
-
-        protected virtual bool CanAttack()
-        {
-            return false;
-        }
-
-        protected abstract Vector2 GetAttackDirection();
 
         protected abstract Vector2 GetMoveDirection();
     }

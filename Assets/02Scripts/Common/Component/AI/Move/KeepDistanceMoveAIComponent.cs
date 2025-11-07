@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace _02Scripts.Common.Component.AI
+namespace _02Scripts.Common.Component.AI.Move
 {
-    public class KeepDistanceAIComponent : TargetAIComponent
+    public class KeepDistanceMoveAIComponent : TargetMoveAIComponent
     {
         public float MinDistance = 3f;
         public float MaxDistance = 4f;
@@ -17,19 +17,9 @@ namespace _02Scripts.Common.Component.AI
             return IsSafe() ? Vector2.zero : GetTargetDirection();
         }
 
-        protected override bool CanAttack()
-        {
-            return IsSafe();
-        }
-
         private bool IsSafe()
         {
             return MinDistance <= _distance && _distance <= MaxDistance;
-        }
-
-        protected override Vector2 GetAttackDirection()
-        {
-            return GetTargetDirection();
         }
     }
 }

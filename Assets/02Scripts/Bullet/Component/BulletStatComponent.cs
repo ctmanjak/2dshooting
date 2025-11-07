@@ -1,26 +1,18 @@
 using UnityEngine;
 
-namespace _02Scripts.Common.Component
+namespace _02Scripts.Bullet.Component
 {
-    public class StatComponent : MonoBehaviour
+    public class BulletStatComponent : MonoBehaviour
     {
-        public int MaxHealth = 100;
         public int Damage = 10;
         public float Speed { get; private set; } = 5.0f;
-        public float MaxSpeed = 10f;
         public float MinSpeed = 3f;
-        public float SpeedMultiplier = 1.0f;
-
-        public float InvincibleSeconds;
+        public float MaxSpeed = 10f;
+        public float MinToMaxSpeedSeconds = 1.2f;
         
         public void IncreaseSpeed(float value)
         {
             SetSpeed(Speed + value);
-        }
-
-        public void DecreaseSpeed(float value)
-        {
-            SetSpeed(Speed - value);
         }
 
         public void SetSpeed(float speed)

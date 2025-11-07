@@ -1,51 +1,60 @@
+using _02Scripts.Bullet.Component;
 using _02Scripts.Common.Component;
 using UnityEngine;
 
 namespace _02Scripts.Bullet
 {
+    [RequireComponent(typeof(MoveComponent), typeof(BulletStatComponent))]
     public abstract class BaseBullet : MonoBehaviour
     {
-        protected float MoveSpeed = 1.0f;
+        private MoveComponent _moveComponent;
+        protected BulletStatComponent BulletStatComponent;
 
         private int _extraDamage;
 
         protected string[] EnemyTags = { "Enemy" };
-    
-        [Header("스탯")]
-        public int BaseDamage;
-        public float MinMoveSpeed = 1.0f;
-        public float MaxMoveSpeed = 7.0f;
-        public float MinToMaxSeconds = 1.2f;
-        
-        void FixedUpdate()
+
+        private void Awake()
+        {
+            _moveComponent = GetComponent<MoveComponent>();
+            _moveComponent.SetAfterMove(AfterMove);
+
+            BulletStatComponent = GetComponent<BulletStatComponent>();
+        }
+        private void FixedUpdate()
         {
             Accelerate();
-            Move();
+            _moveComponent.Rotate(GetRotation());
+            _moveComponent.Move(transform.up, BulletStatComponent.Speed * Time.deltaTime);
         }
 
         public virtual void Init(int damage = 0, Quaternion? rotation = null)
         {
-            MoveSpeed = MinMoveSpeed;
+            BulletStatComponent.SetSpeed(BulletStatComponent.MinSpeed);
             _extraDamage = damage;
 
             transform.rotation = rotation ?? transform.rotation;
             transform.position = transform.position;
         }
 
-        protected virtual void Move()
+        protected virtual Quaternion GetRotation()
         {
-            Vector2 position = transform.position;
-            Vector2 direction = transform.up;
-            Vector2 newPosition = position + direction * (MoveSpeed * Time.deltaTime);
+            return Quaternion.LookRotation(Vector3.forward, transform.up);
+        }
 
-            transform.position = newPosition;
+        protected virtual void AfterMove()
+        {
         }
 
         private void Accelerate()
         {
-            if (MoveSpeed >= MaxMoveSpeed) return;
+            float moveSpeed = BulletStatComponent.Speed;
+            float maxMoveSpeed = BulletStatComponent.MaxSpeed;
+            float minMoveSpeed = BulletStatComponent.MinSpeed;
+            float minToMaxSeconds = BulletStatComponent.MinToMaxSpeedSeconds;
+            if (moveSpeed >= maxMoveSpeed || minToMaxSeconds <= 0f) return;
             
-            MoveSpeed = Mathf.Min(MaxMoveSpeed, MoveSpeed + (MaxMoveSpeed - MinMoveSpeed) / MinToMaxSeconds * Time.deltaTime);
+            BulletStatComponent.IncreaseSpeed((maxMoveSpeed - minMoveSpeed) / minToMaxSeconds * Time.deltaTime);
         }
         
         private void OnTriggerEnter2D(Collider2D other)
@@ -53,7 +62,7 @@ namespace _02Scripts.Bullet
             HitboxComponent otherHitbox = other.GetComponent<HitboxComponent>();
             if (otherHitbox == null) return;
             
-            bool result = otherHitbox.Hit(transform.up, BaseDamage + _extraDamage, EnemyTags);
+            bool result = otherHitbox.Hit(transform.up, BulletStatComponent.Damage + _extraDamage, EnemyTags);
             if (result) Destroy(gameObject);
         }
     }

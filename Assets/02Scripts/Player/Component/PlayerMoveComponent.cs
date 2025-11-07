@@ -1,6 +1,7 @@
+using _02Scripts.Common.Component;
 using UnityEngine;
 
-namespace _02Scripts.Common.Component
+namespace _02Scripts.Player.Component
 {
     public class PlayerMoveComponent : MoveComponent
     {

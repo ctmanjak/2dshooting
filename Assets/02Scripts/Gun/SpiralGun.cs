@@ -9,7 +9,7 @@ namespace _02Scripts.Gun
 
         protected override void InstantiateBullet(int damage, Quaternion rotation)
         {
-            base.InstantiateBullet(damage, rotation);
+            base.InstantiateBullet(damage, transform.rotation);
         
             transform.rotation *= Quaternion.AngleAxis(RotateSpeed, Vector3.forward);
         }

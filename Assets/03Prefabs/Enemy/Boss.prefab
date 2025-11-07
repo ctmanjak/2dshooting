@@ -303,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9035518890293794205
 Transform:
   m_ObjectHideFlags: 0
@@ -403,7 +403,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHealth: 100000
   Damage: 40
-  Speed: 0.5
+  MaxSpeed: 10
+  MinSpeed: 3
   SpeedMultiplier: 1
   InvincibleSeconds: 0
 --- !u!114 &7429757780534411295

@@ -25,16 +25,18 @@ namespace _02Scripts.Bullet
             _totalLength = MathUtil.GetQuadraticBezierLength(FirstPoint, Midpoint, LastPoint, segments);
         }
         
-        protected override void Move()
+        protected override Quaternion GetRotation()
         {
-            _elapsedTime += Time.deltaTime * (MoveSpeed * CurveSpeedMultiplier) / _totalLength;
+            _elapsedTime += Time.deltaTime * (BulletStatComponent.Speed * CurveSpeedMultiplier) / _totalLength;
 
             Vector2 destination = MathUtil.QuadraticLerp(FirstPoint, Midpoint, LastPoint, _elapsedTime);
             Vector3 direction = destination - (Vector2)transform.position;
-            transform.rotation = MathUtil.DirectionToQuaternion(direction, AngleOffset);
             
-            base.Move();
+            return MathUtil.DirectionToQuaternion(direction, AngleOffset);
+        }
 
+        protected override void AfterMove()
+        {
             if (Vector2.Distance(transform.position, LastPoint) <= DestroyRadius)
             {
                 Destroy(gameObject);
