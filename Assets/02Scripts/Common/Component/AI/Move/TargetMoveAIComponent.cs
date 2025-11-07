@@ -27,7 +27,7 @@ namespace _02Scripts.Common.Component.AI.Move
 
         protected bool IsTargetExist()
         {
-            return Target != null;
+            return Target;
         }
 
         protected override Vector2 GetMoveDirection()

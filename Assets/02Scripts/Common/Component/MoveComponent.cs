@@ -5,9 +5,6 @@ namespace _02Scripts.Common.Component
 {
     public class MoveComponent : MonoBehaviour
     {
-        private float _speed;
-        private float _speedMultiplier;
-        
         public Vector2 LastMoveDirection { get; private set; }
 
         public event Action AfterMove;

@@ -62,12 +62,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6030181107323122894, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+    - {fileID: -4056239750066219027, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3806391403653227195, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
       insertIndex: -1
       addedObject: {fileID: -5280655942313653060}
+    - targetCorrespondingSourceObject: {fileID: 3806391403653227195, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1819286727746500185}
   m_SourcePrefab: {fileID: 100100000, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
 --- !u!1 &6669858923063644170 stripped
 GameObject:
@@ -88,3 +92,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Frequency: 1
   TurnAngle: 80
+--- !u!114 &1819286727746500185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6669858923063644170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3f5b4f74834f368c282ee1876bb0f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MoveCondition: {fileID: 0}
+  Frequency: 2
+  TurnAngle: 40
