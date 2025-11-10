@@ -6,8 +6,6 @@ namespace _02Scripts.Player.Component.AI
 {
     public class PlayerAttackAIComponent : TargetAttackAIComponent
     {
-        private EAttackAIState _state;
-        
         private ETargetType _targetType;
 
         private readonly Vector2 _attackDirection = Vector2.up;
@@ -21,7 +19,6 @@ namespace _02Scripts.Player.Component.AI
         {
             base.Init();
 
-            _state = EAttackAIState.Idle;
             SetTarget(null);
         }
     }
