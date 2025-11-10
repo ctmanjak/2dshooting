@@ -11,7 +11,9 @@ namespace _02Scripts.Common.Component.AI.Move
 
         protected override Vector2 GetMoveDirection()
         {
-            _distance = Vector2.Distance(Target.transform.position, transform.position);
+            if (!IsTargetExist()) return Vector2.zero;
+            
+            _distance = Vector2.Distance(GetTargetPosition(), transform.position);
             if (_distance < MinDistance) return -GetTargetDirection();
             
             return IsSafe() ? Vector2.zero : GetTargetDirection();

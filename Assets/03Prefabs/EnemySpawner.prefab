@@ -45,9 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinInclusive: 1
-  MaxInclusive: 3
+  MaxInclusive: 10
   SpawnerOptions:
-  - Prefab: {fileID: 5003803826555043087, guid: fa9760ea6b8434065ab4e3e2b517d98c, type: 3}
-    Weight: 70
-  - Prefab: {fileID: 8965696085353362410, guid: 278f947a0fb89486ab7df21bf0907443, type: 3}
-    Weight: 30
+  - Weight: 70
+    Prefab: {fileID: 5003803826555043087, guid: fa9760ea6b8434065ab4e3e2b517d98c, type: 3}
+  - Weight: 0
+    Prefab: {fileID: 8965696085353362410, guid: 278f947a0fb89486ab7df21bf0907443, type: 3}
+  - Weight: 0
+    Prefab: {fileID: 8965696085353362410, guid: 7cdcd0344297441e6bcd9e27a0a843bb, type: 3}

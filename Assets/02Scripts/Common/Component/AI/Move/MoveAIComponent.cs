@@ -1,4 +1,4 @@
-using _02Scripts.Common.Component.AI.Move.Condition;
+using _02Scripts.Common.Component.AI.Condition;
 using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 
@@ -7,11 +7,11 @@ namespace _02Scripts.Common.Component.AI.Move
     [RequireComponent(typeof(MoveComponent), typeof(MoveStatComponent))]
     public abstract class MoveAIComponent : MonoBehaviour
     {
-        public MonoBehaviour MoveCondition;
+        public MonoBehaviour AICondition;
         private MoveComponent _moveComponent;
         protected MoveStatComponent MoveStatComponent;
 
-        private IMoveCondition _moveCondition;
+        private IAICondition _aiCondition;
 
         private void Start()
         {
@@ -26,7 +26,7 @@ namespace _02Scripts.Common.Component.AI.Move
 
         private void Move()
         {
-            if (_moveCondition != null && !_moveCondition.CanMove()) return;
+            if (_aiCondition != null && !_aiCondition.CanAct()) return;
             _moveComponent.Move(GetMoveDirection(), MoveStatComponent.GetSpeed() * MoveStatComponent.SpeedMultiplier * Time.deltaTime);
         }
         
@@ -37,8 +37,8 @@ namespace _02Scripts.Common.Component.AI.Move
         {
             _moveComponent = GetComponent<MoveComponent>();
             MoveStatComponent = GetComponent<MoveStatComponent>();
-            if (!MoveCondition && MoveCondition is not IMoveCondition) return;
-            _moveCondition = MoveCondition as IMoveCondition;
+            if (!AICondition && AICondition is not IAICondition) return;
+            _aiCondition = AICondition as IAICondition;
         }
         
         protected abstract Vector2 GetMoveDirection();

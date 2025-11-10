@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 3315507318893570843}
   - component: {fileID: -366317565387574302}
   - component: {fileID: -16865958988906070}
+  - component: {fileID: 5797271436189433860}
   m_Layer: 0
   m_Name: Item
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d464a9eedb47448300416a8f5df74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveCondition: {fileID: -16865958988906070}
+  AICondition: {fileID: -16865958988906070}
   CurveSpeedMultiplier: 2
   MidpointPosition: 2
   LastPointOverDistance: 5
@@ -216,3 +217,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DelayTime: 2
+--- !u!114 &5797271436189433860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598906065254407341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d0b956b9c241398505e5455372f30c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

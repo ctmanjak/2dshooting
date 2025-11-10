@@ -2,27 +2,31 @@ using UnityEngine;
 
 namespace _02Scripts.Common.Component.AI.Attack
 {
-    public abstract class TargetAttackAIComponent : AttackAIComponent
+    [RequireComponent(typeof(TargetComponent))]
+    public class TargetAttackAIComponent : AttackAIComponent
     {
-        protected GameObject Target;
+        private TargetComponent _targetComponent;
 
         protected override void Init()
         {
             base.Init();
-            Target = GameObject.FindWithTag("Player");
+            _targetComponent = GetComponent<TargetComponent>();
+            if (!_targetComponent.IsTargetExist())  _targetComponent.SetTarget(GameObject.FindWithTag("Player"));
         }
 
-        protected Vector2 GetTargetDirection()
+        private Vector2 GetTargetDirection()
         {
-            Vector2 direction = Target ?
-                (Target.transform.position - transform.position).normalized : Vector2.down;
-
-            return direction;
+            return _targetComponent.GetTargetDirection();
         }
 
         protected override Vector2 GetAttackDirection()
         {
             return GetTargetDirection();
+        }
+
+        protected void SetTarget(GameObject target)
+        {
+            _targetComponent.SetTarget(target);
         }
     }
 }

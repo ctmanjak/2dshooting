@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
-namespace _02Scripts.Common.Component.AI.Move.Condition
+namespace _02Scripts.Common.Component.AI.Condition
 {
-    public class DelayMoveCondition : MonoBehaviour, IMoveCondition
+    public class DelayAICondition : MonoBehaviour, IAICondition
     {
         private float _timer;
         public float DelayTime = 2f;
@@ -13,7 +12,7 @@ namespace _02Scripts.Common.Component.AI.Move.Condition
             _timer = Time.time;
         }
 
-        public bool CanMove()
+        public bool CanAct()
         {
             return Time.time - _timer >= DelayTime;
         }

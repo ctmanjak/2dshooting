@@ -1,6 +1,6 @@
 namespace _02Scripts.Common.Enum
 {
-    public enum EFireType
+    public enum EInputType
     {
         Manual,
         Auto

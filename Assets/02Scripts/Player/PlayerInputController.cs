@@ -2,20 +2,23 @@ using _02Scripts.Common.Component;
 using _02Scripts.Common.Component.Stat;
 using _02Scripts.Common.Enum;
 using _02Scripts.Player.Component;
+using _02Scripts.Player.Component.AI;
 using UnityEngine;
 
 namespace _02Scripts.Player
 {
     [RequireComponent(typeof(AttackComponent), typeof(PlayerStatComponent), typeof(PlayerMoveComponent))]
-    [RequireComponent(typeof(MoveStatComponent))]
+    [RequireComponent(typeof(MoveStatComponent), typeof(PlayerInputTypeComponent))]
+    [RequireComponent(typeof(PlayerMoveAIComponent))]
     public class PlayerInputController : MonoBehaviour
     {
         private AttackComponent _attackComponent;
         private PlayerStatComponent _playerStatComponent;
         private MoveStatComponent _moveStatComponent;
         private PlayerMoveComponent _playerMoveComponent;
+        private PlayerInputTypeComponent _playerInputTypeComponent;
+        private PlayerMoveAIComponent _playerMoveAIComponent;
 
-        private EFireType _fireType;
         private readonly Vector2 _attackDirection = Vector2.up;
 
         private void Start()
@@ -24,18 +27,23 @@ namespace _02Scripts.Player
             _playerStatComponent = GetComponent<PlayerStatComponent>();
             _moveStatComponent = GetComponent<MoveStatComponent>();
             _playerMoveComponent = GetComponent<PlayerMoveComponent>();
+            _playerInputTypeComponent = GetComponent<PlayerInputTypeComponent>();
+            _playerMoveAIComponent = GetComponent<PlayerMoveAIComponent>();
         }
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                SetFireType(EFireType.Auto);
+                SetInputType(EInputType.Auto);
             } else if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                SetFireType(EFireType.Manual);
+                SetInputType(EInputType.Manual);
             }
-            if (Input.GetKey(KeyCode.Space) || _fireType == EFireType.Auto) _attackComponent.Fire(_attackDirection);
+
+            if (_playerInputTypeComponent.GetInputType() == EInputType.Auto) return;
+            
+            if (Input.GetKey(KeyCode.Space)) _attackComponent.Fire(_attackDirection);
             
             if (Input.GetKeyDown(KeyCode.Q)) _moveStatComponent.IncreaseSpeed(_playerStatComponent.SpeedChangeAmount);
             if (Input.GetKeyDown(KeyCode.E)) _moveStatComponent.DecreaseSpeed(_playerStatComponent.SpeedChangeAmount);
@@ -62,9 +70,9 @@ namespace _02Scripts.Player
             _playerMoveComponent.Move(direction, speed);
         }
 
-        private void SetFireType(EFireType fireType)
+        private void SetInputType(EInputType inputType)
         {
-            _fireType = fireType;
+            _playerInputTypeComponent.SetInputType(inputType);
         }
     }
 }

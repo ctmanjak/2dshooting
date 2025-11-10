@@ -2,32 +2,41 @@ using UnityEngine;
 
 namespace _02Scripts.Common.Component.AI.Move
 {
+    [RequireComponent(typeof(TargetComponent))]
     public abstract class TargetMoveAIComponent : MoveAIComponent
     {
-        protected GameObject Target;
+        private TargetComponent _targetComponent;
 
         protected override void Init()
         {
             base.Init();
-            Target = GameObject.FindWithTag("Player");
+            _targetComponent = GetComponent<TargetComponent>();
+            if (!_targetComponent.IsTargetExist()) _targetComponent.SetTarget(GameObject.FindWithTag("Player"));
         }
 
         protected Vector2 GetTargetDirection()
         {
-            Vector2 direction = Target ?
-                (Target.transform.position - transform.position).normalized : Vector2.down;
-
-            return direction;
+            return _targetComponent.GetTargetDirection();
         }
 
         protected Vector2 GetTargetPosition()
         {
-            return Target.transform.position;
+            return _targetComponent.GetTargetPosition();
         }
 
         protected bool IsTargetExist()
         {
-            return Target;
+            return _targetComponent.IsTargetExist();
+        }
+
+        protected void SetTarget(GameObject target)
+        {
+            _targetComponent.SetTarget(target);
+        }
+
+        protected GameObject GetTarget()
+        {
+            return _targetComponent.GetTarget();
         }
 
         protected override Vector2 GetMoveDirection()

@@ -1,3 +1,5 @@
+using System.Linq;
+using _02Scripts.Common.Component.AI.Condition;
 using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 
@@ -6,7 +8,10 @@ namespace _02Scripts.Common.Component.AI.Attack
     [RequireComponent(typeof(AttackComponent), typeof(StatComponent))]
     public abstract class AttackAIComponent : MonoBehaviour
     {
+        public MonoBehaviour[] AICondition;
+        
         private AttackComponent _attackComponent;
+        private IAICondition[] _aiCondition;
 
         private void Start()
         {
@@ -20,7 +25,7 @@ namespace _02Scripts.Common.Component.AI.Attack
 
         private void Attack()
         {
-            if (!CanAttack()) return;
+            if (_aiCondition != null && _aiCondition.Any(aiCondition => !aiCondition.CanAct())) return;
 
             _attackComponent.Fire(GetAttackDirection());
         }
@@ -28,11 +33,13 @@ namespace _02Scripts.Common.Component.AI.Attack
         protected virtual void Init()
         {
             _attackComponent = GetComponent<AttackComponent>();
-        }
+            if (AICondition == null || AICondition.Any(monoBehaviour => monoBehaviour is not IAICondition)) return;
 
-        protected virtual bool CanAttack()
-        {
-            return false;
+            _aiCondition = new IAICondition[AICondition.Length];
+            for (int i = 0; i < AICondition.Length; i++)
+            {
+                _aiCondition[i] = AICondition[i] as IAICondition;
+            }
         }
 
         protected abstract Vector2 GetAttackDirection();
