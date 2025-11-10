@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ namespace _02Scripts.Common.Component
         
         public float DamageMultiplier = 1f;
         public float KnockbackPower;
+
+        public event Action OnHit;
         
         private void Start()
         {
@@ -27,6 +30,8 @@ namespace _02Scripts.Common.Component
             _healthComponent.TakeDamage((int)(damage * DamageMultiplier));
 
             if (_knockbackComponent) Knockback(hitDirection);
+            
+            OnHit?.Invoke();
 
             return true;
         }
