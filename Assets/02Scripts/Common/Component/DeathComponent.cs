@@ -1,4 +1,5 @@
 using System;
+using _02Scripts.Common.Component.Effect;
 using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace _02Scripts.Common.Component
     [RequireComponent(typeof(StatComponent))]
     public class DeathComponent : MonoBehaviour
     {
-        public event Action OnDie;
+        public event Action<EffectContext> OnDie;
         
         private void Start()
         {
@@ -18,7 +19,7 @@ namespace _02Scripts.Common.Component
         
         public virtual void Die()
         {
-            OnDie?.Invoke();
+            OnDie?.Invoke(new EffectContext(gameObject));
             Destroy(gameObject);
         }
     }
