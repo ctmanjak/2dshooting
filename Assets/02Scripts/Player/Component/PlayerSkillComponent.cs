@@ -1,23 +1,64 @@
-using _02Scripts.Common.Component;
+using _02Scripts.AirMine;
+using _02Scripts.Util;
 using UnityEngine;
 
 namespace _02Scripts.Player.Component
 {
-    [RequireComponent(typeof(PlayerStatComponent), typeof(InvincibleComponent))]
     public class PlayerSkillComponent : MonoBehaviour
     {
-        private InvincibleComponent _invincibleComponent;
+        public Camera MainCamera;
+        
+        public GameObject MinePrefab;
 
-        public float InvincibleSeconds = 3f;
+        private Rect _cameraRect;
 
+        public float AirMineLifeTime = 3f;
+
+        public float Duration = 3f;
+        public float Interval = 0.1f;
+
+        private float _lastActivateTime;
+        private float _lastIntervalTime;
+        
         private void Start()
         {
-            _invincibleComponent = GetComponent<InvincibleComponent>();
+            if (MainCamera == null) MainCamera = Camera.main;
+            if (MainCamera == null) return;
+            
+            _cameraRect = CameraUtil.GetCameraWorldRect(MainCamera);
+
+            _lastActivateTime = Time.time - Duration;
+        }
+
+        private void Update()
+        {
+            float currentTime = Time.time;
+
+            if (currentTime - _lastActivateTime > Duration) return;
+            if (currentTime - _lastIntervalTime < Interval) return;
+            
+            GameObject airMineObject = Instantiate(MinePrefab, GetRandomPosition(), Quaternion.identity);
+            AirMineEntity airMine = airMineObject.GetComponent<AirMineEntity>();
+            if (!airMine) return;
+            airMine.Init(AirMineLifeTime);
+            
+            _lastIntervalTime = currentTime;
         }
 
         public void Activate()
         {
-            _invincibleComponent.Activate(InvincibleSeconds);
+            if (Time.time - _lastActivateTime <= Duration) return;
+            
+            _lastActivateTime = Time.time;
+            _lastIntervalTime = Time.time - Interval;
+        }
+
+        private Vector2 GetRandomPosition()
+        {
+            return new Vector2(
+                Random.Range(_cameraRect.xMin, _cameraRect.xMax),
+                Random.Range(_cameraRect.yMin, _cameraRect.yMax)
+            );
         }
     }
 }

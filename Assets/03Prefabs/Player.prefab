@@ -32,6 +32,9 @@ GameObject:
   - component: {fileID: 2428754441671355135}
   - component: {fileID: 929890670358629037}
   - component: {fileID: 5388309293144406965}
+  - component: {fileID: 8132343232710704831}
+  - component: {fileID: 2596069465209196489}
+  - component: {fileID: 2990617920127398718}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -263,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  InvincibleSeconds: 1
+  InvincibleAfterHitSeconds: 1
   SpeedChangeAmount: 5
 --- !u!114 &2102710008060878084
 MonoBehaviour:
@@ -326,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9812d7150a143148ea320fcdf6f4289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 15
+  Damage: 30
   AttackSpeed: 1
 --- !u!114 &1288204883562830885
 MonoBehaviour:
@@ -478,3 +481,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e1547da8ae4b78b1ad1de86e53e1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8132343232710704831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354585131968531562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cd319dfc3947babc438dfd494091e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2596069465209196489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354585131968531562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3817e6b3dff74211a51f406697e78242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 0}
+  MinePrefab: {fileID: 2385824208579382412, guid: 68d255191a56845a4b93a15ee050f6d0, type: 3}
+  Duration: 3
+  Interval: 0.1
+--- !u!114 &2990617920127398718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354585131968531562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddfa6a5811ad4cefb1e6ffaeac536d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectPrefab: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
