@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 5766047475782195911}
   - component: {fileID: 4622325481906921992}
   - component: {fileID: 3747387418780877269}
+  - component: {fileID: 2836893852203165464}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
@@ -93,7 +94,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1147401495359466748, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
+  m_Sprite: {fileID: -8421458170528590454, guid: 138040323294fd440a3a823e5d70ad01, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -192,7 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  InvincibleSeconds: 0
+  InvincibleAfterHitSeconds: 1
 --- !u!114 &4154578461669998167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,3 +381,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EffectPrefab: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+--- !u!114 &2836893852203165464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003803826555043087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1cd319dfc3947babc438dfd494091e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
