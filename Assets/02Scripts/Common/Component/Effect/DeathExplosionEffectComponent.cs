@@ -3,7 +3,7 @@ using UnityEngine;
 namespace _02Scripts.Common.Component.Effect
 {
     [RequireComponent(typeof(DeathComponent))]
-    public class DeathExplosionEffectComponent : MonoBehaviour
+    public class DeathExplosionEffectComponent : MonoBehaviour, IEffectComponent
     {
         public GameObject EffectPrefab;
 
@@ -12,12 +12,12 @@ namespace _02Scripts.Common.Component.Effect
         private void Start()
         {
             _deathComponent = GetComponent<DeathComponent>();
-            _deathComponent.OnDie += OnDie;
+            _deathComponent.OnDie += PlayEffect;
         }
 
-        private void OnDie()
+        public void PlayEffect(EffectContext context)
         {
-            Instantiate(EffectPrefab, transform.position, transform.rotation);
+            Instantiate(EffectPrefab, context.SourcePosition, context.SourceRotation);
         }
     }
 }

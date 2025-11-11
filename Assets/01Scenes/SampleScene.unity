@@ -2634,7 +2634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1391170492508022332, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
       propertyPath: MaxHealth
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2707173927293406340, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2675,6 +2675,10 @@ PrefabInstance:
     - target: {fileID: 2707173927293406340, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4402581073962149656, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
+      propertyPath: Damage
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

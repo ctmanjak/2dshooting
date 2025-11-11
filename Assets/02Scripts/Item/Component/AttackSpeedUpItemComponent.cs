@@ -1,3 +1,4 @@
+using _02Scripts.Common.Component;
 using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 
