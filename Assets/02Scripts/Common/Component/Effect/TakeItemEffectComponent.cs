@@ -11,13 +11,14 @@ namespace _02Scripts.Common.Component.Effect
         private void Start()
         {
             _itemComponent = GetComponent<ItemComponent>();
+            if (!_itemComponent) return;
             _itemComponent.OnActivate += PlayEffect;
         }
 
         public void PlayEffect(EffectContext context)
         {
-            if (context.Target == null) return;
-            Instantiate(EffectPrefab, context.Target.transform);
+            if (context.TargetTransform == null) return;
+            Instantiate(EffectPrefab, context.TargetTransform);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace _02Scripts.Common.Component.Effect
 
         public void PlayEffect(EffectContext context)
         {
-            Instantiate(EffectPrefab, context.Source.transform.position, context.Source.transform.rotation);
+            Instantiate(EffectPrefab, context.SourcePosition, context.SourceRotation);
         }
     }
 }
