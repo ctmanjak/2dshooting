@@ -1,5 +1,6 @@
 using _02Scripts.Common.Component.AI.Condition;
 using _02Scripts.Common.Component.Stat;
+using _02Scripts.Util;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component.AI.Move
@@ -20,14 +21,19 @@ namespace _02Scripts.Common.Component.AI.Move
         
         private void FixedUpdate()
         {
+            if (_aiCondition != null && !_aiCondition.CanAct()) return;
             BeforeMove();
             Move();
         }
 
         private void Move()
         {
-            if (_aiCondition != null && !_aiCondition.CanAct()) return;
             _moveComponent.Move(GetMoveDirection(), MoveStatComponent.GetSpeed() * MoveStatComponent.SpeedMultiplier * Time.deltaTime);
+        }
+
+        protected void Rotate(Quaternion rotation)
+        {
+            _moveComponent.Rotate(rotation);
         }
         
         protected virtual void BeforeMove()
