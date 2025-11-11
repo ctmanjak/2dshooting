@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _02Scripts.Util
 {
-    public class CameraUtil
+    public static class CameraUtil
     {
         public static Rect GetCameraWorldRect(Camera cam)
         {

@@ -18,6 +18,7 @@ namespace _02Scripts.AirMine.Component.Effect
 
         public void PlayEffect(EffectContext context)
         {
+            if (!EffectPrefab) return;
             Instantiate(EffectPrefab, context.SourcePosition, context.SourceRotation);
         }
     }

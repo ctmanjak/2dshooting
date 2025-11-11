@@ -1,37 +1,40 @@
 using System;
-using System.Linq;
+using _02Scripts.AirMine.Component;
 using _02Scripts.Common.Component.Effect;
 using UnityEngine;
 
 namespace _02Scripts.AirMine
 {
+    [RequireComponent(typeof(AirMineStatComponent))]
     public class AirMineEntity : MonoBehaviour
     {
         public event Action<EffectContext> AfterHit;
-        
-        private readonly string[] _enemyTags = { "Enemy" };
 
-        private float _lifeTime;
         private float _birthTime;
 
-        public void Init(float lifeTime)
+        public float LifeTime = 3f;
+
+        private bool _activated;
+
+        public void Start()
         {
-            _lifeTime = lifeTime;
             _birthTime = Time.time;
         }
 
         private void Update()
         {
-            if (Time.time - _birthTime > _lifeTime) Activate();
+            if (Time.time - _birthTime > LifeTime) Activate();
         }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (_enemyTags.Any(other.CompareTag)) Activate();
+            if (other.CompareTag("Enemy")) Activate();
         }
 
         private void Activate()
         {
+            if (_activated) return;
+            _activated = true;
             AfterHit?.Invoke(new EffectContext(gameObject));
             Destroy(gameObject);
         }

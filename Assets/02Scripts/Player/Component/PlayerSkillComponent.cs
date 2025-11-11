@@ -1,4 +1,3 @@
-using _02Scripts.AirMine;
 using _02Scripts.Util;
 using UnityEngine;
 
@@ -11,8 +10,6 @@ namespace _02Scripts.Player.Component
         public GameObject MinePrefab;
 
         private Rect _cameraRect;
-
-        public float AirMineLifeTime = 3f;
 
         public float Duration = 3f;
         public float Interval = 0.1f;
@@ -36,11 +33,10 @@ namespace _02Scripts.Player.Component
 
             if (currentTime - _lastActivateTime > Duration) return;
             if (currentTime - _lastIntervalTime < Interval) return;
+
+            if (!MinePrefab) return;
             
-            GameObject airMineObject = Instantiate(MinePrefab, GetRandomPosition(), Quaternion.identity);
-            AirMineEntity airMine = airMineObject.GetComponent<AirMineEntity>();
-            if (!airMine) return;
-            airMine.Init(AirMineLifeTime);
+            Instantiate(MinePrefab, GetRandomPosition(), Quaternion.identity);
             
             _lastIntervalTime = currentTime;
         }

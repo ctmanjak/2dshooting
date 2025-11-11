@@ -14,11 +14,13 @@ namespace _02Scripts.AirMine
         public float TriggerDuration = 0.05f; 
         
         private readonly string[] _enemyTags = { "Enemy" };
+        private int _damage;
         
         private void Start()
         {
             _collider2D = GetComponent<Collider2D>();
             _airMineStatComponent = GetComponent<AirMineStatComponent>();
+            _damage = _airMineStatComponent.Damage;
             
             StartCoroutine(TriggerOnce());
         }
@@ -35,7 +37,7 @@ namespace _02Scripts.AirMine
             HitboxComponent otherHitbox = other.GetComponent<HitboxComponent>();
             if (otherHitbox == null) return;
             
-            otherHitbox.Hit(transform.up, _airMineStatComponent.Damage, _enemyTags);
+            otherHitbox.Hit(transform.up, _damage, _enemyTags);
         }
     }
 }
