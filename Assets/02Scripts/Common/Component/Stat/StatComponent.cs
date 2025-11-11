@@ -6,6 +6,6 @@ namespace _02Scripts.Common.Component.Stat
     {
         public int MaxHealth = 100;
 
-        public float InvincibleSeconds;
+        public float InvincibleAfterHitSeconds = 1f;
     }
 }

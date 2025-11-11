@@ -40,6 +40,8 @@ namespace _02Scripts.Player
             {
                 SetInputType(EInputType.Manual);
             }
+            
+            if (Input.GetKeyDown(KeyCode.Alpha3)) 
 
             if (_playerInputTypeComponent.GetInputType() == EInputType.Auto) return;
             

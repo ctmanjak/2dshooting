@@ -3,22 +3,22 @@ using UnityEngine;
 
 namespace _02Scripts.Common.Component
 {
-    [RequireComponent(typeof(StatComponent), typeof(DeathComponent))]
+    [RequireComponent(typeof(StatComponent), typeof(DeathComponent), typeof(InvincibleComponent))]
     public class HealthComponent : MonoBehaviour
     {
         private StatComponent _statComponent;
         private DeathComponent _deathComponent;
+        private InvincibleComponent _invincibleComponent;
     
         private int _health;
-        private float _invincibleSeconds;
-        private float _lastInvincibleTime;
     
         private void Start()
         {
             _statComponent = GetComponent<StatComponent>();
             _deathComponent = GetComponent<DeathComponent>();
+            _invincibleComponent = GetComponent<InvincibleComponent>();
+            
             _health = _statComponent.MaxHealth;
-            _invincibleSeconds = _statComponent.InvincibleSeconds;
         }
 
         public void Heal(int amount)
@@ -28,13 +28,11 @@ namespace _02Scripts.Common.Component
 
         public void TakeDamage(int damage)
         {
-            float currentTime = Time.time;
-            if (currentTime - _lastInvincibleTime > _invincibleSeconds)
-            {
-                _health -= damage;
+            if (_invincibleComponent.IsInvincible()) return;
+            
+            _health -= damage;
 
-                _lastInvincibleTime = currentTime;
-            }
+            _invincibleComponent.Activate(_statComponent.InvincibleAfterHitSeconds);
 
             if (_health <= 0) _deathComponent.Die();
         }
