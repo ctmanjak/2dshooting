@@ -2488,24 +2488,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2137627266 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1354585131968531562, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
-  m_PrefabInstance: {fileID: 6984412711170426913}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2137627291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137627266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddfa6a5811ad4cefb1e6ffaeac536d31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EffectPrefab: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
 --- !u!1001 &1267619544071018283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2632,18 +2614,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1391170492508022332, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
-      propertyPath: MaxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1391170492508022332, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
-      propertyPath: InvincibleSeconds
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1391170492508022332, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
-      propertyPath: InvincibleAfterHitSeconds
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 2596069465209196489, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
+      propertyPath: MainCamera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 2707173927293406340, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2684,17 +2658,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4402581073962149656, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
-      propertyPath: Damage
-      value: 30
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1354585131968531562, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2137627291}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
 --- !u!1001 &8431827908431162626
 PrefabInstance:

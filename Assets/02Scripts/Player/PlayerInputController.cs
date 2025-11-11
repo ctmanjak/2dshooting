@@ -9,7 +9,7 @@ namespace _02Scripts.Player
 {
     [RequireComponent(typeof(AttackComponent), typeof(PlayerStatComponent), typeof(PlayerMoveComponent))]
     [RequireComponent(typeof(MoveStatComponent), typeof(PlayerInputTypeComponent))]
-    [RequireComponent(typeof(PlayerMoveAIComponent))]
+    [RequireComponent(typeof(PlayerMoveAIComponent), typeof(PlayerSkillComponent))]
     public class PlayerInputController : MonoBehaviour
     {
         private AttackComponent _attackComponent;
@@ -18,6 +18,7 @@ namespace _02Scripts.Player
         private PlayerMoveComponent _playerMoveComponent;
         private PlayerInputTypeComponent _playerInputTypeComponent;
         private PlayerMoveAIComponent _playerMoveAIComponent;
+        private PlayerSkillComponent _playerSkillComponent;
 
         private readonly Vector2 _attackDirection = Vector2.up;
 
@@ -29,6 +30,7 @@ namespace _02Scripts.Player
             _playerMoveComponent = GetComponent<PlayerMoveComponent>();
             _playerInputTypeComponent = GetComponent<PlayerInputTypeComponent>();
             _playerMoveAIComponent = GetComponent<PlayerMoveAIComponent>();
+            _playerSkillComponent = GetComponent<PlayerSkillComponent>();
         }
 
         private void Update()
@@ -41,7 +43,7 @@ namespace _02Scripts.Player
                 SetInputType(EInputType.Manual);
             }
             
-            if (Input.GetKeyDown(KeyCode.Alpha3)) 
+            if (Input.GetKeyDown(KeyCode.Alpha3)) _playerSkillComponent.Activate();
 
             if (_playerInputTypeComponent.GetInputType() == EInputType.Auto) return;
             
