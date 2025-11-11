@@ -1,3 +1,4 @@
+using System;
 using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace _02Scripts.Common.Component
     [RequireComponent(typeof(StatComponent))]
     public class DeathComponent : MonoBehaviour
     {
+        public event Action OnDie;
+        
         private void Start()
         {
             Init();
@@ -15,6 +18,7 @@ namespace _02Scripts.Common.Component
         
         public virtual void Die()
         {
+            OnDie?.Invoke();
             Destroy(gameObject);
         }
     }
