@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace _02Scripts.Environment
 {
+    [RequireComponent(typeof(Renderer))]
     public class BackgroundScroll : MonoBehaviour
     {
-        private Renderer _renderer;
+        private Material _material;
     
         private readonly Vector2 _direction = Vector2.up;
 
@@ -12,12 +13,12 @@ namespace _02Scripts.Environment
 
         private void Start()
         {
-            _renderer = GetComponent<Renderer>();
+            _material = GetComponent<Renderer>().material;
         }
 
         private void Update()
         {
-            _renderer.material.mainTextureOffset += _direction * (ScrollSpeed * Time.deltaTime);
+            _material.mainTextureOffset += _direction * (ScrollSpeed * Time.deltaTime);
         }
     }
 }
