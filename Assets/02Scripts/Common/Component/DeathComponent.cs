@@ -8,7 +8,7 @@ namespace _02Scripts.Common.Component
     [RequireComponent(typeof(StatComponent))]
     public class DeathComponent : MonoBehaviour
     {
-        public event Action<EffectContext> OnDie;
+        public event Action<GameObject> OnDie;
         
         private void Start()
         {
@@ -19,7 +19,7 @@ namespace _02Scripts.Common.Component
         
         public virtual void Die()
         {
-            OnDie?.Invoke(new EffectContext(gameObject));
+            OnDie?.Invoke(gameObject);
             Destroy(gameObject);
         }
     }

@@ -12,7 +12,12 @@ namespace _02Scripts.Common.Component.Effect
         private void Start()
         {
             _deathComponent = GetComponent<DeathComponent>();
-            _deathComponent.OnDie += PlayEffect;
+            _deathComponent.OnDie += OnDie;
+        }
+
+        private void OnDie(GameObject obj)
+        {
+            PlayEffect(new EffectContext(obj));
         }
 
         public void PlayEffect(EffectContext context)
