@@ -5,7 +5,7 @@ namespace _02Scripts.Score
 {
     public class ScoreManager : MonoBehaviour
     {
-        public static ScoreManager Instance;
+        public static ScoreManager Instance { get; private set; }
         
         private int _score;
         private int _highScore;

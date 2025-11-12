@@ -5,12 +5,12 @@ namespace _02Scripts.Common.Component.Sound
 {
     public abstract class BaseSoundComponent : MonoBehaviour
     {
-        public AudioSource AudioSource;
+        [SerializeField] private AudioSource _audioSource;
         
         protected virtual void PlaySound()
         {
-            if (!AudioSource?.clip) return;
-            AudioManager.Instance.PlayOneShot(AudioSource.clip);
+            if (!_audioSource?.clip) return;
+            AudioManager.Instance.PlayOneShot(_audioSource.clip);
         }
     }
 }

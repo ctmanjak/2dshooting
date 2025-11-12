@@ -4,8 +4,8 @@ namespace _02Scripts.Audio
 {
     public class AudioManager : MonoBehaviour
     {
-        public static AudioManager Instance;
-        
+        public static AudioManager Instance { get; private set; }
+
         private AudioSource _audioSource;
 
         private void Awake()

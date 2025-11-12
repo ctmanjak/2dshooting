@@ -8,7 +8,7 @@ namespace _02Scripts.AirMine.Component.Sound
     {
         private AirMineEntity _airMineEntity;
 
-        private void Start()
+        private void Awake()
         {
             _airMineEntity = GetComponent<AirMineEntity>();
             
