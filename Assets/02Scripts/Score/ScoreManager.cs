@@ -5,6 +5,8 @@ namespace _02Scripts.Score
 {
     public class ScoreManager : MonoBehaviour
     {
+        public static ScoreManager Instance { get; private set; }
+        
         private int _score;
         private int _highScore;
 
@@ -13,7 +15,12 @@ namespace _02Scripts.Score
         public event Action OnHighScore;
         public event Action<int> OnScoreChanged;
         public event Action<int> OnHighScoreChanged;
-        
+
+        private void Awake()
+        {
+            Instance = this;
+        }
+
         private void Start()
         {
             Load();

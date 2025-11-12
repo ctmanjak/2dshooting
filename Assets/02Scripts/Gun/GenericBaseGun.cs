@@ -7,27 +7,13 @@ namespace _02Scripts.Gun
     public abstract class GenericBaseGun<T> : BaseGun where T : BaseBullet
     {
         public T BulletPrefab;
-        
-        [Header("스탯")]
-        public int BaseDamage;
-        public float FireCooldown = 1.0f;
-        private float _lastFireTime;
 
         private const float AngleOffset = -90f;
 
-        private void Start()
+        protected override void DoFire(int extraDamage, Vector2 direction)
         {
-            _lastFireTime = Time.time - FireCooldown;
-        }
-
-        public override void Fire(int extraDamage, Vector2 direction, float attackSpeed)
-        {
-            if (!(Time.time - _lastFireTime >= FireCooldown / attackSpeed)) return;
-            
             Quaternion rotation = MathUtil.DirectionToQuaternion(direction, AngleOffset);
             InstantiateBullet(BaseDamage + extraDamage, rotation);
-
-            _lastFireTime = Time.time;
         }
 
         protected virtual void InstantiateBullet(int damage, Quaternion rotation)

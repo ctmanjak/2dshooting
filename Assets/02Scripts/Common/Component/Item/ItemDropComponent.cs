@@ -1,7 +1,7 @@
 using _02Scripts.Util;
 using UnityEngine;
 
-namespace _02Scripts.Common.Component
+namespace _02Scripts.Common.Component.Item
 {
     public class ItemDropComponent : MonoBehaviour
     {

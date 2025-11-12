@@ -2,7 +2,7 @@ using System;
 using _02Scripts.Common.Component.Effect;
 using UnityEngine;
 
-namespace _02Scripts.Common.Component
+namespace _02Scripts.Common.Component.Item
 {
     public abstract class ItemComponent : MonoBehaviour
     {

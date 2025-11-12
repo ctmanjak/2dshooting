@@ -1,5 +1,4 @@
 using _02Scripts.Common.Component.Stat;
-using _02Scripts.Common.Enum;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component

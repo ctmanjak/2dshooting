@@ -10,7 +10,7 @@ namespace _02Scripts.AirMine.Component.Effect
 
         private AirMineEntity _airMineEntity;
 
-        private void Start()
+        private void Awake()
         {
             _airMineEntity = GetComponent<AirMineEntity>();
             _airMineEntity.AfterHit += PlayEffect;
