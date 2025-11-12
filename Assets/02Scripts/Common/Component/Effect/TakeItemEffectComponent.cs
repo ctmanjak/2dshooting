@@ -1,3 +1,4 @@
+using _02Scripts.Common.Component.Item;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component.Effect

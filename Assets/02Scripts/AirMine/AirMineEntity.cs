@@ -8,6 +8,7 @@ namespace _02Scripts.AirMine
     [RequireComponent(typeof(AirMineStatComponent))]
     public class AirMineEntity : MonoBehaviour
     {
+        public event Action OnSpawn;
         public event Action<EffectContext> AfterHit;
 
         private float _birthTime;
@@ -19,6 +20,7 @@ namespace _02Scripts.AirMine
         public void Start()
         {
             _birthTime = Time.time;
+            OnSpawn?.Invoke();
         }
 
         private void Update()
