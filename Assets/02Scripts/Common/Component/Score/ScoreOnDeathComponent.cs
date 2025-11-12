@@ -20,12 +20,7 @@ namespace _02Scripts.Common.Component.Score
 
         private void OnDie(GameObject obj)
         {
-            AddScore(Score);
-        }
-
-        private void AddScore(int amount)
-        {
-            _scoreManager.AddScore(amount);
+            _scoreManager.AddScore(Score);
         }
     }
 }

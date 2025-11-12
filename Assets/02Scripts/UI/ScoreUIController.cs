@@ -83,55 +83,55 @@ namespace _02Scripts.UI
 
         private void PlayEffect()
         {
-            ScaleEffect(_scoreTextUIRectTransform);
-            ShakeEffect(_scoreTextUIRectTransform);
-            StartCalmTimer(_scoreTextUIRectTransform);
+            ScaleEffect();
+            ShakeEffect();
+            StartCalmTimer();
             
         }
 
-        private void StartCalmTimer(RectTransform rectTransform)
+        private void StartCalmTimer()
         {
             _calmTimer?.Kill();
-            _calmTimer = DOVirtual.DelayedCall(CalmDelay, () => RestoreEffect(rectTransform), UseUnscaledTime);
+            _calmTimer = DOVirtual.DelayedCall(CalmDelay, RestoreEffect, UseUnscaledTime);
         }
 
-        private void ScaleEffect(RectTransform rectTransform)
+        private void ScaleEffect()
         {
             _scaleTween?.Kill();
-            _scaleTween = rectTransform
+            _scaleTween = _scoreTextUIRectTransform
                 .DOScale(ScaleValue, ScaleDuration)
                 .SetEase(ScaleEase)
                 .SetUpdate(UseUnscaledTime);
         }
 
-        private void RestoreEffect(RectTransform rectTransform)
+        private void RestoreEffect()
         {
             _shakePositionTween?.Kill();
             _shakeRotationTween?.Kill();
             
             _scaleTween?.Kill();
-            _scaleTween = rectTransform
+            _scaleTween = _scoreTextUIRectTransform
                 .DOScale(1f, ReturnScaleDuration)
                 .SetEase(ReturnScaleEase)
                 .SetUpdate(UseUnscaledTime);
             
             _returnPositionTween?.Kill();
-            _returnPositionTween = rectTransform
+            _returnPositionTween = _scoreTextUIRectTransform
                 .DOAnchorPos(_scoreInitialPosition, ReturnPositionDuration)
                 .SetEase(ReturnPositionEase)
                 .SetUpdate(UseUnscaledTime);
             
             _returnRotationTween?.Kill();
-            _returnRotationTween = rectTransform
+            _returnRotationTween = _scoreTextUIRectTransform
                 .DORotateQuaternion(_scoreInitialRotation, ReturnRotationDuration)
                 .SetEase(ReturnRotationEase)
                 .SetUpdate(UseUnscaledTime);
         }
 
-        private void ShakeEffect(RectTransform rectTransform)                   
+        private void ShakeEffect()                   
         {
             _shakePositionTween?.Kill();
-            _shakePositionTween = rectTransform
+            _shakePositionTween = _scoreTextUIRectTransform
                 .DOShakeAnchorPos(
                     ShakePositionDuration,
                     ShakePositionStrength,
@@ -145,7 +145,7 @@ namespace _02Scripts.UI
                 .SetUpdate(UseUnscaledTime);
             
             _shakeRotationTween?.Kill();
-            _shakeRotationTween = rectTransform
+            _shakeRotationTween = _scoreTextUIRectTransform
                 .DOShakeRotation(
                     ShakeRotationDuration,
                     ShakeRotationStrength,
