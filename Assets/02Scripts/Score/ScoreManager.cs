@@ -1,48 +1,51 @@
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace _02Scripts.Score
 {
     public class ScoreManager : MonoBehaviour
     {
-        [SerializeField] private Text _scoreTextUI;
+        private int _score;
+        private int _highScore;
 
-        private int _score = 0;
+        private const string HighScoreKey = "HighScore";
 
-        private const string ScoreKey = "Score";
+        public event Action OnHighScore;
+        public event Action<int> OnScoreChanged;
+        public event Action<int> OnHighScoreChanged;
         
         private void Start()
         {
-            if (!_scoreTextUI) return;
-            
             Load();
-            
-            UpdateScoreText();
+            OnScoreChanged?.Invoke(_score);
+            OnHighScoreChanged?.Invoke(_highScore);
         }
 
         public void AddScore(int amount)
         {
             if (amount < 1) return;
+            
             _score += amount;
+            OnScoreChanged?.Invoke(_score);
             
-            UpdateScoreText();
-            
+            if (_score <= _highScore) return;
+            OnHighScore?.Invoke();
+            _highScore = _score;
+            OnHighScoreChanged?.Invoke(_highScore);
             Save();
-        }
-
-        private void UpdateScoreText()
-        {
-            _scoreTextUI.text = $"현재 점수 : {_score:N0}";
         }
         
         private void Save()
         {
-            PlayerPrefs.SetInt(ScoreKey, _score);
+            PlayerPrefs.SetString(HighScoreKey, JsonUtility.ToJson(new UserData(_highScore)));
         }
 
         private void Load()
         {
-            _score = PlayerPrefs.GetInt(ScoreKey);
+            UserData userData = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString(HighScoreKey));
+
+            if (userData == null) return;
+            _highScore = userData.HighScore;
         }
     }
 }
