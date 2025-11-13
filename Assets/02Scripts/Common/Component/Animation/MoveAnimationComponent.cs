@@ -17,7 +17,7 @@ namespace _02Scripts.Common.Component.Animation
         
         private void Update()
         {
-            Animator.SetInteger(Direction, (int)_moveComponent.LastMoveDirection.x);
+            Animator.SetInteger(Direction, Mathf.RoundToInt(_moveComponent.LastMoveDirection.x));
         }
     }
 }
