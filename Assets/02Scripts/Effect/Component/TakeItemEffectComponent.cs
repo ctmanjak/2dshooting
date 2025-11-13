@@ -1,11 +1,12 @@
 using _02Scripts.Common.Component.Item;
+using _02Scripts.Effect.Factory;
 using UnityEngine;
 
-namespace _02Scripts.Common.Component.Effect
+namespace _02Scripts.Effect.Component
 {
     public class TakeItemEffectComponent : MonoBehaviour, IEffectComponent
     {
-        public GameObject EffectPrefab;
+        public EffectEntity EffectPrefab;
 
         private ItemComponent _itemComponent;
 
@@ -19,7 +20,7 @@ namespace _02Scripts.Common.Component.Effect
         public void PlayEffect(EffectContext context)
         {
             if (context.TargetTransform == null) return;
-            Instantiate(EffectPrefab, context.TargetTransform);
+            EffectFactory.Instance.Spawn(EffectPrefab, context.TargetTransform);
         }
     }
 }

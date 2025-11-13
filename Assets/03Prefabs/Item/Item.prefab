@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: -2207166258676078803}
   - component: {fileID: 7945881922761041572}
   - component: {fileID: -1060010435181785804}
+  - component: {fileID: 2527158791549344589}
   m_Layer: 0
   m_Name: Item
   m_TagString: Item
@@ -267,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0dfcd2a8658449195c23e7650ecff67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectPrefab: {fileID: 8771972552311404799, guid: 860cb3edb418248688611fddceadf4db, type: 3}
+  EffectPrefab: {fileID: -7459350457125018103, guid: 860cb3edb418248688611fddceadf4db, type: 3}
 --- !u!82 &7945881922761041572
 AudioSource:
   m_ObjectHideFlags: 0
@@ -378,3 +379,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioSource: {fileID: 7945881922761041572}
+--- !u!114 &2527158791549344589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598906065254407341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3bc0bd5d2b449d4af95aba91d4207cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

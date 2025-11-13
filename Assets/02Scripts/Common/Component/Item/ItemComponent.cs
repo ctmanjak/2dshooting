@@ -1,5 +1,5 @@
 using System;
-using _02Scripts.Common.Component.Effect;
+using _02Scripts.Effect.Component;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component.Item

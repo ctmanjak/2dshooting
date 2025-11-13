@@ -24,9 +24,8 @@ namespace _02Scripts.Gun
 
         protected T InstantiateBullet(int damage, Vector3 position, Quaternion rotation)
         {
-            T bullet = !BulletFactory<T>.Instance
-                ? Instantiate(BulletPrefab, position, rotation)
-                : BulletFactory<T>.Instance.Spawn(position, rotation);
+            T bullet = UniversalBulletFactory.Instance.Spawn(BulletPrefab, position, rotation) as T;
+            if (!bullet) bullet = Instantiate(BulletPrefab, position, rotation);
             bullet.Init(damage, rotation);
 
             return bullet;

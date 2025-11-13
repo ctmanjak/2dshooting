@@ -54,6 +54,8 @@ namespace _02Scripts.Common
 
         public T InstantiateObject<T>(GameObject prefab, Vector3 position, Quaternion rotation)
         {
+            if (!IsPooledPrefab(prefab)) return default;
+            
             T obj = FindInactiveObject<T>(prefab, position, rotation);
             if (obj != null) return obj;
             
@@ -65,6 +67,8 @@ namespace _02Scripts.Common
 
         public T InstantiateObject<T>(GameObject prefab, Transform parent)
         {
+            if (!IsPooledPrefab(prefab)) return default;
+            
             T obj = FindInactiveObject<T>(prefab, parent.position, parent.rotation);
             if (obj != null) return obj;
             
@@ -72,6 +76,11 @@ namespace _02Scripts.Common
             obj = FindInactiveObject<T>(prefab, parent.position, parent.rotation);
 
             return obj;
+        }
+
+        private bool IsPooledPrefab(GameObject prefab)
+        {
+            return _pool.ContainsKey(prefab);
         }
 
         private GameObject FindInactiveObject(GameObject prefab)

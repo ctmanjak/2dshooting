@@ -1,11 +1,13 @@
+using _02Scripts.Common.Component;
+using _02Scripts.Effect.Factory;
 using UnityEngine;
 
-namespace _02Scripts.Common.Component.Effect
+namespace _02Scripts.Effect.Component
 {
     [RequireComponent(typeof(DeathComponent))]
     public class DeathExplosionEffectComponent : MonoBehaviour, IEffectComponent
     {
-        public GameObject EffectPrefab;
+        public EffectEntity EffectPrefab;
 
         private DeathComponent _deathComponent;
 
@@ -22,7 +24,7 @@ namespace _02Scripts.Common.Component.Effect
 
         public void PlayEffect(EffectContext context)
         {
-            Instantiate(EffectPrefab, context.SourcePosition, context.SourceRotation);
+            EffectFactory.Instance.Spawn(EffectPrefab, context.SourcePosition, context.SourceRotation);
         }
     }
 }
