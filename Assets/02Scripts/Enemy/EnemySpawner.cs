@@ -36,7 +36,8 @@ namespace _02Scripts.Enemy
             SpawnerOption selectedOption = RandomUtil.PickWeightedRandomIndex(SpawnerOptions);
             EnemyEntity selectedPrefab = selectedOption?.Prefab;
             if (!selectedPrefab) return;
-            EnemyFactory.Instance.Spawn(selectedPrefab, transform.position, Quaternion.identity);
+            EnemyEntity enemyEntity = EnemyFactory.Instance.Spawn(selectedPrefab, transform.position, Quaternion.identity);
+            enemyEntity.Init();
 
             SetRandomCoolTime(MinInclusive, MaxInclusive);
         }

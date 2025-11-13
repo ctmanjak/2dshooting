@@ -8,7 +8,8 @@ namespace _02Scripts.Environment
         private void OnTriggerEnter2D(Collider2D other)
         {
             IDestroyable destroyable = other.GetComponent<IDestroyable>();
-            destroyable?.DestroySelf();
+            if (destroyable != null) destroyable.DestroySelf();
+            else Destroy(other.gameObject);
         }
     }
 }

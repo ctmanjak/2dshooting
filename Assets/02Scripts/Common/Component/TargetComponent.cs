@@ -10,7 +10,7 @@ namespace _02Scripts.Common.Component
         {
             return IsTargetExist()
                 ? (_target.transform.position - transform.position).normalized
-                : Vector2.zero;
+                : Vector2.down;
         }
 
         public Vector2 GetTargetPosition()

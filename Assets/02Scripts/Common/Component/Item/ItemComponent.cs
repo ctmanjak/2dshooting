@@ -22,14 +22,7 @@ namespace _02Scripts.Common.Component.Item
 
         public void DestroySelf()
         {
-            if (TryGetComponent<PooledMarkerComponent>(out _))
-            {
-                gameObject.SetActive(false);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            this.DestroyOrDeactivate();
         }
     }
 }

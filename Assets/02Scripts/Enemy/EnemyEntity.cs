@@ -11,11 +11,18 @@ namespace _02Scripts.Enemy
     {
         private AttackStatComponent _attackStatComponent;
         private MoveComponent _moveComponent;
+        private HealthComponent _healthComponent;
 
         private void Start()
         {
             _attackStatComponent = GetComponent<AttackStatComponent>();
             _moveComponent = GetComponent<MoveComponent>();
+            _healthComponent = GetComponent<HealthComponent>();
+        }
+
+        public void Init()
+        {
+            _healthComponent.Init();
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -30,14 +37,7 @@ namespace _02Scripts.Enemy
 
         public void DestroySelf()
         {
-            if (TryGetComponent<PooledMarkerComponent>(out _))
-            {
-                gameObject.SetActive(false);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            this.DestroyOrDeactivate();
         }
     }
 }

@@ -18,6 +18,11 @@ namespace _02Scripts.Common.Component
             _deathComponent = GetComponent<DeathComponent>();
             _invincibleComponent = GetComponent<InvincibleComponent>();
             
+            Init();
+        }
+
+        public void Init()
+        {
             _health = _statComponent.MaxHealth;
         }
 

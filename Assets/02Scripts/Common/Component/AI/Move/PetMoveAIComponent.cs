@@ -35,7 +35,8 @@ namespace _02Scripts.Common.Component.AI.Move
 
         protected override void BeforeMove()
         {
-            MoveStatComponent.SetSpeed(_targetMoveStatComponent.GetSpeed());
+            if (_targetMoveStatComponent) MoveStatComponent.SetSpeed(_targetMoveStatComponent.GetSpeed());
+            
             Vector2 targetPosition = GetTargetPosition();
 
             Vector2 targetLastMoveDirection = _targetMoveComponent.LastMoveDirection;
