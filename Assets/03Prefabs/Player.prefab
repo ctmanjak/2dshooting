@@ -36,6 +36,7 @@ GameObject:
   - component: {fileID: 2596069465209196489}
   - component: {fileID: 2990617920127398718}
   - component: {fileID: 7653018319892088764}
+  - component: {fileID: 3692178820853553727}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -536,7 +537,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 150c3208b9bb40f28e3906322f9053fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioSource: {fileID: 7268779300800330104}
+  _audioSource: {fileID: 7268779300800330104}
+--- !u!114 &3692178820853553727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354585131968531562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: febfe16cb0c14c0b8dad9a10b5c5a69a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PetPrefab: {fileID: -7098430002005456552, guid: b7ac8f8ec7c4241ca9745519b49600ca, type: 3}
+  InitialPetNumber: 3
+  Gap: 1
 --- !u!1 &2221877375791632094
 GameObject:
   m_ObjectHideFlags: 0
