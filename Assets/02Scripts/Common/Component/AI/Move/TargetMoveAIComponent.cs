@@ -29,7 +29,7 @@ namespace _02Scripts.Common.Component.AI.Move
             return _targetComponent.IsTargetExist();
         }
 
-        protected void SetTarget(GameObject target)
+        public void SetTarget(GameObject target)
         {
             _targetComponent.SetTarget(target);
         }
@@ -42,6 +42,11 @@ namespace _02Scripts.Common.Component.AI.Move
         protected override Vector2 GetMoveDirection()
         {
             return GetTargetDirection();
+        }
+
+        protected T GetTargetComponent<T>()
+        {
+            return _targetComponent.GetTargetComponent<T>();
         }
     }
 }

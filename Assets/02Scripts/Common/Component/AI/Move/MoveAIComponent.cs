@@ -14,7 +14,7 @@ namespace _02Scripts.Common.Component.AI.Move
 
         private IAICondition _aiCondition;
 
-        private void Start()
+        private void Awake()
         {
             Init();
         }
