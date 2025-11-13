@@ -33,5 +33,10 @@ namespace _02Scripts.Common.Component
         {
             return _target;
         }
+
+        public T GetTargetComponent<T>()
+        {
+            return _target.GetComponent<T>();
+        }
     }
 }

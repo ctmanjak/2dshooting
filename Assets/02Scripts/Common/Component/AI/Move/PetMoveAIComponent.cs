@@ -20,7 +20,7 @@ namespace _02Scripts.Common.Component.AI.Move
         {
             base.Init();
 
-            _targetMoveComponent = GetTarget().GetComponent<MoveComponent>();
+            _targetMoveComponent = GetTargetComponent<MoveComponent>();
             
             _lastSampledPosition = GetTargetPosition();
             for (int i = 0; i < DelayStep; i++)

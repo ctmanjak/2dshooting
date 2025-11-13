@@ -21,7 +21,7 @@ namespace _02Scripts.Pet.Component
             PetEntity pet = Instantiate(PetPrefab, transform.position + Vector3.right * Gap * (_pets.Count + 1), Quaternion.identity);
             
             GameObject previousTarget = gameObject;
-            if (_pets.Count > 0) previousTarget = _pets[^1].gameObject;
+            if (_pets.Count > 0) previousTarget = _pets[^1].FollowAnchor();
             pet.Init(previousTarget);
             
             _pets.Add(pet);

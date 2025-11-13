@@ -43,5 +43,10 @@ namespace _02Scripts.Common.Component.AI.Move
         {
             return GetTargetDirection();
         }
+
+        protected T GetTargetComponent<T>()
+        {
+            return _targetComponent.GetTargetComponent<T>();
+        }
     }
 }
