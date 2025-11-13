@@ -7,6 +7,18 @@ namespace _02Scripts.Common.Component.Item
     public abstract class ItemComponent : MonoBehaviour
     {
         public event Action<EffectContext> OnActivate;
+
+        private IDestroyable _destroyable;
+
+        private void Awake()
+        {
+            Init();
+        }
+
+        protected virtual void Init()
+        {
+            _destroyable = GetComponent<IDestroyable>();
+        }
         
         protected abstract void Activate(Collider2D other);
         
@@ -16,8 +28,8 @@ namespace _02Scripts.Common.Component.Item
             
             Activate(other);
             OnActivate?.Invoke(new EffectContext(gameObject, other.gameObject));
-        
-            Destroy(gameObject);
+            
+            _destroyable?.DestroySelf();
         }
     }
 }

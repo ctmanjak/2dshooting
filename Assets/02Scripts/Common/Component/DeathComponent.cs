@@ -1,5 +1,4 @@
 using System;
-using _02Scripts.Common.Component.Effect;
 using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 

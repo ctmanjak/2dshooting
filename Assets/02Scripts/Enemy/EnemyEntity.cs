@@ -1,3 +1,4 @@
+using _02Scripts.Common;
 using _02Scripts.Common.Component;
 using _02Scripts.Common.Component.Stat;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace _02Scripts.Enemy
 {
     [RequireComponent(typeof(HealthComponent), typeof(AttackStatComponent), typeof(MoveComponent))]
     [RequireComponent(typeof(EquipmentComponent))]
-    public class EnemyEntity : MonoBehaviour
+    public class EnemyEntity : MonoBehaviour, IDestroyable
     {
         private AttackStatComponent _attackStatComponent;
         private MoveComponent _moveComponent;
@@ -25,6 +26,18 @@ namespace _02Scripts.Enemy
             Vector2 hitDirection = _moveComponent.LastMoveDirection;
             if (hitDirection == Vector2.zero) otherHitbox.Hit(transform, _attackStatComponent.Damage, new[] { "Player" });
             else otherHitbox.Hit(hitDirection, _attackStatComponent.Damage, new[] { "Player" });
+        }
+
+        public void DestroySelf()
+        {
+            if (TryGetComponent<PooledMarkerComponent>(out _))
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
