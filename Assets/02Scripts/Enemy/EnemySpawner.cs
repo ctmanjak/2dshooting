@@ -1,4 +1,4 @@
-using System.Linq;
+using _02Scripts.Enemy.Factory;
 using _02Scripts.Util;
 using UnityEngine;
 
@@ -33,11 +33,10 @@ namespace _02Scripts.Enemy
         {
             _timer = 0f;
 
-            GameObject selectedPrefab = RandomUtil.PickWeightedRandomIndex(SpawnerOptions)?.Prefab;
+            SpawnerOption selectedOption = RandomUtil.PickWeightedRandomIndex(SpawnerOptions);
+            EnemyEntity selectedPrefab = selectedOption?.Prefab;
             if (!selectedPrefab) return;
-            
-            GameObject enemyObject = Instantiate(selectedPrefab);
-            enemyObject.transform.position = transform.position;
+            EnemyFactory.Instance.Spawn(selectedPrefab, transform.position, Quaternion.identity);
 
             SetRandomCoolTime(MinInclusive, MaxInclusive);
         }

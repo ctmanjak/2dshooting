@@ -4,21 +4,9 @@ using UnityEngine;
 
 namespace _02Scripts.Common.Component.Item
 {
-    public abstract class ItemComponent : MonoBehaviour
+    public abstract class ItemComponent : MonoBehaviour, IDestroyable
     {
         public event Action<EffectContext> OnActivate;
-
-        private IDestroyable _destroyable;
-
-        private void Awake()
-        {
-            Init();
-        }
-
-        protected virtual void Init()
-        {
-            _destroyable = GetComponent<IDestroyable>();
-        }
         
         protected abstract void Activate(Collider2D other);
         
@@ -29,7 +17,19 @@ namespace _02Scripts.Common.Component.Item
             Activate(other);
             OnActivate?.Invoke(new EffectContext(gameObject, other.gameObject));
             
-            _destroyable?.DestroySelf();
+            DestroySelf();
+        }
+
+        public void DestroySelf()
+        {
+            if (TryGetComponent<PooledMarkerComponent>(out _))
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

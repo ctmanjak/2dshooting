@@ -8,9 +8,12 @@ namespace _02Scripts.Common.Component
     public class DeathComponent : MonoBehaviour
     {
         public event Action<GameObject> OnDie;
+        private IDestroyable _destroyable;
         
         private void Start()
         {
+            _destroyable = GetComponent<IDestroyable>();
+            
             Init();
         }
 
@@ -19,7 +22,8 @@ namespace _02Scripts.Common.Component
         public virtual void Die()
         {
             OnDie?.Invoke(gameObject);
-            Destroy(gameObject);
+            if (_destroyable != null) _destroyable.DestroySelf();
+            else Destroy(gameObject);
         }
     }
 }
