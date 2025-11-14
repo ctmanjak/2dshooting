@@ -23,7 +23,7 @@ namespace _02Scripts.Enemy
             SetRandomCoolTime(MinInclusive, MaxInclusive);
         }
 
-        public void Spawn()
+        public void Spawn(float healthMultiplier = 1f)
         {
             float currentTime = Time.time;
             if (currentTime - _lastSpawnTime < _coolTime) return;
@@ -36,16 +36,15 @@ namespace _02Scripts.Enemy
             }
             if (_spawnerOptions.Count < 1) return;
             
-            SpawnerOption selectedOption = RandomUtil.PickWeightedRandomIndex(_spawnerOptions.ToArray());
+            SpawnerOption selectedOption = RandomUtil.PickWeightedRandomIndex(_spawnerOptions);
             selectedOption.CountDown();
             
             EnemyEntity selectedPrefab = selectedOption.Prefab;
             if (!selectedPrefab) return;
             
             EnemyEntity enemyEntity = EnemyFactory.Instance.Spawn(selectedPrefab, transform.position, Quaternion.identity);
-            enemyEntity.Init();
-
-
+            enemyEntity.Init(healthMultiplier);
+            
             SetRandomCoolTime(MinInclusive, MaxInclusive);
         }
         

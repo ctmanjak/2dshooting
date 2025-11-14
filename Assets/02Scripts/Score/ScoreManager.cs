@@ -9,9 +9,7 @@ namespace _02Scripts.Score
 
         public int Score { get; private set; }
 
-        private int _highScore;
-
-        private const string HighScoreKey = "HighScore";
+        public int HighScore { get; private set; }
 
         public event Action OnHighScore;
         public event Action<int> OnScoreChanged;
@@ -24,36 +22,50 @@ namespace _02Scripts.Score
 
         private void Start()
         {
-            Load();
             OnScoreChanged?.Invoke(Score);
-            OnHighScoreChanged?.Invoke(_highScore);
+            OnHighScoreChanged?.Invoke(HighScore);
         }
 
         public void AddScore(int amount)
         {
             if (amount < 1) return;
             
-            Score += amount;
-            OnScoreChanged?.Invoke(Score);
+            SetScore(Score + amount);
             
-            if (Score <= _highScore) return;
+            if (Score <= HighScore) return;
             OnHighScore?.Invoke();
-            _highScore = Score;
-            OnHighScoreChanged?.Invoke(_highScore);
-            Save();
-        }
-        
-        private void Save()
-        {
-            PlayerPrefs.SetString(HighScoreKey, JsonUtility.ToJson(new UserData(_highScore)));
+            SetHighScore(Score);
         }
 
-        private void Load()
+        public void SubtractScore(int amount)
         {
-            UserData userData = JsonUtility.FromJson<UserData>(PlayerPrefs.GetString(HighScoreKey));
+            if (amount < 1) return;
+            
+            SetScore(Score - amount);
+        }
 
-            if (userData == null) return;
-            _highScore = userData.HighScore;
+        public void Load(int score, int highScore)
+        {
+            SetScore(score);
+            SetHighScore(highScore);
+        }
+
+        private void SetScore(int score)
+        {
+            Score = score;
+            OnScoreChanged?.Invoke(Score);
+        }
+
+        private void SetHighScore(int highScore)
+        {
+            HighScore = highScore;
+            OnHighScoreChanged?.Invoke(HighScore);
+        }
+
+        public void Save(UserData userData)
+        {
+            userData.Score = Score;
+            userData.HighScore = HighScore;
         }
     }
 }

@@ -26,9 +26,9 @@ namespace _02Scripts.Enemy
             Init();
         }
 
-        public void Init()
+        public void Init(float healthMultiplier = 1f)
         {
-            _healthComponent.Init();
+            _healthComponent.Init(healthMultiplier);
         }
 
         private void OnTriggerStay2D(Collider2D other)
