@@ -9,10 +9,15 @@ namespace _02Scripts.Common.Component.Animation
         
         private HitboxComponent _hitboxComponent;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            _hitboxComponent = GetComponent<HitboxComponent>();
+        }
+
         protected override void Init()
         {
             base.Init();
-            _hitboxComponent = GetComponent<HitboxComponent>();
             _hitboxComponent.OnHit += OnHit;
         }
 

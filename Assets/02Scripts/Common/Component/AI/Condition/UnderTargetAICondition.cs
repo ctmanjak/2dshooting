@@ -9,7 +9,7 @@ namespace _02Scripts.Common.Component.AI.Condition
 
         public float AvailableDistance = 0.5f;
 
-        private void Start()
+        private void Awake()
         {
             _targetComponent = GetComponent<TargetComponent>();
         }

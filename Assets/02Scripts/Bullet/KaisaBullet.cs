@@ -36,7 +36,7 @@ namespace _02Scripts.Bullet
         {
             if (_bezierMoveAI && _bezierMoveAI.HasReachedDestination(DestroyRadius))
             {
-                Destroy(gameObject);
+                DestroySelf();
             }
         }
     }

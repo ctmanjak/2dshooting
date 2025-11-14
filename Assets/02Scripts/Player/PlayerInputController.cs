@@ -22,7 +22,7 @@ namespace _02Scripts.Player
 
         private readonly Vector2 _attackDirection = Vector2.up;
 
-        private void Start()
+        private void Awake()
         {
             _attackComponent = GetComponent<AttackComponent>();
             _playerStatComponent = GetComponent<PlayerStatComponent>();

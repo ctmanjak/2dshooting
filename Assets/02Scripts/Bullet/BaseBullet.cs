@@ -1,4 +1,5 @@
 using _02Scripts.Bullet.Component;
+using _02Scripts.Common;
 using _02Scripts.Common.Component;
 using _02Scripts.Common.Component.Stat;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace _02Scripts.Bullet
 {
     [RequireComponent(typeof(MoveComponent), typeof(MoveStatComponent), typeof(BulletStatComponent))]
-    public abstract class BaseBullet : MonoBehaviour
+    public abstract class BaseBullet : MonoBehaviour, IDestroyable
     {
         private MoveComponent _moveComponent;
         private BulletStatComponent _bulletStatComponent;
@@ -18,16 +19,19 @@ namespace _02Scripts.Bullet
 
         protected virtual void Awake()
         {
+            _moveComponent = GetComponent<MoveComponent>();
+            _moveStatComponent = GetComponent<MoveStatComponent>();
+            _bulletStatComponent = GetComponent<BulletStatComponent>();
+        }
+
+        private void Start()
+        {
             Init();
         }
 
         private void Init()
         {
-            _moveComponent = GetComponent<MoveComponent>();
             _moveComponent.SetAfterMove(AfterMove);
-
-            _moveStatComponent = GetComponent<MoveStatComponent>();
-            _bulletStatComponent = GetComponent<BulletStatComponent>();
         }
         private void FixedUpdate()
         {
@@ -69,7 +73,12 @@ namespace _02Scripts.Bullet
             if (otherHitbox == null) return;
             
             bool result = otherHitbox.Hit(transform.up, _bulletStatComponent.Damage + _extraDamage, EnemyTags);
-            if (result) Destroy(gameObject);
+            if (result) DestroySelf();
+        }
+
+        public void DestroySelf()
+        {
+            this.DestroyOrDeactivate();
         }
     }
 }

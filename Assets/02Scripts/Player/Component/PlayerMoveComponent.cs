@@ -15,7 +15,7 @@ namespace _02Scripts.Player.Component
             transform.position = HandlePlayerPosition(transform.position);
         }
         
-        private void Start()
+        private void Awake()
         {
             _playerMovableAreaComponent = GetComponent<PlayerMovableAreaComponent>();
         }

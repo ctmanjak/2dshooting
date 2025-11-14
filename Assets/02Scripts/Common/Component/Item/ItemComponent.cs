@@ -1,10 +1,10 @@
 using System;
-using _02Scripts.Common.Component.Effect;
+using _02Scripts.Effect.Component;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component.Item
 {
-    public abstract class ItemComponent : MonoBehaviour
+    public abstract class ItemComponent : MonoBehaviour, IDestroyable
     {
         public event Action<EffectContext> OnActivate;
         
@@ -16,8 +16,13 @@ namespace _02Scripts.Common.Component.Item
             
             Activate(other);
             OnActivate?.Invoke(new EffectContext(gameObject, other.gameObject));
-        
-            Destroy(gameObject);
+            
+            DestroySelf();
+        }
+
+        public void DestroySelf()
+        {
+            this.DestroyOrDeactivate();
         }
     }
 }

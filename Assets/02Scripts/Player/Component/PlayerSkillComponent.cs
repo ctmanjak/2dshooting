@@ -1,3 +1,5 @@
+using _02Scripts.AirMine;
+using _02Scripts.AirMine.Factory;
 using _02Scripts.Util;
 using UnityEngine;
 
@@ -7,7 +9,7 @@ namespace _02Scripts.Player.Component
     {
         public Camera MainCamera;
         
-        public GameObject MinePrefab;
+        public AirMineEntity MinePrefab;
 
         private Rect _cameraRect;
 
@@ -16,10 +18,14 @@ namespace _02Scripts.Player.Component
 
         private float _lastActivateTime;
         private float _lastIntervalTime;
+
+        private void Awake()
+        {
+            if (MainCamera == null) MainCamera = Camera.main;
+        }
         
         private void Start()
         {
-            if (MainCamera == null) MainCamera = Camera.main;
             if (MainCamera == null) return;
             
             _cameraRect = CameraUtil.GetCameraWorldRect(MainCamera);
@@ -36,7 +42,7 @@ namespace _02Scripts.Player.Component
 
             if (!MinePrefab) return;
             
-            Instantiate(MinePrefab, GetRandomPosition(), Quaternion.identity);
+            AirMineFactory.Instance.Spawn(MinePrefab, GetRandomPosition(), Quaternion.identity);
             
             _lastIntervalTime = currentTime;
         }

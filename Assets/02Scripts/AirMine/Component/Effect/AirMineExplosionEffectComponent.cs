@@ -1,4 +1,6 @@
-using _02Scripts.Common.Component.Effect;
+using _02Scripts.Effect;
+using _02Scripts.Effect.Component;
+using _02Scripts.Effect.Factory;
 using UnityEngine;
 
 namespace _02Scripts.AirMine.Component.Effect
@@ -6,7 +8,7 @@ namespace _02Scripts.AirMine.Component.Effect
     [RequireComponent(typeof(AirMineEntity))]
     public class AirMineExplosionEffectComponent : MonoBehaviour, IEffectComponent
     {
-        public GameObject EffectPrefab;
+        public EffectEntity EffectPrefab;
 
         private AirMineEntity _airMineEntity;
 
@@ -19,7 +21,7 @@ namespace _02Scripts.AirMine.Component.Effect
         public void PlayEffect(EffectContext context)
         {
             if (!EffectPrefab) return;
-            Instantiate(EffectPrefab, context.SourcePosition, context.SourceRotation);
+            EffectFactory.Instance.Spawn(EffectPrefab, context.SourcePosition, context.SourceRotation);
         }
     }
 }

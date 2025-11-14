@@ -1,12 +1,13 @@
 using System;
 using _02Scripts.AirMine.Component;
-using _02Scripts.Common.Component.Effect;
+using _02Scripts.Common;
+using _02Scripts.Effect.Component;
 using UnityEngine;
 
 namespace _02Scripts.AirMine
 {
     [RequireComponent(typeof(AirMineStatComponent))]
-    public class AirMineEntity : MonoBehaviour
+    public class AirMineEntity : MonoBehaviour, IDestroyable
     {
         public event Action OnSpawn;
         public event Action<EffectContext> AfterHit;
@@ -19,8 +20,14 @@ namespace _02Scripts.AirMine
 
         public void Start()
         {
+            Init();
+        }
+
+        public void Init()
+        {
             _birthTime = Time.time;
             OnSpawn?.Invoke();
+            _activated = false;
         }
 
         private void Update()
@@ -38,7 +45,12 @@ namespace _02Scripts.AirMine
             if (_activated) return;
             _activated = true;
             AfterHit?.Invoke(new EffectContext(gameObject));
-            Destroy(gameObject);
+            DestroySelf();
+        }
+
+        public void DestroySelf()
+        {
+            this.DestroyOrDeactivate();
         }
     }
 }

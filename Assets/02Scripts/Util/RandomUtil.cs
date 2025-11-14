@@ -11,7 +11,7 @@ namespace _02Scripts.Util
             int totalWeight = options.Sum(option => option.Weight);
             int chance = Random.Range(0, totalWeight);
 
-                for (int i = 0, accumulateWeight = 0; i < options.Length; i++)
+            for (int i = 0, accumulateWeight = 0; i < options.Length; i++)
             {
                 accumulateWeight += options[i].Weight;
                 if (chance < accumulateWeight)

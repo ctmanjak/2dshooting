@@ -14893,6 +14893,7 @@ GameObject:
   - component: {fileID: 8771972552311404737}
   - component: {fileID: 8771972552311404798}
   - component: {fileID: 8771972552311404739}
+  - component: {fileID: -7459350457125018103}
   m_Layer: 0
   m_Name: TakeItemEffect
   m_TagString: Untagged
@@ -19824,7 +19825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9205bc1bbacc90040a998067b5643d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearBehavior: 2
+  clearBehavior: 1
   cameraShake:
     enabled: 0
     useMainCamera: 1
@@ -19984,3 +19985,15 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 0}
+--- !u!114 &-7459350457125018103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8771972552311404799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3000296143844822baab37e780fad1c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

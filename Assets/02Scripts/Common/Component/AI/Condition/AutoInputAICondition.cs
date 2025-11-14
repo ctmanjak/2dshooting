@@ -9,7 +9,7 @@ namespace _02Scripts.Common.Component.AI.Condition
     {
         private PlayerInputTypeComponent _playerInputTypeComponent;
 
-        private void Start()
+        private void Awake()
         {
             _playerInputTypeComponent = GetComponent<PlayerInputTypeComponent>();
         }

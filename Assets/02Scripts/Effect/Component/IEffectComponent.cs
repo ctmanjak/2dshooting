@@ -1,4 +1,4 @@
-namespace _02Scripts.Common.Component.Effect
+namespace _02Scripts.Effect.Component
 {
     public interface IEffectComponent
     {

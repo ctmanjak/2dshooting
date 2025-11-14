@@ -11,7 +11,7 @@ namespace _02Scripts.Environment
 
         public float ScrollSpeed = 1f;
 
-        private void Start()
+        private void Awake()
         {
             _material = GetComponent<Renderer>().material;
         }

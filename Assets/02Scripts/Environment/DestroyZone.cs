@@ -1,3 +1,4 @@
+using _02Scripts.Common;
 using UnityEngine;
 
 namespace _02Scripts.Environment
@@ -6,7 +7,9 @@ namespace _02Scripts.Environment
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Destroy(other.gameObject);
+            IDestroyable destroyable = other.GetComponent<IDestroyable>();
+            if (destroyable != null) destroyable.DestroySelf();
+            else Destroy(other.gameObject);
         }
     }
 }

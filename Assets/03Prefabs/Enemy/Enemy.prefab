@@ -288,11 +288,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Options:
   - Weight: 1
-    Prefab: {fileID: 7776877024295691091, guid: 3bb81fbff624c40d5a1968ff9e05cc16, type: 3}
+    Prefab: {fileID: 8587758969414984883, guid: 3bb81fbff624c40d5a1968ff9e05cc16, type: 3}
   - Weight: 7
-    Prefab: {fileID: 8586399392925763715, guid: c18d825a35862428992c3bc056cae454, type: 3}
-  - Weight: 2
-    Prefab: {fileID: 8044380107519705831, guid: 4caa598ad580f433c8520ba43e489b5a, type: 3}
+    Prefab: {fileID: 7775985899821944675, guid: c18d825a35862428992c3bc056cae454, type: 3}
+  - Weight: 0
+    Prefab: {fileID: 8314696240415851783, guid: 4caa598ad580f433c8520ba43e489b5a, type: 3}
   - Weight: 10
     Prefab: {fileID: 0}
 --- !u!114 &3375947221122701578
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddfa6a5811ad4cefb1e6ffaeac536d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectPrefab: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+  EffectPrefab: {fileID: 6988577929017001088, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
 --- !u!114 &2836893852203165464
 MonoBehaviour:
   m_ObjectHideFlags: 0

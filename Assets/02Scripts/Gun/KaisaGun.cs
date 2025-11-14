@@ -1,4 +1,5 @@
 using _02Scripts.Bullet;
+using _02Scripts.Bullet.Factory;
 using UnityEngine;
 
 namespace _02Scripts.Gun
@@ -11,7 +12,7 @@ namespace _02Scripts.Gun
         public float MidpointRadius = 5f;
         public float EndpointY = 10f;
 
-        protected override void InstantiateBullet(int damage, Quaternion rotation)
+        protected override void FireBullet(int damage, Quaternion rotation)
         {
             InstantiateKaisaBullet(damage, SpawnPointX, MidpointX);
             InstantiateKaisaBullet(damage, -SpawnPointX, -MidpointX);
@@ -22,8 +23,7 @@ namespace _02Scripts.Gun
             Vector2 position = transform.position;
             position.x += spawnPointX;
             
-            KaisaBullet bullet = Instantiate(BulletPrefab, position, transform.rotation);
-            bullet.Init(damage);
+            KaisaBullet bullet = InstantiateBullet(damage, position, transform.rotation);
             
             Vector2 firstPoint = position;
             firstPoint.x += spawnPointX;

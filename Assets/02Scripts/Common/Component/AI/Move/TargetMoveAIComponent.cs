@@ -7,10 +7,15 @@ namespace _02Scripts.Common.Component.AI.Move
     {
         private TargetComponent _targetComponent;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            _targetComponent = GetComponent<TargetComponent>();
+        }
+
         protected override void Init()
         {
             base.Init();
-            _targetComponent = GetComponent<TargetComponent>();
             if (!_targetComponent.IsTargetExist()) _targetComponent.SetTarget(GameObject.FindWithTag("Player"));
         }
 

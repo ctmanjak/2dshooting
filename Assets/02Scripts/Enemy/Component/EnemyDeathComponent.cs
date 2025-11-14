@@ -8,8 +8,10 @@ namespace _02Scripts.Enemy.Component
     public class EnemyDeathComponent : DeathComponent
     {
         private ItemDropComponent _itemDropComponent;
-        protected override void Init()
+
+        protected override void Awake()
         {
+            base.Awake();
             _itemDropComponent = GetComponent<ItemDropComponent>();
         }
 

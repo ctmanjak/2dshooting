@@ -15,11 +15,15 @@ namespace _02Scripts.AirMine
         
         private readonly string[] _enemyTags = { "Enemy" };
         private int _damage;
-        
-        private void Start()
+
+        private void Awake()
         {
             _collider2D = GetComponent<Collider2D>();
             _airMineStatComponent = GetComponent<AirMineStatComponent>();
+        }
+        
+        private void Start()
+        {
             _damage = _airMineStatComponent.Damage;
             
             StartCoroutine(TriggerOnce());

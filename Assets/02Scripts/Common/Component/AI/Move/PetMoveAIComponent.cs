@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _02Scripts.Common.Component.Stat;
 using _02Scripts.Util;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace _02Scripts.Common.Component.AI.Move
     public class PetMoveAIComponent : TargetMoveAIComponent
     {
         private MoveComponent _targetMoveComponent;
+        private MoveStatComponent _targetMoveStatComponent;
         private readonly Queue<Vector2> _targetPositionQueue = new ();
 
         public int DelayStep = 10;
@@ -16,11 +18,17 @@ namespace _02Scripts.Common.Component.AI.Move
         private Vector2 _delayedTargetPosition;
         private Vector2 _lastMoveDirection;
 
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
         protected override void Init()
         {
             base.Init();
-
+            
             _targetMoveComponent = GetTargetComponent<MoveComponent>();
+            _targetMoveStatComponent = GetTargetComponent<MoveStatComponent>();
             
             _lastSampledPosition = GetTargetPosition();
             for (int i = 0; i < DelayStep; i++)
@@ -32,6 +40,8 @@ namespace _02Scripts.Common.Component.AI.Move
 
         protected override void BeforeMove()
         {
+            if (_targetMoveStatComponent) MoveStatComponent.SetSpeed(_targetMoveStatComponent.GetSpeed());
+            
             Vector2 targetPosition = GetTargetPosition();
 
             Vector2 targetLastMoveDirection = _targetMoveComponent.LastMoveDirection;

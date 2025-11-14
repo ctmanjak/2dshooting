@@ -1,5 +1,4 @@
 using System;
-using _02Scripts.Common.Component.Effect;
 using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 
@@ -9,6 +8,12 @@ namespace _02Scripts.Common.Component
     public class DeathComponent : MonoBehaviour
     {
         public event Action<GameObject> OnDie;
+        private IDestroyable _destroyable;
+
+        protected virtual void Awake()
+        {
+            _destroyable = GetComponent<IDestroyable>();
+        }
         
         private void Start()
         {
@@ -20,7 +25,8 @@ namespace _02Scripts.Common.Component
         public virtual void Die()
         {
             OnDie?.Invoke(gameObject);
-            Destroy(gameObject);
+            if (_destroyable != null) _destroyable.DestroySelf();
+            else Destroy(gameObject);
         }
     }
 }

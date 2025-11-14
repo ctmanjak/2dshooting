@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871e6dda311c4f0fa6d2895438c6f32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EffectPrefab: {fileID: 2433282508537954060, guid: 1ac62fb191dae479393648dc24b9c1e8, type: 3}
+  EffectPrefab: {fileID: 1553960817050660680, guid: 1ac62fb191dae479393648dc24b9c1e8, type: 3}
 --- !u!61 &5060590441230120562
 BoxCollider2D:
   m_ObjectHideFlags: 0

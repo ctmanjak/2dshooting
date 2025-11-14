@@ -1,3 +1,5 @@
+using _02Scripts.Item;
+using _02Scripts.Item.Factory;
 using _02Scripts.Util;
 using UnityEngine;
 
@@ -9,10 +11,10 @@ namespace _02Scripts.Common.Component.Item
         
         public void Drop()
         {
-            GameObject selectedPrefab = RandomUtil.PickWeightedRandomIndex(Options).Prefab;
+            ItemEntity selectedPrefab = RandomUtil.PickWeightedRandomIndex(Options).Prefab;
             if (!selectedPrefab) return;
 
-            Instantiate(selectedPrefab, transform.position, transform.rotation);
+            ItemFactory.Instance.Spawn(selectedPrefab, transform.position, transform.rotation);
         }
     }
 }

@@ -1,4 +1,5 @@
 using _02Scripts.Bullet;
+using _02Scripts.Bullet.Factory;
 using _02Scripts.Util;
 using UnityEngine;
 
@@ -13,13 +14,21 @@ namespace _02Scripts.Gun
         protected override void DoFire(int extraDamage, Vector2 direction)
         {
             Quaternion rotation = MathUtil.DirectionToQuaternion(direction, AngleOffset);
-            InstantiateBullet(BaseDamage + extraDamage, rotation);
+            FireBullet(BaseDamage + extraDamage, rotation);
         }
 
-        protected virtual void InstantiateBullet(int damage, Quaternion rotation)
+        protected virtual void FireBullet(int damage, Quaternion rotation)
         {
-            T bullet = Instantiate(BulletPrefab, transform.position, rotation);
-            bullet.Init(damage, rotation);
+            InstantiateBullet(damage, transform.position, rotation);
+        }
+
+        protected T InstantiateBullet(int damage, Vector3 position, Quaternion rotation)
+        {
+            T bullet = UniversalBulletFactory.Instance.Spawn(BulletPrefab, position, rotation) as T;
+            if (!bullet) bullet = Instantiate(BulletPrefab, position, rotation);
+            bullet?.Init(damage, rotation);
+
+            return bullet;
         }
 
         public override void SetBulletPrefab(BaseBullet bulletPrefab)

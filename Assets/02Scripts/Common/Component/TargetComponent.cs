@@ -8,15 +8,16 @@ namespace _02Scripts.Common.Component
 
         public Vector2 GetTargetDirection()
         {
-            Vector2 direction = _target ?
-                (_target.transform.position - transform.position).normalized : Vector2.down;
-
-            return direction;
+            return IsTargetExist()
+                ? (_target.transform.position - transform.position).normalized
+                : Vector2.down;
         }
 
         public Vector2 GetTargetPosition()
         {
-            return _target.transform.position;
+            return IsTargetExist()
+                ? _target.transform.position
+                : Vector2.zero;
         }
 
         public bool IsTargetExist()
@@ -36,7 +37,9 @@ namespace _02Scripts.Common.Component
 
         public T GetTargetComponent<T>()
         {
-            return _target.GetComponent<T>();
+            return IsTargetExist()
+                ? _target.GetComponent<T>()
+                : default;
         }
     }
 }

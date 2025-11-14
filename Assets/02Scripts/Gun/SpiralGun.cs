@@ -7,9 +7,9 @@ namespace _02Scripts.Gun
     {
         public float RotateSpeed = 10.0f;
 
-        protected override void InstantiateBullet(int damage, Quaternion rotation)
+        protected override void FireBullet(int damage, Quaternion rotation)
         {
-            base.InstantiateBullet(damage, transform.rotation);
+            base.FireBullet(damage, transform.rotation);
         
             transform.rotation *= Quaternion.AngleAxis(RotateSpeed, Vector3.forward);
         }

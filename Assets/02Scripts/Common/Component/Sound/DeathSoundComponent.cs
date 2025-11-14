@@ -7,9 +7,13 @@ namespace _02Scripts.Common.Component.Sound
     {
         private DeathComponent _deathComponent;
 
-        private void Start()
+        private void Awake()
         {
             _deathComponent = GetComponent<DeathComponent>();
+        }
+        
+        private void Start()
+        {
             _deathComponent.OnDie += _ => PlaySound();
         }
     }

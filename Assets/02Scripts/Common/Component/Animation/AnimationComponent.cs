@@ -6,14 +6,18 @@ namespace _02Scripts.Common.Component.Animation
     {
         protected Animator Animator;
 
-        private void Awake()
+        protected virtual void Awake()
+        {
+            Animator = GetComponent<Animator>();
+        }
+        
+        private void Start()
         {
             Init();
         }
 
         protected virtual void Init()
         {
-            Animator = GetComponent<Animator>();
         }
     }
 }

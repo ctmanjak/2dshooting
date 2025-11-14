@@ -14,7 +14,13 @@ namespace _02Scripts.Common.Component.AI.Move
 
         private IAICondition _aiCondition;
 
-        private void Awake()
+        protected virtual void Awake()
+        {
+            _moveComponent = GetComponent<MoveComponent>();
+            MoveStatComponent = GetComponent<MoveStatComponent>();
+        }
+
+        private void Start()
         {
             Init();
         }
@@ -41,8 +47,6 @@ namespace _02Scripts.Common.Component.AI.Move
 
         protected virtual void Init()
         {
-            _moveComponent = GetComponent<MoveComponent>();
-            MoveStatComponent = GetComponent<MoveStatComponent>();
             if (!AICondition && AICondition is not IAICondition) return;
             _aiCondition = AICondition as IAICondition;
         }
