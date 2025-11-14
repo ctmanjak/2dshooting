@@ -6,8 +6,9 @@ namespace _02Scripts.Score
     public class ScoreManager : MonoBehaviour
     {
         public static ScoreManager Instance { get; private set; }
-        
-        private int _score;
+
+        public int Score { get; private set; }
+
         private int _highScore;
 
         private const string HighScoreKey = "HighScore";
@@ -24,7 +25,7 @@ namespace _02Scripts.Score
         private void Start()
         {
             Load();
-            OnScoreChanged?.Invoke(_score);
+            OnScoreChanged?.Invoke(Score);
             OnHighScoreChanged?.Invoke(_highScore);
         }
 
@@ -32,12 +33,12 @@ namespace _02Scripts.Score
         {
             if (amount < 1) return;
             
-            _score += amount;
-            OnScoreChanged?.Invoke(_score);
+            Score += amount;
+            OnScoreChanged?.Invoke(Score);
             
-            if (_score <= _highScore) return;
+            if (Score <= _highScore) return;
             OnHighScore?.Invoke();
-            _highScore = _score;
+            _highScore = Score;
             OnHighScoreChanged?.Invoke(_highScore);
             Save();
         }
