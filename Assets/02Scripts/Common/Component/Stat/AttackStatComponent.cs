@@ -16,5 +16,10 @@ namespace _02Scripts.Common.Component.Stat
         {
             AttackSpeed += amount;
         }
+
+        public void IncreaseDamage(int amount)
+        {
+            Damage += amount;
+        }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using _02Scripts.Enemy;
 using _02Scripts.Score;
 using UnityEngine;
 
@@ -12,6 +10,9 @@ namespace _02Scripts.Stage
         private int _stageNum = -1;
 
         private int _accumulateRequiredScore;
+        
+        public float HpScaleFactor = 0.6f;
+        public float ScoreFactor = 0.01f;
 
         private void Start()
         {
@@ -27,13 +28,16 @@ namespace _02Scripts.Stage
         
         private void CheckNextWave(int score)
         {
-            if (_stageNum + 1 >= StageOptions.Length) return;
-            
-            StageOption stage = StageOptions[_stageNum];
-            if (ScoreManager.Instance.Score < _accumulateRequiredScore + stage.RequireScoreToNext) return;
-            
-            EndWave();
-            NextWave();
+            while (true)
+            {
+                if (_stageNum + 1 >= StageOptions.Length) break;
+                
+                StageOption stage = StageOptions[_stageNum];
+                if (ScoreManager.Instance.Score < _accumulateRequiredScore + stage.RequireScoreToNext) break;
+                
+                EndWave();
+                NextWave();
+            }
             InitWave();
         }
         
@@ -72,7 +76,11 @@ namespace _02Scripts.Stage
             StageOption stage = StageOptions[_stageNum];
             foreach (var stageSpawnerOption in stage.SpawnerOptions)
             {
-                stageSpawnerOption.Spawner.Spawn();
+                float healthMultiplier = stage.UseAutoBalance
+                    ? 1 + HpScaleFactor * Mathf.Log(1 + ScoreManager.Instance.Score * ScoreFactor)
+                    : stage.HealthMultiplier;
+                
+                stageSpawnerOption.Spawner.Spawn(healthMultiplier);
             }
         }
     }

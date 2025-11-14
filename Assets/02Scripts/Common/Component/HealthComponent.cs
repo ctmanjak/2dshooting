@@ -10,8 +10,10 @@ namespace _02Scripts.Common.Component
         private StatComponent _statComponent;
         private DeathComponent _deathComponent;
         private InvincibleComponent _invincibleComponent;
-    
-        private int _health;
+
+        public int Health { get; private set; }
+
+        public event Action<int> ChangeHealth;
     
         private void Awake()
         {
@@ -20,30 +22,36 @@ namespace _02Scripts.Common.Component
             _invincibleComponent = GetComponent<InvincibleComponent>();
         }
 
-        private void Start()
+        private void OnEnable()
         {
             Init();
         }
 
-        public void Init()
+        public void Init(float healthMultiplier = 1f)
         {
-            _health = _statComponent.MaxHealth;
+            SetHealth(Mathf.CeilToInt(_statComponent.MaxHealth * healthMultiplier));
         }
 
         public void Heal(int amount)
         {
-            _health = Mathf.Min(_statComponent.MaxHealth, _health + amount);
+            SetHealth(Mathf.Min(_statComponent.MaxHealth, Health + amount));
         }
 
         public void TakeDamage(int damage)
         {
             if (_invincibleComponent.IsInvincible()) return;
             
-            _health -= damage;
+            SetHealth(Health - damage);
 
             _invincibleComponent.Activate(_statComponent.InvincibleAfterHitSeconds);
 
-            if (_health <= 0) _deathComponent.Die();
+            if (Health <= 0) _deathComponent.Die();
+        }
+
+        public void SetHealth(int health)
+        {
+            Health = health;
+            ChangeHealth?.Invoke(Health);
         }
     }
 }

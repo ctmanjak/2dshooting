@@ -12,6 +12,7 @@ namespace _02Scripts.Player
     [RequireComponent(typeof(PlayerMoveAIComponent), typeof(PlayerSkillComponent))]
     public class PlayerInputController : MonoBehaviour
     {
+        // public Joystick Joystick;
         private AttackComponent _attackComponent;
         private PlayerStatComponent _playerStatComponent;
         private MoveStatComponent _moveStatComponent;

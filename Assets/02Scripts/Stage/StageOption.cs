@@ -8,6 +8,8 @@ namespace _02Scripts.Stage
     {
         public StageSpawnerOption[] SpawnerOptions;
         public int RequireScoreToNext;
+        public float HealthMultiplier = 1f;
+        public bool UseAutoBalance;
     }
     
     [Serializable]
