@@ -59,7 +59,11 @@ namespace _02Scripts.Common
 
         public T InstantiateObject<T>(GameObject prefab, Vector3 position, Quaternion rotation)
         {
-            if (!IsPooledPrefab(prefab)) return default;
+            if (!IsPooledPrefab(prefab))
+            {
+                GameObject prefabObject = Instantiate(prefab, position, rotation);
+                return prefabObject.GetComponent<T>();
+            }
             
             T obj = FindInactiveObject<T>(prefab, position, rotation);
             if (obj != null) return obj;
@@ -72,7 +76,11 @@ namespace _02Scripts.Common
 
         public T InstantiateObject<T>(GameObject prefab, Transform parent)
         {
-            if (!IsPooledPrefab(prefab)) return default;
+            if (!IsPooledPrefab(prefab)) 
+            {
+                GameObject prefabObject = Instantiate(prefab, parent);
+                return prefabObject.GetComponent<T>();
+            }
             
             T obj = FindInactiveObject<T>(prefab, parent);
             if (obj != null) return obj;

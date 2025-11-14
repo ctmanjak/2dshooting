@@ -17,6 +17,7 @@ namespace _02Scripts.Common.Component
                 
                 BaseGun gun = Instantiate(option.GunPrefab, transform);
                 gun.transform.position += (Vector3)option.Position;
+                gun.transform.rotation = option.Rotation;
                 if (option.BulletPrefab) gun.SetBulletPrefab(option.BulletPrefab);
                 
                 Guns.Add(gun);

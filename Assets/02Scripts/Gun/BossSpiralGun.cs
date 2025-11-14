@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _02Scripts.Gun
 {
-    public class SpiralGun : GenericBaseGun<NormalBullet>
+    public class BossSpiralGun : GenericBaseGun<BossSpiralBullet>
     {
         public float RotateSpeed = 10.0f;
 

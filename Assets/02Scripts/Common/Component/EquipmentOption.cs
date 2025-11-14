@@ -11,6 +11,7 @@ namespace _02Scripts.Common.Component
     {
         public bool Enabled = true;
         public Vector2 Position;
+        public Quaternion Rotation;
         public BaseGun GunPrefab;
         [CanBeNull] public BaseBullet BulletPrefab;
     }

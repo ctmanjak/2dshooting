@@ -1,6 +1,5 @@
 using _02Scripts.Common.Component.AI.Condition;
 using _02Scripts.Common.Component.Stat;
-using _02Scripts.Util;
 using UnityEngine;
 
 namespace _02Scripts.Common.Component.AI.Move
