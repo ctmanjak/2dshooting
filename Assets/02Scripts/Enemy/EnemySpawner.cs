@@ -16,20 +16,12 @@ namespace _02Scripts.Enemy
 
         public SpawnerOption[] SpawnerOptions;
         
+        private readonly List<SpawnerOption> _spawnerOptions = new();
+        
         private void Start()
         {
             SetRandomCoolTime(MinInclusive, MaxInclusive);
         }
-        
-        // private void Update()
-        // {
-        //     _lastSpawnTime += Time.deltaTime;
-        //
-        //     if (_lastSpawnTime >= _coolTime)
-        //     {
-        //         Spawn();
-        //     }
-        // }
 
         public void Spawn()
         {
@@ -37,10 +29,14 @@ namespace _02Scripts.Enemy
             if (currentTime - _lastSpawnTime < _coolTime) return;
             _lastSpawnTime = currentTime;
 
-            SpawnerOption[] options = SpawnerOptions.Where(option => option.IsSpawnable()).ToArray();
-            if (options.Length < 1) return;
+            _spawnerOptions.Clear();
+            foreach (var option in SpawnerOptions)
+            {
+                if (option.IsSpawnable()) _spawnerOptions.Add(option);
+            }
+            if (_spawnerOptions.Count < 1) return;
             
-            SpawnerOption selectedOption = RandomUtil.PickWeightedRandomIndex(options);
+            SpawnerOption selectedOption = RandomUtil.PickWeightedRandomIndex(_spawnerOptions.ToArray());
             selectedOption.CountDown();
             
             EnemyEntity selectedPrefab = selectedOption.Prefab;
@@ -52,7 +48,26 @@ namespace _02Scripts.Enemy
 
             SetRandomCoolTime(MinInclusive, MaxInclusive);
         }
+        
+        public void SetSpawnerOption(SpawnerOption[] options)
+        {
+            SpawnerOptions = options;
+            foreach (var option in SpawnerOptions)
+            {
+                option.Init();
+            }
+        }
+        
+        public void Activate()
+        {
+            gameObject.SetActive(true);
+        }
 
+        public void Deactivate()
+        {
+            gameObject.SetActive(false);
+        }
+        
         private void SetRandomCoolTime(float minInclusive, float maxInclusive)
         {
             SetCoolTime(Random.Range(minInclusive, maxInclusive));

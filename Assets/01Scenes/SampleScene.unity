@@ -1686,6 +1686,8 @@ MonoBehaviour:
     DefaultPoolSize: 5
   - Prefab: {fileID: 2385824208579382412, guid: 68d255191a56845a4b93a15ee050f6d0, type: 3}
     DefaultPoolSize: 30
+  - Prefab: {fileID: 8565045273742023527, guid: c869141ee5b704eff8e7625e9616bace, type: 3}
+    DefaultPoolSize: 60
 --- !u!1 &1228677808
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using _02Scripts.Enemy;
 using _02Scripts.Score;
 using UnityEngine;
@@ -14,13 +15,18 @@ namespace _02Scripts.Stage
 
         private void Start()
         {
+            ScoreManager.Instance.OnScoreChanged += CheckNextWave;
             NextWave();
+            InitWave();
         }
 
         private void Update()
         {
             SpawnWave();
-            
+        }
+        
+        private void CheckNextWave(int score)
+        {
             if (_stageNum + 1 >= StageOptions.Length) return;
             
             StageOption stage = StageOptions[_stageNum];
@@ -30,14 +36,14 @@ namespace _02Scripts.Stage
             NextWave();
             InitWave();
         }
-
+        
         private void InitWave()
         {
             StageOption stage = StageOptions[_stageNum];
             foreach (var stageSpawnerOption in stage.SpawnerOptions)
             {
-                stageSpawnerOption.Spawner.SpawnerOptions = stageSpawnerOption.SpawnerOptions;
-                stageSpawnerOption.Spawner.gameObject.SetActive(true);
+                stageSpawnerOption.Spawner.SetSpawnerOption(stageSpawnerOption.SpawnerOptions);
+                stageSpawnerOption.Spawner.Activate();
                 foreach (var spawnerSpawnerOption in stageSpawnerOption.Spawner.SpawnerOptions)
                 {
                     spawnerSpawnerOption.Init();
@@ -55,7 +61,7 @@ namespace _02Scripts.Stage
             StageOption stage = StageOptions[_stageNum];
             foreach (var stageSpawnerOption in stage.SpawnerOptions)
             {
-                stageSpawnerOption.Spawner.gameObject.SetActive(false);
+                stageSpawnerOption.Spawner.Deactivate();
             }
 
             _accumulateRequiredScore += stage.RequireScoreToNext;
