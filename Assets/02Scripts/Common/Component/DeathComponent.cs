@@ -24,6 +24,7 @@ namespace _02Scripts.Common.Component
         
         public virtual void Die()
         {
+            if (!gameObject || !gameObject.activeSelf) return;
             OnDie?.Invoke(gameObject);
             if (_destroyable != null) _destroyable.DestroySelf();
             else Destroy(gameObject);

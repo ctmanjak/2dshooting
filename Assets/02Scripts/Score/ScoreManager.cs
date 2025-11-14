@@ -11,8 +11,6 @@ namespace _02Scripts.Score
 
         public int HighScore { get; private set; }
 
-        private const string HighScoreKey = "HighScore";
-
         public event Action OnHighScore;
         public event Action<int> OnScoreChanged;
         public event Action<int> OnHighScoreChanged;
@@ -32,32 +30,24 @@ namespace _02Scripts.Score
         {
             if (amount < 1) return;
             
-            Score += amount;
-            OnScoreChanged?.Invoke(Score);
+            SetScore(Score + amount);
             
             if (Score <= HighScore) return;
             OnHighScore?.Invoke();
-            HighScore = Score;
-            OnHighScoreChanged?.Invoke(HighScore);
+            SetHighScore(Score);
         }
 
         public void SubtractScore(int amount)
         {
             if (amount < 1) return;
             
-            Score -= amount;
-            OnScoreChanged?.Invoke(Score);
-            
-            if (Score <= HighScore) return;
-            OnHighScore?.Invoke();
-            HighScore = Score;
-            OnHighScoreChanged?.Invoke(HighScore);
+            SetScore(Score - amount);
         }
 
-        public void Load(UserData userData)
+        public void Load(int score, int highScore)
         {
-            SetScore(userData.Score);
-            SetHighScore(userData.HighScore);
+            SetScore(score);
+            SetHighScore(highScore);
         }
 
         private void SetScore(int score)
@@ -70,6 +60,12 @@ namespace _02Scripts.Score
         {
             HighScore = highScore;
             OnHighScoreChanged?.Invoke(HighScore);
+        }
+
+        public void Save(UserData userData)
+        {
+            userData.Score = Score;
+            userData.HighScore = HighScore;
         }
     }
 }

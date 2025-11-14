@@ -44,9 +44,14 @@ namespace _02Scripts.Player
             return _healthComponent.Health;
         }
 
-        public void Load(UserData userData)
+        public void Save(UserData userData)
         {
-            _healthComponent.SetHealth(userData.Health);
+            userData.Health = GetHealth();
+        }
+
+        public void Load(int health)
+        {
+            _healthComponent.SetHealth(health);
         }
     }
 }

@@ -12,7 +12,8 @@ namespace _02Scripts.UI
 
         public int SubtractScoreAmount = 1000;
         public int IncreaseDamageUpAmount = 100;
-        public int UpgradeLevel = 1;
+        
+        private int _upgradeLevel = 1;
 
         private void Awake()
         {
@@ -28,12 +29,21 @@ namespace _02Scripts.UI
         private void Upgrade(int level)
         {
             Player.IncreaseDamage(IncreaseDamageUpAmount * level);
-            UpgradeLevel += level;
+            _upgradeLevel += level;
+        }
+        
+        public void Save(UserData userData)
+        {
+            userData.UpgradeLevel = _upgradeLevel;
         }
 
-        public void Load(UserData userData)
+        public void Load(int savedLevel)
         {
-            Upgrade(userData.UpgradeLevel - 1);
+            if (savedLevel <= _upgradeLevel) return;
+
+            int increaseLevel = savedLevel - _upgradeLevel;
+            Player.IncreaseDamage(IncreaseDamageUpAmount * increaseLevel);
+            _upgradeLevel = savedLevel;
         }
     }
 }

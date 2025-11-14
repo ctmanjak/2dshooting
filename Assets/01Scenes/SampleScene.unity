@@ -242,7 +242,7 @@ MonoBehaviour:
         Prefab: {fileID: 3789536564965886626, guid: 278f947a0fb89486ab7df21bf0907443, type: 3}
         UseSpawnLimit: 0
         MaxSpawnCount: 0
-    RequireScoreToNext: 500
+    RequireScoreToNext: 1000
     HealthMultiplier: 1
     UseAutoBalance: 0
   - SpawnerOptions:
@@ -1660,7 +1660,6 @@ MonoBehaviour:
   Player: {fileID: 292003783}
   SubtractScoreAmount: 1000
   IncreaseDamageUpAmount: 100
-  UpgradeLevel: 1
 --- !u!4 &677331068
 Transform:
   m_ObjectHideFlags: 0

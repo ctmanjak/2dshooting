@@ -22,20 +22,19 @@ namespace _02Scripts.Save
             Load();
         }
 
-        private void OnDestroy()
+        private void OnApplicationQuit()
         {
             Save();
         }
 
         private void Save()
         {
-            UserData saveData = new UserData(
-                ScoreManager.Instance.HighScore,
-                ScoreManager.Instance.Score,
-                Player.GetHealth(),
-                UpgradeManager.Instance.UpgradeLevel
-            );
-            PlayerPrefs.SetString(SaveKey, JsonUtility.ToJson(saveData));
+            UserData userData = new UserData();
+            ScoreManager.Instance.Save(userData);
+            Player.Save(userData);
+            UpgradeManager.Instance.Save(userData);
+            
+            PlayerPrefs.SetString(SaveKey, JsonUtility.ToJson(userData));
         }
 
         private void Load()
@@ -46,9 +45,9 @@ namespace _02Scripts.Save
 
             if (userData == null) return;
             
-            ScoreManager.Instance.Load(userData);
-            Player.Load(userData);
-            UpgradeManager.Instance.Load(userData);
+            ScoreManager.Instance.Load(userData.Score, userData.HighScore);
+            Player.Load(userData.Health);
+            UpgradeManager.Instance.Load(userData.UpgradeLevel);
         }
     }
 }

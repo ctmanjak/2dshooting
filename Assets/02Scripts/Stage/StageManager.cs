@@ -28,6 +28,7 @@ namespace _02Scripts.Stage
         
         private void CheckNextWave(int score)
         {
+            bool needInit = false;
             while (true)
             {
                 if (_stageNum + 1 >= StageOptions.Length) break;
@@ -37,8 +38,10 @@ namespace _02Scripts.Stage
                 
                 EndWave();
                 NextWave();
+
+                needInit = true;
             }
-            InitWave();
+            if (needInit) InitWave();
         }
         
         private void InitWave()

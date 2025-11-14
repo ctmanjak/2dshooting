@@ -36,7 +36,7 @@ namespace _02Scripts.Enemy
             }
             if (_spawnerOptions.Count < 1) return;
             
-            SpawnerOption selectedOption = RandomUtil.PickWeightedRandomIndex(_spawnerOptions.ToArray());
+            SpawnerOption selectedOption = RandomUtil.PickWeightedRandomIndex(_spawnerOptions);
             selectedOption.CountDown();
             
             EnemyEntity selectedPrefab = selectedOption.Prefab;
