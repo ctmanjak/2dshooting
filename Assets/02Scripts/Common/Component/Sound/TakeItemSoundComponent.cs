@@ -6,11 +6,14 @@ namespace _02Scripts.Common.Component.Sound
     {
         private ItemComponent _itemComponent;
 
-        private void Start()
+        private void Awake()
         {
             _itemComponent = GetComponent<ItemComponent>();
+        }
+        
+        private void Start()
+        {
             if (!_itemComponent) return;
-            
             // TODO: EffectContext SfxContext 통합
             _itemComponent.OnActivate += _ => PlaySound();
         }

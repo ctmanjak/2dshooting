@@ -9,12 +9,12 @@ namespace _02Scripts.Common.Component.Animation
 
         private MoveComponent _moveComponent;
 
-        protected override void Init()
+        protected override void Awake()
         {
-            base.Init();
+            base.Awake();
             _moveComponent = GetComponent<MoveComponent>();
         }
-        
+
         private void Update()
         {
             Animator.SetInteger(Direction, Mathf.RoundToInt(_moveComponent.LastMoveDirection.x));

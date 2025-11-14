@@ -9,7 +9,7 @@ namespace _02Scripts.Common.Component
         private AttackStatComponent _attackStatComponent;
         private EquipmentComponent _equipmentComponent;
 
-        private void Start()
+        private void Awake()
         {
             _attackStatComponent = GetComponent<AttackStatComponent>();
             _equipmentComponent = GetComponent<EquipmentComponent>();

@@ -19,16 +19,19 @@ namespace _02Scripts.Bullet
 
         protected virtual void Awake()
         {
+            _moveComponent = GetComponent<MoveComponent>();
+            _moveStatComponent = GetComponent<MoveStatComponent>();
+            _bulletStatComponent = GetComponent<BulletStatComponent>();
+        }
+
+        private void Start()
+        {
             Init();
         }
 
         private void Init()
         {
-            _moveComponent = GetComponent<MoveComponent>();
             _moveComponent.SetAfterMove(AfterMove);
-
-            _moveStatComponent = GetComponent<MoveStatComponent>();
-            _bulletStatComponent = GetComponent<BulletStatComponent>();
         }
         private void FixedUpdate()
         {

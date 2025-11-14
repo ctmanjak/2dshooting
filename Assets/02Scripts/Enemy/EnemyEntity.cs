@@ -1,3 +1,4 @@
+using System;
 using _02Scripts.Common;
 using _02Scripts.Common.Component;
 using _02Scripts.Common.Component.Stat;
@@ -13,11 +14,16 @@ namespace _02Scripts.Enemy
         private MoveComponent _moveComponent;
         private HealthComponent _healthComponent;
 
-        private void Start()
+        private void Awake()
         {
             _attackStatComponent = GetComponent<AttackStatComponent>();
             _moveComponent = GetComponent<MoveComponent>();
             _healthComponent = GetComponent<HealthComponent>();
+        }
+
+        private void Start()
+        {
+            Init();
         }
 
         public void Init()

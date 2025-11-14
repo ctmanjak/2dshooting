@@ -8,9 +8,13 @@ namespace _02Scripts.Common.Component.Sound
     {
         private BaseGun _baseGun;
 
-        private void Start()
+        private void Awake()
         {
             _baseGun = GetComponent<BaseGun>();
+        }
+        
+        private void Start()
+        {
             _baseGun.OnFire += PlaySound;
         }
     }

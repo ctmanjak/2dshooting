@@ -8,10 +8,14 @@ namespace _02Scripts.Player.Component
         
         public Vector2 MovableTopRight;
         public Vector2 MovableBottomLeft;
+
+        private void Awake()
+        {
+            if (_mainCamera == null) _mainCamera = Camera.main;
+        }
         
         private void Start()
         {
-            if (_mainCamera == null) _mainCamera = Camera.main;
             if (_mainCamera == null) return;
 
             if (MovableTopRight != Vector2.zero || MovableBottomLeft != Vector2.zero) return;

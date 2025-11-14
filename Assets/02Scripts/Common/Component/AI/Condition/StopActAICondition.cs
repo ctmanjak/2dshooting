@@ -6,7 +6,7 @@ namespace _02Scripts.Common.Component.AI.Condition
     {
         private MoveComponent _moveComponent;
 
-        private void Start()
+        private void Awake()
         {
             _moveComponent = GetComponent<MoveComponent>();
         }

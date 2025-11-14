@@ -18,10 +18,14 @@ namespace _02Scripts.Player.Component
 
         private float _lastActivateTime;
         private float _lastIntervalTime;
+
+        private void Awake()
+        {
+            if (MainCamera == null) MainCamera = Camera.main;
+        }
         
         private void Start()
         {
-            if (MainCamera == null) MainCamera = Camera.main;
             if (MainCamera == null) return;
             
             _cameraRect = CameraUtil.GetCameraWorldRect(MainCamera);

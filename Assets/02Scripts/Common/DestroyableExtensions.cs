@@ -12,10 +12,7 @@ namespace _02Scripts.Common
             {
                 monoBehaviour.gameObject.SetActive(false);
             }
-            else
-            {
-                Object.Destroy(monoBehaviour.gameObject);
-            }
+            else Object.Destroy(monoBehaviour.gameObject);
         }
     }
 }

@@ -10,9 +10,13 @@ namespace _02Scripts.Common.Component.Score
 
         public int Score = 100;
 
-        private void Start()
+        private void Awake()
         {
             _deathComponent = GetComponent<DeathComponent>();
+        }
+
+        private void Start()
+        {
             _deathComponent.OnDie += OnDie;
         }
 

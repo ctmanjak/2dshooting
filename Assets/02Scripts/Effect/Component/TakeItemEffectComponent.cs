@@ -10,9 +10,13 @@ namespace _02Scripts.Effect.Component
 
         private ItemComponent _itemComponent;
 
-        private void Start()
+        private void Awake()
         {
             _itemComponent = GetComponent<ItemComponent>();
+        }
+        
+        private void Start()
+        {
             if (!_itemComponent) return;
             _itemComponent.OnActivate += PlayEffect;
         }

@@ -11,9 +11,13 @@ namespace _02Scripts.Effect.Component
 
         private DeathComponent _deathComponent;
 
-        private void Start()
+        private void Awake()
         {
             _deathComponent = GetComponent<DeathComponent>();
+        }
+        
+        private void Start()
+        {
             _deathComponent.OnDie += OnDie;
         }
 

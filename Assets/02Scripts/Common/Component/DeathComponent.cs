@@ -9,11 +9,14 @@ namespace _02Scripts.Common.Component
     {
         public event Action<GameObject> OnDie;
         private IDestroyable _destroyable;
+
+        protected virtual void Awake()
+        {
+            _destroyable = GetComponent<IDestroyable>();
+        }
         
         private void Start()
         {
-            _destroyable = GetComponent<IDestroyable>();
-            
             Init();
         }
 

@@ -30,6 +30,14 @@ namespace _02Scripts.Player.Component.AI
 
         public float InterceptTargetDistance = 1f;
         public LayerMask DangerLayer;
+
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            _playerMovableAreaComponent = GetComponent<PlayerMovableAreaComponent>();
+            _moveStatComponent = GetComponent<MoveStatComponent>();
+        }
         
         protected override Vector2 GetMoveDirection()
         {
@@ -48,9 +56,6 @@ namespace _02Scripts.Player.Component.AI
         protected override void Init()
         {
             base.Init();
-
-            _playerMovableAreaComponent = GetComponent<PlayerMovableAreaComponent>();
-            _moveStatComponent = GetComponent<MoveStatComponent>();
             
             _state = EMoveAIState.Idle;
             _moveDirection = Vector2.zero;

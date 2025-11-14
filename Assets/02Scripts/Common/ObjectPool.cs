@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,10 @@ namespace _02Scripts.Common
         private void Awake()
         {
             Instance = this;
+        }
+
+        private void Start()
+        {
             Init();
         }
 
@@ -69,11 +74,11 @@ namespace _02Scripts.Common
         {
             if (!IsPooledPrefab(prefab)) return default;
             
-            T obj = FindInactiveObject<T>(prefab, parent.position, parent.rotation);
+            T obj = FindInactiveObject<T>(prefab, parent);
             if (obj != null) return obj;
             
             IncreasePoolSize(prefab, _poolSize[prefab] / 2);
-            obj = FindInactiveObject<T>(prefab, parent.position, parent.rotation);
+            obj = FindInactiveObject<T>(prefab, parent);
 
             return obj;
         }
@@ -103,6 +108,17 @@ namespace _02Scripts.Common
             
             obj.transform.position = position;
             obj.transform.rotation = rotation;
+            obj.SetActive(true);
+            return obj.GetComponent<T>();
+        }
+
+        private T FindInactiveObject<T>(GameObject prefab, Transform parent)
+        {
+            GameObject obj = FindInactiveObject(prefab);
+
+            if (!obj) return default;
+            
+            obj.transform.SetParent(parent, false);
             obj.SetActive(true);
             return obj.GetComponent<T>();
         }

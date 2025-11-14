@@ -26,7 +26,7 @@ namespace _02Scripts.Gun
         {
             T bullet = UniversalBulletFactory.Instance.Spawn(BulletPrefab, position, rotation) as T;
             if (!bullet) bullet = Instantiate(BulletPrefab, position, rotation);
-            bullet.Init(damage, rotation);
+            bullet?.Init(damage, rotation);
 
             return bullet;
         }

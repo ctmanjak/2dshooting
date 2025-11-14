@@ -1,3 +1,4 @@
+using System;
 using _02Scripts.Common.Component.Stat;
 using UnityEngine;
 
@@ -12,12 +13,15 @@ namespace _02Scripts.Common.Component
     
         private int _health;
     
-        private void Start()
+        private void Awake()
         {
             _statComponent = GetComponent<StatComponent>();
             _deathComponent = GetComponent<DeathComponent>();
             _invincibleComponent = GetComponent<InvincibleComponent>();
-            
+        }
+
+        private void Start()
+        {
             Init();
         }
 

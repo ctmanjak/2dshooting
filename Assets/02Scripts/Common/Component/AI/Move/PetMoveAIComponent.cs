@@ -18,10 +18,15 @@ namespace _02Scripts.Common.Component.AI.Move
         private Vector2 _delayedTargetPosition;
         private Vector2 _lastMoveDirection;
 
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
         protected override void Init()
         {
             base.Init();
-
+            
             _targetMoveComponent = GetTargetComponent<MoveComponent>();
             _targetMoveStatComponent = GetTargetComponent<MoveStatComponent>();
             

@@ -13,6 +13,11 @@ namespace _02Scripts.Common.Component.AI.Attack
         private AttackComponent _attackComponent;
         private IAICondition[] _aiCondition;
 
+        protected virtual void Awake()
+        {
+            _attackComponent = GetComponent<AttackComponent>();    
+        }
+        
         private void Start()
         {
             Init();
@@ -32,7 +37,6 @@ namespace _02Scripts.Common.Component.AI.Attack
 
         protected virtual void Init()
         {
-            _attackComponent = GetComponent<AttackComponent>();
             if (AICondition == null || AICondition.Any(monoBehaviour => monoBehaviour is not IAICondition)) return;
 
             _aiCondition = new IAICondition[AICondition.Length];

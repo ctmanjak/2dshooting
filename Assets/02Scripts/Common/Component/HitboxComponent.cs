@@ -15,8 +15,8 @@ namespace _02Scripts.Common.Component
         public float KnockbackPower;
 
         public event Action OnHit;
-        
-        private void Start()
+
+        private void Awake()
         {
             _healthComponent = GetComponent<HealthComponent>() ?? GetComponentInParent<HealthComponent>();
             _knockbackComponent = _healthComponent.gameObject.GetComponent<KnockbackComponent>();
