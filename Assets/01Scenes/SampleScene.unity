@@ -3384,6 +3384,10 @@ PrefabInstance:
       propertyPath: Joystick
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1288204883562830885, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
+      propertyPath: Speed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1354585131968531562, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3440,6 +3444,10 @@ PrefabInstance:
       propertyPath: EffectPrefab
       value: 
       objectReference: {fileID: 6988577929017001088, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
+    - target: {fileID: 3687068521638526501, guid: b8fb0db03d16d4025a0eea678a3d91a4, type: 3}
+      propertyPath: Options.Array.data[0].Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

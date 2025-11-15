@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  InvincibleAfterHitSeconds: 1
+  InvincibleAfterHitSeconds: 0
 --- !u!114 &4154578461669998167
 MonoBehaviour:
   m_ObjectHideFlags: 0

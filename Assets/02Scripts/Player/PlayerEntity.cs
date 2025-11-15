@@ -23,8 +23,14 @@ namespace _02Scripts.Player
             _attackStatComponent = GetComponent<AttackStatComponent>();
         }
 
+        private void Start()
+        {
+            _healthComponent.Init();
+        }
+
         public void UseSkill()
         {
+            if (_healthComponent.Health <= DamageWhenUseSkill) return;
             _healthComponent.TakeDamage(DamageWhenUseSkill);
             _playerSkillComponent.Activate();
         }

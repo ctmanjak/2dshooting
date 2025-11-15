@@ -7,28 +7,26 @@ using UnityEngine;
 namespace _02Scripts.Enemy
 {
     [RequireComponent(typeof(HealthComponent), typeof(AttackStatComponent), typeof(MoveComponent))]
-    [RequireComponent(typeof(EquipmentComponent))]
+    [RequireComponent(typeof(EquipmentComponent), typeof(StatComponent))]
     public class EnemyEntity : MonoBehaviour, IDestroyable
     {
         private AttackStatComponent _attackStatComponent;
         private MoveComponent _moveComponent;
         private HealthComponent _healthComponent;
+        private StatComponent _statComponent;
 
         private void Awake()
         {
             _attackStatComponent = GetComponent<AttackStatComponent>();
             _moveComponent = GetComponent<MoveComponent>();
             _healthComponent = GetComponent<HealthComponent>();
-        }
-
-        private void Start()
-        {
-            Init();
+            _statComponent = GetComponent<StatComponent>();
         }
 
         public void Init(float healthMultiplier = 1f)
         {
-            _healthComponent.Init(healthMultiplier);
+            _statComponent.Init(healthMultiplier);
+            _healthComponent.Init();
         }
 
         private void OnTriggerStay2D(Collider2D other)

@@ -27,9 +27,9 @@ namespace _02Scripts.Common.Component
             Init();
         }
 
-        public void Init(float healthMultiplier = 1f)
+        public void Init()
         {
-            SetHealth(Mathf.CeilToInt(_statComponent.MaxHealth * healthMultiplier));
+            SetHealth(_statComponent.MaxHealth);
         }
 
         public void Heal(int amount)

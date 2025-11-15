@@ -22,6 +22,8 @@ namespace _02Scripts.UI
 
         public void Upgrade()
         {
+            if (ScoreManager.Instance.Score < SubtractScoreAmount) return;
+            
             ScoreManager.Instance.SubtractScore(SubtractScoreAmount);
             Upgrade(1);
         }
