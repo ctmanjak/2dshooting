@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _02Scripts.AirMine
 {
-    [RequireComponent(typeof(ParticleSystem), typeof(AirMineStatComponent))]
+    [RequireComponent(typeof(AirMineStatComponent))]
     public class AirMineSplash : MonoBehaviour
     {
         private Collider2D _collider2D;
@@ -22,10 +22,9 @@ namespace _02Scripts.AirMine
             _airMineStatComponent = GetComponent<AirMineStatComponent>();
         }
         
-        private void Start()
+        public void Init(int damage)
         {
-            _damage = _airMineStatComponent.Damage;
-            
+            _damage = damage;
             StartCoroutine(TriggerOnce());
         }
         

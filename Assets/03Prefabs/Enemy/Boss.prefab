@@ -414,8 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 789f7416dc464bc28585bb795c94cd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 1000
-  InvincibleAfterHitSeconds: 1
+  MaxHealth: 5000
+  InvincibleAfterHitSeconds: 0
 --- !u!114 &7429757780534411295
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BaseDamage: 0
-  FireCooldown: 1
+  FireCooldown: 0.5
   BulletPrefab: {fileID: 6030181107323122894, guid: 9f7763b3d8dfc44ae993e49f092950c6, type: 3}
 --- !u!82 &6521436059637385161
 AudioSource:

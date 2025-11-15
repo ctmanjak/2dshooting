@@ -12,13 +12,22 @@ namespace _02Scripts.AirMine
         public event Action OnSpawn;
         public event Action<EffectContext> AfterHit;
 
+        private AirMineSplash _airMineSplash;
+        private AirMineStatComponent _airMineStatComponent;
+
         private float _birthTime;
 
         public float LifeTime = 3f;
 
         private bool _activated;
 
-        public void Start()
+        private void Awake()
+        {
+            _airMineSplash = GetComponentInChildren<AirMineSplash>();
+            _airMineStatComponent = GetComponent<AirMineStatComponent>();
+        }
+
+        private void Start()
         {
             Init();
         }
@@ -45,6 +54,7 @@ namespace _02Scripts.AirMine
             if (_activated) return;
             _activated = true;
             AfterHit?.Invoke(new EffectContext(gameObject));
+            _airMineSplash.Init(_airMineStatComponent.Damage);
             DestroySelf();
         }
 
